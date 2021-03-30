@@ -1,0 +1,20 @@
+[
+  {
+    "address": "0x097a3a6ce1d77a11bda1ac40c08fdf9f6202103f",
+    "earnings": "0x2086ac351052600000",
+    "expiry": "1617089099",
+    "reasons": "socks"
+  },
+  {
+    "address": "0xfa6863a6507c94ed52e9276f8a72479924e77a36",
+    "earnings": "0x30ca024f987b900000",
+    "expiry": "1618089099",
+    "reasons": "socks,user"
+  },
+  {
+    "address": "0xef6fe9c9b351824c96e5c7a478c1e52badcbaee0",
+    "earnings": "0x30ca024f987b900000",
+    "expiry": "1619089099",
+    "reasons": "socks,user"
+  }
+]

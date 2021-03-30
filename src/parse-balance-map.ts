@@ -14,32 +14,21 @@ interface MerkleDistributorInfo {
     [account: string]: {
       index: number
       amount: string
+      expiry: string
       proof: string[]
-      flags?: {
-        [flag: string]: boolean
-      }
+      reasons: string
     }
   }
 }
 
 type OldFormat = { [account: string]: number | string }
-type NewFormat = { address: string; earnings: string; reasons: string }
+type NewFormat = { address: string; earnings: string; reasons: string, expiry: string}
 
-export function parseBalanceMap(balances: OldFormat | NewFormat[]): MerkleDistributorInfo {
-  // if balances are in an old format, process them
-  const balancesInNewFormat: NewFormat[] = Array.isArray(balances)
-    ? balances
-    : Object.keys(balances).map(
-        (account): NewFormat => ({
-          address: account,
-          earnings: `0x${balances[account].toString(16)}`,
-          reasons: '',
-        })
-      )
+export function parseBalanceMap(balances: NewFormat[]): MerkleDistributorInfo {
 
-  const dataByAddress = balancesInNewFormat.reduce<{
-    [address: string]: { amount: BigNumber; flags?: { [flag: string]: boolean } }
-  }>((memo, { address: account, earnings, reasons }) => {
+  const dataByAddress = balances.reduce<{
+    [address: string]: { amount: BigNumber; expiry: BigNumber; reasons: string }
+  }>((memo, { address: account, earnings, reasons, expiry}) => {
     if (!isAddress(account)) {
       throw new Error(`Found invalid address: ${account}`)
     }
@@ -47,14 +36,9 @@ export function parseBalanceMap(balances: OldFormat | NewFormat[]): MerkleDistri
     if (memo[parsed]) throw new Error(`Duplicate address: ${parsed}`)
     const parsedNum = BigNumber.from(earnings)
     if (parsedNum.lte(0)) throw new Error(`Invalid amount for account: ${account}`)
+    const parsedExpiry = BigNumber.from(expiry)
 
-    const flags = {
-      isSOCKS: reasons.includes('socks'),
-      isLP: reasons.includes('lp'),
-      isUser: reasons.includes('user'),
-    }
-
-    memo[parsed] = { amount: parsedNum, ...(reasons === '' ? {} : { flags }) }
+    memo[parsed] = { amount: parsedNum, expiry: parsedExpiry, reasons: reasons }
     return memo
   }, {})
 
@@ -62,19 +46,20 @@ export function parseBalanceMap(balances: OldFormat | NewFormat[]): MerkleDistri
 
   // construct a tree
   const tree = new BalanceTree(
-    sortedAddresses.map((address) => ({ account: address, amount: dataByAddress[address].amount }))
+    sortedAddresses.map((address) => ({ account: address, amount: dataByAddress[address].amount, expiry: dataByAddress[address].expiry }))
   )
 
   // generate claims
   const claims = sortedAddresses.reduce<{
-    [address: string]: { amount: string; index: number; proof: string[]; flags?: { [flag: string]: boolean } }
+    [address: string]: { amount: string; index: number; expiry: string; proof: string[]; reasons: string; }
   }>((memo, address, index) => {
-    const { amount, flags } = dataByAddress[address]
+    const { amount, reasons, expiry } = dataByAddress[address]
     memo[address] = {
       index,
       amount: amount.toHexString(),
-      proof: tree.getProof(index, address, amount),
-      ...(flags ? { flags } : {}),
+      expiry: expiry.toHexString(),
+      proof: tree.getProof(index, address, amount, expiry),
+      reasons: reasons,
     }
     return memo
   }, {})
