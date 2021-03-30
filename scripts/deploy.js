@@ -13,7 +13,7 @@ module.exports = async function (callback) {
         const merkleDistributorImpl = await MerkleDistributor.new();
         const merkleDistributorProxy = await MerkleDistributorProxy.new(merkleDistributorImpl.address, Buffer.from(''));
         const merkleDistributor = await MerkleDistributor.at(merkleDistributorProxy.address);
-        await merkleDistributor.initialize('0x15caed6bd75bfb22590a9af053d0fe89f287c066', '0x8c81ccac1f1258f6fd39b6dcf75fc509179a1e2436f1724a964894769c98d7cf');
+        await merkleDistributor.initialize('0x72993D5A4A1ebC7c8cb1883b672c39a0786A8e81', '0x8c81ccac1f1258f6fd39b6dcf75fc509179a1e2436f1724a964894769c98d7cf');
 
         console.log(`implementation: ${merkleDistributorImpl.address}`);
         console.log(`proxy: ${merkleDistributorProxy.address}`);

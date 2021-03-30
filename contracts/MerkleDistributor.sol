@@ -39,7 +39,7 @@ contract MerkleDistributor is IMerkleDistributor, Initializable, OwnableUpgradea
 
     function claim(uint256 index, address account, uint256 amount, uint256 expiry, bytes32[] calldata merkleProof) external override {
         require(!isClaimed(index), 'MerkleDistributor: Drop already claimed.');
-
+        require(block.timestamp < expiry, "Claim expired.");
         // Verify the merkle proof.
         bytes32 node = keccak256(abi.encodePacked(index, account, amount, expiry));
         require(MerkleProof.verify(merkleProof, merkleRoot, node), 'MerkleDistributor: Invalid proof.');
