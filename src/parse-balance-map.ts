@@ -14,7 +14,6 @@ interface MerkleDistributorInfo {
     [account: string]: {
       index: number
       amount: string
-      expiry: string
       proof: string[]
       reasons: string
     }
@@ -22,13 +21,13 @@ interface MerkleDistributorInfo {
 }
 
 type OldFormat = { [account: string]: number | string }
-type NewFormat = { address: string; earnings: string; reasons: string, expiry: string}
+type NewFormat = { address: string; earnings: string; reasons: string}
 
 export function parseBalanceMap(balances: NewFormat[]): MerkleDistributorInfo {
 
   const dataByAddress = balances.reduce<{
-    [address: string]: { amount: BigNumber; expiry: BigNumber; reasons: string }
-  }>((memo, { address: account, earnings, reasons, expiry}) => {
+    [address: string]: { amount: BigNumber; reasons: string }
+  }>((memo, { address: account, earnings, reasons}) => {
     if (!isAddress(account)) {
       throw new Error(`Found invalid address: ${account}`)
     }
@@ -36,9 +35,8 @@ export function parseBalanceMap(balances: NewFormat[]): MerkleDistributorInfo {
     if (memo[parsed]) throw new Error(`Duplicate address: ${parsed}`)
     const parsedNum = BigNumber.from(earnings)
     if (parsedNum.lte(0)) throw new Error(`Invalid amount for account: ${account}`)
-    const parsedExpiry = BigNumber.from(expiry)
 
-    memo[parsed] = { amount: parsedNum, expiry: parsedExpiry, reasons: reasons }
+    memo[parsed] = { amount: parsedNum, reasons: reasons }
     return memo
   }, {})
 
@@ -46,19 +44,18 @@ export function parseBalanceMap(balances: NewFormat[]): MerkleDistributorInfo {
 
   // construct a tree
   const tree = new BalanceTree(
-    sortedAddresses.map((address) => ({ account: address, amount: dataByAddress[address].amount, expiry: dataByAddress[address].expiry }))
+    sortedAddresses.map((address) => ({ account: address, amount: dataByAddress[address].amount}))
   )
 
   // generate claims
   const claims = sortedAddresses.reduce<{
-    [address: string]: { amount: string; index: number; expiry: string; proof: string[]; reasons: string; }
+    [address: string]: { amount: string; index: number; proof: string[]; reasons: string; }
   }>((memo, address, index) => {
-    const { amount, reasons, expiry } = dataByAddress[address]
+    const { amount, reasons } = dataByAddress[address]
     memo[address] = {
       index,
       amount: amount.toHexString(),
-      expiry: expiry.toHexString(),
-      proof: tree.getProof(index, address, amount, expiry),
+      proof: tree.getProof(index, address, amount),
       reasons: reasons,
     }
     return memo
