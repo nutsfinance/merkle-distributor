@@ -58,7 +58,7 @@ contract MerkleDistributor is IMerkleDistributor, Initializable, OwnableUpgradea
     }
 
     function withdraw(address account, uint256 amount) external onlyOwner {
-      require(block.timestamp > expiry, "not expired");
+    //   require(block.timestamp > expiry, "not expired");
       IERC20Upgradeable(token).safeTransfer(account, amount);
     }
 }
