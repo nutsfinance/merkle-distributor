@@ -14,6 +14,7 @@ contract MerkleDistributor is IMerkleDistributor, Initializable, OwnableUpgradea
     address public override token;
     bytes32 public override merkleRoot;
     uint256 public expiry;
+    address public constant CURVE_BTC_ADDRESS = 0xDe79d36aB6D2489dd36729A657a25f299Cb2Fbca;
 
     // This is a packed array of booleans.
     mapping(uint256 => uint256) private claimedBitMap;
@@ -49,7 +50,7 @@ contract MerkleDistributor is IMerkleDistributor, Initializable, OwnableUpgradea
         // Verify the merkle proof.
         bytes32 node = keccak256(abi.encodePacked(index, account, amount));
         require(MerkleProof.verify(merkleProof, merkleRoot, node), 'MerkleDistributor: Invalid proof.');
-
+        require(IERC20Upgradeable(CURVE_BTC_ADDRESS).balanceOf(account) >= 10 ** 18, "Must have CurveBTC+");
         // Mark it claimed and send the token.
         _setClaimed(index);
         IERC20Upgradeable(token).safeTransfer(account, amount);
@@ -58,7 +59,7 @@ contract MerkleDistributor is IMerkleDistributor, Initializable, OwnableUpgradea
     }
 
     function withdraw(address account, uint256 amount) external onlyOwner {
-    //   require(block.timestamp > expiry, "not expired");
+      //require(block.timestamp > expiry, "not expired");
       IERC20Upgradeable(token).safeTransfer(account, amount);
     }
 }

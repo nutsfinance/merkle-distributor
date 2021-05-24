@@ -64,10 +64,10 @@ module.exports = {
     },
 
     main: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY, 0, 10),
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://mainnet.infura.io/v3/5f8a469210284f338ec2c9a3d90ae000", 1, 10),
       network_id: 1,          // Main's id
       gas: 6700000,           // Gas sent with each transaction (default: ~5000000)
-      gasPrice: 25000000000,  // 75 gwei (in wei) (default: 100 gwei)
+      gasPrice: 40000000000,  // 75 gwei (in wei) (default: 100 gwei)
     },
 
     bsc: {
@@ -83,8 +83,7 @@ module.exports = {
       gas: 6700000,           // Gas sent with each transaction (default: ~6700000)
       gasPrice: 20000000000,  // 10 gwei (in wei) (default: 10 gwei)
       // confirmations: 10,
-    },
-
+    }
     // Another network with more advanced options...
     // advanced: {
       // port: 8777,             // Custom port
@@ -118,7 +117,11 @@ module.exports = {
     "solidity-coverage",
     "truffle-plugin-verify"
   ],
-
+  api_keys: {
+    bscscan: 'PUB6C4AVTTPM57WZEMHRZZEWUVHW4VYJVS',
+    etherscan: 'ZVS7QS6TGF6VNAEA267A9KP2KRCDSNRP1G',
+    hecoinfo: 'PUB6C4AVTTPM57WZEMHRZZEWUVHW4VYJVS',
+  },
   // Set default mocha options here, use special reporters etc.
   mocha: {
     // timeout: 100000

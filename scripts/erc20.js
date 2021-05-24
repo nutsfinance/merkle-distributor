@@ -1,4 +1,4 @@
-const TestERC20 = artifacts.require("TestERC20");
+const MockToken = artifacts.require("MockToken");
 const MerkleDistributorProxy = artifacts.require("MerkleDistributorProxy");
 
 const BN = web3.utils.BN;
@@ -11,9 +11,9 @@ module.exports = async function (callback) {
 
         // const erc20 = await TestERC20.new("test", "TC", "0xfffffffffffffffffffffffff");
         // console.log("erc20 address:" + erc20.address);
-        const erc20 = await TestERC20.at("0x72993D5A4A1ebC7c8cb1883b672c39a0786A8e81");
-        await erc20.transfer("0x21453a6eFd9741ddEBA6cb446abb656d3B699d97", "0xfffffffffffffffffffffffff");
-        console.log(await erc20.balanceOf("0x21453a6eFd9741ddEBA6cb446abb656d3B699d97"));
+        const erc20 = await MockToken.at("0xe9c1b8993a8750ae65607ef91ebcde595deb4ec3");
+        await erc20.mint("0x740e2D176ef3EdEF642c3d9F196afa5Fc5c28267", "0x0131beb925ffd3200000");
+        console.log(await erc20.balanceOf("0x740e2D176ef3EdEF642c3d9F196afa5Fc5c28267"));
         callback();
     } catch (e) {
         callback(e);
