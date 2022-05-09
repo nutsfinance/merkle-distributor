@@ -48,12 +48,8 @@
     "dotenv": "^16.0.0"
   },
   "scripts": {
-    "precompile": "rimraf ./build/",
-    "compile": "waffle",
-    "pretest": "yarn compile",
-    "test": "mocha",
-    "generate-merkle-root": "ts-node scripts/generate-merkle-root.ts",
-    "generate-merkle-root:example": "ts-node scripts/generate-merkle-root.ts --input scripts/example.json",
-    "prepublishOnly": "yarn test"
+    "build": "hardhat compile",
+    "deploy-local": "hardhat run scripts/deploy.js --network local",
+    "deploy-mandala-dev": "hardhat run scripts/deploy.js --network mandalaDev"
   }
 }

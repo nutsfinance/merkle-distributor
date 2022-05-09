@@ -1,24 +1,43 @@
-const MerkleDistributor = artifacts.require("MerkleDistributor");
-const MerkleDistributorProxy = artifacts.require("MerkleDistributorProxy");
+const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
+const { Contract } = require("ethers");
 
-const BN = web3.utils.BN;
-const toWei = web3.utils.toWei;
-const MAX = new BN(2).pow(new BN(256)).sub(new BN(1));
+const txFeePerGas = '199999946752';
+const storageByteDeposit = '0';
 
-module.exports = async function (callback) {
-    try {
-        const accounts = await web3.eth.getAccounts();
+async function main() {
+    const blockNumber = await ethers.provider.getBlockNumber();
+    
+    const ethParams = calcEthereumTransactionParams({
+        gasLimit: '21000010',
+        validUntil: (blockNumber + 100).toString(),
+        storageLimit: '640010',
+        txFeePerGas,
+        storageByteDeposit
+    });
+    
+    const [deployer, proxyAdmin, admin] = await ethers.getSigners();
+    
+    const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
+    const instance = await MerkleDistributor.deploy({
+        gasPrice: ethParams.txGasPrice,
+        gasLimit: ethParams.txGasLimit,
+    });
+    console.log("Merkle distributor address:", instance.address);
 
-        console.log('account: ' + accounts[0]);
-        const merkleDistributorImpl = await MerkleDistributor.new();
-        const merkleDistributorProxy = await MerkleDistributorProxy.new(merkleDistributorImpl.address, Buffer.from(''));
-        const merkleDistributor = await MerkleDistributor.at(merkleDistributorProxy.address);
-        await merkleDistributor.initialize('0x72993D5A4A1ebC7c8cb1883b672c39a0786A8e81', '0x8c81ccac1f1258f6fd39b6dcf75fc509179a1e2436f1724a964894769c98d7cf');
+    const MerkleDistributorProxy = await ethers.getContractFactory("MerkleDistributorProxy");
+    const proxy = await MerkleDistributorProxy.deploy(instance.address, proxyAdmin.address, [], {
+        gasPrice: ethParams.txGasPrice,
+        gasLimit: ethParams.txGasLimit,
+    });
+    console.log('Merkle distributor proxy address', proxy.address);
 
-        console.log(`implementation: ${merkleDistributorImpl.address}`);
-        console.log(`proxy: ${merkleDistributorProxy.address}`);
-        callback();
-    } catch (e) {
-        callback(e);
-    }
+    const distributor = instance.attach(proxy.address);
+    await distributor.initialize(admin.address, admin.address, admin.address);
 }
+
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+    console.error(error);
+    process.exit(1);
+    });
