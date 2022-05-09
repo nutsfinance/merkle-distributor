@@ -1,5 +1,4 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
-const { Contract } = require("ethers");
 
 const txFeePerGas = '199999946752';
 const storageByteDeposit = '0';

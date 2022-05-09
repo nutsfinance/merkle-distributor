@@ -50,6 +50,8 @@
   "scripts": {
     "build": "hardhat compile",
     "deploy-local": "hardhat run scripts/deploy.js --network local",
-    "deploy-mandala-dev": "hardhat run scripts/deploy.js --network mandalaDev"
+    "deploy-mandala-dev": "hardhat run scripts/deploy.js --network mandalaDev",
+    "deploy-mandala": "hardhat run scripts/deploy.js --network mandala",
+    "deploy-karura": "hardhat run scripts/deploy.js --network karura"
   }
 }

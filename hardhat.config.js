@@ -37,5 +37,21 @@ module.exports = {
       chainId: 595,
       timeout: 60000,
     },
+    mandala: {
+      url: 'https://tc7-eth.aca-dev.network',
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+      chainId: 595,
+      timeout: 60000,
+    },
+    karura: {
+      url: 'https://eth-rpc-karura.aca-api.network/',
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+      chainId: 686,
+      timeout: 60000,
+    },
   }
 };
