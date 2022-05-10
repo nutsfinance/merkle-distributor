@@ -1,7 +1,5 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
-
-const txFeePerGas = '199999946752';
-const storageByteDeposit = '0';
+const { ethers, upgrades } = require("hardhat");
 
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
@@ -10,28 +8,20 @@ async function main() {
         gasLimit: '21000010',
         validUntil: (blockNumber + 100).toString(),
         storageLimit: '640010',
-        txFeePerGas,
-        storageByteDeposit
+        txFeePerGas: '199999946752',
+        storageByteDeposit: '100000000000000'
     });
     
-    const [deployer, proxyAdmin, admin] = await ethers.getSigners();
+    const [deployer, admin] = await ethers.getSigners();
     
     const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
-    const instance = await MerkleDistributor.deploy({
+    const distributor = await upgrades.deployProxy(MerkleDistributor, [admin.address, admin.address, admin.address], {
+        deployer,
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });
-    console.log("Merkle distributor address:", instance.address);
-
-    const MerkleDistributorProxy = await ethers.getContractFactory("MerkleDistributorProxy");
-    const proxy = await MerkleDistributorProxy.deploy(instance.address, proxyAdmin.address, [], {
-        gasPrice: ethParams.txGasPrice,
-        gasLimit: ethParams.txGasLimit,
-    });
-    console.log('Merkle distributor proxy address', proxy.address);
-
-    const distributor = instance.attach(proxy.address);
-    await distributor.initialize(admin.address, admin.address, admin.address);
+    await distributor.deployed();
+    console.log("Merkle distributor address:", distributor.address);
 }
 
 main()
