@@ -8,6 +8,7 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/cryptography/MerkleProofUpgradeable.sol";
 import "./IMerkleDistributor.sol";
+import "./IEvmAccount.sol";
 
 /**
  * @title Merkle Distributor
@@ -30,6 +31,8 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant UNPAUSER_ROLE = keccak256("UNPAUSER_ROLE");
 
+    address public evmAccount;
+
     uint256 public currentCycle;
     bytes32 public merkleRoot;
     bytes32 public merkleContentHash;
@@ -42,7 +45,10 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     uint256 public lastProposeTimestamp;
     uint256 public lastProposeBlockNumber;
 
-    mapping(address => mapping(address => uint256)) public claimed;
+    // Reward targets are Polkadot address, so it's represented as bytes32
+    // Polkadot address => (token address => amount)
+    mapping(bytes32 => mapping(address => uint256)) public claimed;
+    // Token address => total amount claimed
     mapping(address => uint256) public totalClaimed;
 
     uint256 public lastPublishStartBlock;
@@ -54,7 +60,8 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     function initialize(
         address admin,
         address initialProposer,
-        address initialValidator
+        address initialValidator,
+        address evmAccountAddress
     ) public initializer {
         __AccessControl_init();
         __Pausable_init_unchained();
@@ -62,6 +69,8 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
         _setupRole(DEFAULT_ADMIN_ROLE, admin); // The admin can edit all role permissions
         _setupRole(ROOT_PROPOSER_ROLE, initialProposer); // The admin can edit all role permissions
         _setupRole(ROOT_VALIDATOR_ROLE, initialValidator); // The admin can edit all role permissions
+
+        evmAccount = evmAccountAddress;
     }
 
     /// ===== Modifiers =====
@@ -111,7 +120,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
 
     /// @dev Return true if account has outstanding claims in any token from the given input data
     function isClaimAvailableFor(
-        address user,
+        bytes32 user,
         address[] memory tokens,
         uint256[] memory cumulativeAmounts
     ) public view returns (bool) {
@@ -126,7 +135,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
 
     /// @dev Get the number of tokens claimable for an account, given a list of tokens and latest cumulativeAmounts data
     function getClaimableFor(
-        address user,
+        bytes32 user,
         address[] memory tokens,
         uint256[] memory cumulativeAmounts
     ) public view returns (address[] memory, uint256[] memory) {
@@ -137,7 +146,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
         return (tokens, userClaimable);
     }
 
-    function getClaimedFor(address user, address[] memory tokens) public view returns (address[] memory, uint256[] memory) {
+    function getClaimedFor(bytes32 user, address[] memory tokens) public view returns (address[] memory, uint256[] memory) {
         uint256[] memory userClaimed = new uint256[](tokens.length);
         for (uint256 i = 0; i < tokens.length; i++) {
             userClaimed[i] = claimed[user][tokens[i]];
@@ -148,7 +157,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     function encodeClaim(
         address[] calldata tokens,
         uint256[] calldata cumulativeAmounts,
-        address account,
+        bytes32 account,
         uint256 index,
         uint256 cycle
     ) public pure returns (bytes memory encoded, bytes32 hash) {
@@ -158,6 +167,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
 
     /// @notice Claim accumulated rewards for a set of tokens at a given cycle number
     function claim(
+        bytes32 user,
         address[] calldata tokens,
         uint256[] calldata cumulativeAmounts,
         uint256 index,
@@ -167,10 +177,8 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
         require(cycle == currentCycle, "Invalid cycle");
 
         // Verify the merkle proof.
-        bytes32 node = keccak256(abi.encode(index, msg.sender, cycle, tokens, cumulativeAmounts));
+        bytes32 node = keccak256(abi.encode(index, user, cycle, tokens, cumulativeAmounts));
         require(MerkleProofUpgradeable.verify(merkleProof, merkleRoot, node), "Invalid proof");
-
-        bool claimedAny = false;
 
         // Claim each token
         for (uint256 i = 0; i < tokens.length; i++) {
@@ -179,25 +187,19 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
                 continue;
             }
 
-            uint256 claimable = cumulativeAmounts[i] - claimed[msg.sender][tokens[i]];
-
+            uint256 claimable = cumulativeAmounts[i] - claimed[user][tokens[i]];
+            // If all claimed, skip
             if (claimable == 0) {
                 continue;
             }
 
-            require(claimable > 0, "Excessive claim");
+            claimed[user][tokens[i]] += claimable;
+            totalClaimed[tokens[i]] += claimable;
 
-            claimed[msg.sender][tokens[i]] += claimable;
+            address userAddress = IEvmAccount(evmAccount).getEvmAddress(user);
+            require(IERC20Upgradeable(tokens[i]).transfer(userAddress, claimable), "Transfer failed");
 
-            require(claimed[msg.sender][tokens[i]] == cumulativeAmounts[i], "Claimed amount mismatch");
-            require(IERC20Upgradeable(tokens[i]).transfer(msg.sender, claimable), "Transfer failed");
-
-            emit Claimed(msg.sender, tokens[i], claimable, cycle, block.timestamp, block.number);
-            claimedAny = true;
-        }
-
-        if (claimedAny == false) {
-            revert("No tokens to claim");
+            emit Claimed(user, userAddress, tokens[i], claimable, cycle, block.timestamp, block.number, msg.sender);
         }
     }
 

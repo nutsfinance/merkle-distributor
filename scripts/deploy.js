@@ -1,5 +1,5 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
-const { ethers, upgrades } = require("hardhat");
+const { upgrades, ethers } = require("hardhat");
 
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
@@ -13,15 +13,36 @@ async function main() {
     });
     
     const [deployer, admin] = await ethers.getSigners();
-    
+
+    const EvmAccount = await ethers.getContractFactory("TestEvmAccount");
+    const evmAccount = await EvmAccount.deploy({
+        gasPrice: ethParams.txGasPrice,
+        gasLimit: ethParams.txGasLimit,
+    });
+    await evmAccount.deployed();
+    console.log('EVM account: ' + evmAccount.address);
+
     const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
-    const distributor = await upgrades.deployProxy(MerkleDistributor, [admin.address, admin.address, admin.address], {
-        deployer,
+    const distributor = await MerkleDistributor.deploy({
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });
     await distributor.deployed();
-    console.log("Merkle distributor address:", distributor.address);
+    console.log('Merkle distributor: ' + distributor.address);
+    const tx = await distributor.initialize(admin.address, admin.address, admin.address, evmAccount.address, {
+        gasPrice: ethParams.txGasPrice,
+        gasLimit: ethParams.txGasLimit,
+    });
+    await tx.wait();
+    
+    // const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
+    // const distributor = await upgrades.deployProxy(MerkleDistributor, [admin.address, admin.address, admin.address], {
+    //     deployer,
+    //     gasPrice: ethParams.txGasPrice,
+    //     gasLimit: ethParams.txGasLimit,
+    // });
+    // await distributor.deployed();
+    // console.log("Merkle distributor address:", distributor.address);
 }
 
 main()
