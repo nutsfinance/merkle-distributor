@@ -12,7 +12,7 @@ async function main() {
         storageByteDeposit: '100000000000000'
     });
     
-    const [deployer, admin] = await ethers.getSigners();
+    const [deployer] = await ethers.getSigners();
 
     const EvmAccount = await ethers.getContractFactory("TestEvmAccount");
     const evmAccount = await EvmAccount.deploy({
@@ -29,7 +29,7 @@ async function main() {
     });
     await distributor.deployed();
     console.log('Merkle distributor: ' + distributor.address);
-    const tx = await distributor.initialize(admin.address, admin.address, admin.address, evmAccount.address, {
+    const tx = await distributor.initialize(deployer.address, deployer.address, deployer.address, evmAccount.address, {
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });
