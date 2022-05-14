@@ -1,6 +1,5 @@
 const { WsProvider, Keyring } = require('@polkadot/api');
 const { AccountSigningKey, Provider, Signer } = require("@acala-network/bodhi");
-const { cryptoWaitReady } = require("@polkadot/util-crypto");
 const { ethers } = require("hardhat");
 
 const config = {
@@ -12,7 +11,8 @@ async function main () {
   const provider = new Provider({
       provider: new WsProvider(config.ws),
   });
-  await cryptoWaitReady();
+  await provider.api.isReady;
+
   const keyring = new Keyring({ type: 'sr25519' })
   const pair = keyring.addFromUri(config.seed);
   const signingKey = new AccountSigningKey(provider.api.registry);
