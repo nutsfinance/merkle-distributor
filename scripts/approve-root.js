@@ -18,7 +18,7 @@ async function main() {
     console.log(await distributor.evmAccount());
     console.log(await distributor.currentCycle());
 
-    const tx1 = await distributor.approveRoot('0xe76676531bddae03a6ffcedf106913811ff168e57ad2cb1272fcedd00fc49290', ethers.utils.formatBytes32String(''), 1, 0, 1, {
+    const tx1 = await distributor.approveRoot('0xe7ffac5f2dc91f65688f90da09a6d2d60394c5902e982ed51ce461edc18f6983', ethers.utils.formatBytes32String(''), 2, 0, 1, {
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });
