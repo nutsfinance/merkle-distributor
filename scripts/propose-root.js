@@ -14,11 +14,10 @@ async function main() {
     const [deployer] = await ethers.getSigners();
 
     const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
-    const distributor = MerkleDistributor.attach('0xBcFBD51aB3cEB6047100265a20486F694BCD3604');
-    console.log(await distributor.evmAccount());
+    const distributor = MerkleDistributor.attach('0xF7A5B5792672D06d8FD2B5A6dAcE0C19d578BaCF');
     console.log(await distributor.currentCycle());
 
-    const tx1 = await distributor.proposeRoot('0xe7ffac5f2dc91f65688f90da09a6d2d60394c5902e982ed51ce461edc18f6983', ethers.utils.formatBytes32String(''), 2, 0, 1, {
+    const tx1 = await distributor.proposeRoot('0x8e0cd0eace3224a83684f5289f8a6683287177c9ff60138692352738c6bd8703', ethers.utils.formatBytes32String(''), 1, 0, 1, {
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });

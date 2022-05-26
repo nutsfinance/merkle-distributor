@@ -8,7 +8,7 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/cryptography/MerkleProofUpgradeable.sol";
 import "./IMerkleDistributor.sol";
-import "./IEvmAccount.sol";
+import './IEVMAccounts.sol';
 
 /**
  * @title Merkle Distributor
@@ -30,8 +30,6 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     bytes32 public constant ROOT_VALIDATOR_ROLE = keccak256("ROOT_VALIDATOR_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant UNPAUSER_ROLE = keccak256("UNPAUSER_ROLE");
-
-    address public evmAccount;
 
     uint256 public currentCycle;
     bytes32 public merkleRoot;
@@ -60,8 +58,7 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
     function initialize(
         address admin,
         address initialProposer,
-        address initialValidator,
-        address evmAccountAddress
+        address initialValidator
     ) public initializer {
         __AccessControl_init();
         __Pausable_init_unchained();
@@ -69,8 +66,6 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
         _setupRole(DEFAULT_ADMIN_ROLE, admin); // The admin can edit all role permissions
         _setupRole(ROOT_PROPOSER_ROLE, initialProposer); // The admin can edit all role permissions
         _setupRole(ROOT_VALIDATOR_ROLE, initialValidator); // The admin can edit all role permissions
-
-        evmAccount = evmAccountAddress;
     }
 
     /// ===== Modifiers =====
@@ -196,7 +191,8 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
             claimed[user][tokens[i]] += claimable;
             totalClaimed[tokens[i]] += claimable;
 
-            address userAddress = IEvmAccount(evmAccount).getEvmAddress(user);
+            // address userAddress = IEVMAccounts(ADDRESS.EVMAccounts).getEvmAddress(user);
+            address userAddress = IEVMAccounts(0x0000000000000000000000000000000000000806).getEvmAddress(user);
             require(IERC20Upgradeable(tokens[i]).transfer(userAddress, claimable), "Transfer failed");
 
             emit Claimed(user, userAddress, tokens[i], claimable, cycle, block.timestamp, block.number, msg.sender);

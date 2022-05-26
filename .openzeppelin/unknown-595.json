@@ -1,0 +1,276 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x6d3D74c25d8fB38f9135bcBb9616e377d810d5bB",
+    "txHash": "0xc5710a7bae5dcd4dcbf6ce45808b399da6b918564027c2697ee8108567c408e7"
+  },
+  "proxies": [
+    {
+      "address": "0xD104F7479117209c1B885390500f29110f84E8FB",
+      "txHash": "0xb706025fcf61478b9e6e69c2b1b0539f556dc371d9cb394bf2eb8351f3a86115",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "0bd02d82167828a160cc49a6ef9094521e1663a9902da55d981cc4679cca1e97": {
+      "address": "0xb23Bc6b9b1461e628f2C788c009972486C75DC2F",
+      "txHash": "0x17b1973ce420e9f9a2c784a08e612abedce761608c25ca909d2a8bf75fc05db6",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:39"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:44"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC165Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol:36"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)43_storage)",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:64"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "AccessControlUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:232"
+          },
+          {
+            "label": "_paused",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_bool",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:29"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:97"
+          },
+          {
+            "label": "currentCycle",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:34"
+          },
+          {
+            "label": "merkleRoot",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_bytes32",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:35"
+          },
+          {
+            "label": "merkleContentHash",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_bytes32",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:36"
+          },
+          {
+            "label": "lastPublishTimestamp",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:37"
+          },
+          {
+            "label": "lastPublishBlockNumber",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:38"
+          },
+          {
+            "label": "pendingCycle",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:40"
+          },
+          {
+            "label": "pendingMerkleRoot",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_bytes32",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:41"
+          },
+          {
+            "label": "pendingMerkleContentHash",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_bytes32",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:42"
+          },
+          {
+            "label": "lastProposeTimestamp",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:43"
+          },
+          {
+            "label": "lastProposeBlockNumber",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:44"
+          },
+          {
+            "label": "claimed",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_mapping(t_bytes32,t_mapping(t_address,t_uint256))",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:48"
+          },
+          {
+            "label": "totalClaimed",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:50"
+          },
+          {
+            "label": "lastPublishStartBlock",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:52"
+          },
+          {
+            "label": "lastPublishEndBlock",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:53"
+          },
+          {
+            "label": "lastProposeStartBlock",
+            "offset": 0,
+            "slot": "215",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:55"
+          },
+          {
+            "label": "lastProposeEndBlock",
+            "offset": 0,
+            "slot": "216",
+            "type": "t_uint256",
+            "contract": "MerkleDistributor",
+            "src": "contracts/MerkleDistributor.sol:56"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(bytes32 => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)43_storage)": {
+            "label": "mapping(bytes32 => struct AccessControlUpgradeable.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(RoleData)43_storage": {
+            "label": "struct AccessControlUpgradeable.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  }
+}
