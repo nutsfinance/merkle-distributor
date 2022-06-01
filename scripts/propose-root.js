@@ -1,6 +1,12 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
 const { ethers } = require("hardhat");
 
+const DISTRIBUTOR = '0x9c925B9675F717F1893a321c991f0f0433E6C5E0';
+const NEW_ROOT = '0xbb7102ca88754b2fc44d6f357e3e528ae01053846aa387390282ad5adede453c';
+const NEW_CYCLE = 1;
+const NEW_START_BLOCK = 0;
+const NEW_END_BLOCK = 1;
+
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
     
@@ -14,16 +20,16 @@ async function main() {
     const [deployer] = await ethers.getSigners();
 
     const MerkleDistributor = await ethers.getContractFactory("MerkleDistributor");
-    const distributor = MerkleDistributor.attach('0xF7A5B5792672D06d8FD2B5A6dAcE0C19d578BaCF');
-    console.log(await distributor.currentCycle());
+    const distributor = MerkleDistributor.attach(DISTRIBUTOR);
+    console.log('Cycle before: ' + await distributor.currentCycle());
 
-    const tx1 = await distributor.proposeRoot('0x8e0cd0eace3224a83684f5289f8a6683287177c9ff60138692352738c6bd8703', ethers.utils.formatBytes32String(''), 1, 0, 1, {
+    const tx1 = await distributor.proposeRoot(NEW_ROOT, ethers.utils.formatBytes32String(''), NEW_CYCLE, NEW_START_BLOCK, NEW_END_BLOCK, {
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });
     await tx1.wait();
 
-    console.log('Current cycle: ' + await distributor.currentCycle());
+    console.log('Cycle after: ' + await distributor.currentCycle());
     console.log('Pending cycle: ' + await distributor.pendingCycle());
     console.log('Pending Merkle root: ' + await distributor.pendingMerkleRoot());
     console.log('Pending Merkle content hash: ' + await distributor.pendingMerkleContentHash());

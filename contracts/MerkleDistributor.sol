@@ -7,15 +7,17 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/cryptography/MerkleProofUpgradeable.sol";
+import "@acala-network/contracts/evm-accounts/IEVMAccounts.sol";
+import "@acala-network/contracts/utils/Address.sol";
+
 import "./IMerkleDistributor.sol";
-import './IEVMAccounts.sol';
 
 /**
  * @title Merkle Distributor
  *
  * Modified from https://github.com/Badger-Finance/badger-system/blob/master/contracts/badger-geyser/BadgerTreeV2.sol
  */
-contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableUpgradeable, IMerkleDistributor {
+contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, PausableUpgradeable, IMerkleDistributor {
 
     struct MerkleData {
         bytes32 root;
@@ -191,8 +193,12 @@ contract MerkleDistributor is Initializable, AccessControlUpgradeable, PausableU
             claimed[user][tokens[i]] += claimable;
             totalClaimed[tokens[i]] += claimable;
 
-            // address userAddress = IEVMAccounts(ADDRESS.EVMAccounts).getEvmAddress(user);
-            address userAddress = IEVMAccounts(0x0000000000000000000000000000000000000806).getEvmAddress(user);
+            IEVMAccounts evmAccounts = IEVMAccounts(ADDRESS.EVMAccounts);
+            address userAddress = evmAccounts.getEvmAddress(user);
+            if (userAddress == address(0x0)) {
+                require(evmAccounts.claimDefaultEvmAddress(user), "Claim failed");
+                userAddress = evmAccounts.getEvmAddress(user);
+            }
             require(IERC20Upgradeable(tokens[i]).transfer(userAddress, claimable), "Transfer failed");
 
             emit Claimed(user, userAddress, tokens[i], claimable, cycle, block.timestamp, block.number, msg.sender);

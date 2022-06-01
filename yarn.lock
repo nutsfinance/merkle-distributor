@@ -25,15 +25,10 @@
     "bn.js" "~5.2.0"
     "ethers" "~5.5.0"
 
-"@acala-network/contracts@~4.2.0":
-  "integrity" "sha512-IT63HPWsHPeHy8zCr71wAztghrFdscLzZlYdcvewEuBGWkRpHFlZ4i32kADYPv6UAT9ew7en6nqOWJa48CaliQ=="
-  "resolved" "https://registry.npmjs.org/@acala-network/contracts/-/contracts-4.2.0.tgz"
-  "version" "4.2.0"
-
-"@acala-network/contracts@4.0.2":
-  "integrity" "sha512-IYYRbZwvA/bRfp/nV6oiPDkR68eyxYY+jevby+mDHIt4vrlMDgPjKNhLrPnVkGSymOYuosZjeO4jMEhXtisL4g=="
-  "resolved" "https://registry.npmjs.org/@acala-network/contracts/-/contracts-4.0.2.tgz"
-  "version" "4.0.2"
+"@acala-network/contracts@~4.2.0", "@acala-network/contracts@4.2.1":
+  "integrity" "sha512-glNOTfWWg7ZX7ZHqFxSPQcx++IXTL0stxUn9gogkG9b3wH/T2iw/CGJrCw0UjZRY+yD89mkm2a5x5Lk1r+vynQ=="
+  "resolved" "https://registry.npmjs.org/@acala-network/contracts/-/contracts-4.2.1.tgz"
+  "version" "4.2.1"
 
 "@acala-network/eth-providers@^2.1.13", "@acala-network/eth-providers@2.4.10":
   "integrity" "sha512-iXFmYN/JCVNUx5YMx4mcmLJs4v9I6+ikkzjTZl0WOyZyaw0csHAJavFUq1ycrTXCh0x/CpV7yVdaqTizphaFAg=="
