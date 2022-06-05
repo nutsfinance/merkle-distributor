@@ -1,9 +1,9 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
 const { ethers } = require("hardhat");
 
-const DISTRIBUTOR = '0x9c925B9675F717F1893a321c991f0f0433E6C5E0';
-const NEW_ROOT = '0xbb7102ca88754b2fc44d6f357e3e528ae01053846aa387390282ad5adede453c';
-const NEW_CYCLE = 1;
+const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4';
+const NEW_ROOT = '0x89fea14f3b5e5e298fb4b42e04e50fac471ea5c0a0ca2a39bb64a4869c0cd7df';
+const NEW_CYCLE = 2;
 const NEW_START_BLOCK = 0;
 const NEW_END_BLOCK = 1;
 

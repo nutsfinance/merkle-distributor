@@ -1,9 +1,9 @@
-const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
 const { upgrades, ethers } = require("hardhat");
 const { providerOverrides } = require('../utils/overrideProvider');
+require('dotenv').config();
 
 async function main() {
-    const overrides = await providerOverrides();
+    const overrides = await providerOverrides(process.env.KARURA_ENDPOINT_URL);
     const deployer = overrides.signer;
 
     console.log('Deployer addresss: ' + deployer.address + ", balance: " + (await deployer.getBalance()).toString());

@@ -2,11 +2,10 @@ const { ethers } = require('hardhat');
 const { EvmRpcProvider } = require('@acala-network/eth-providers');
 require('dotenv').config();
 
-async function providerOverrides() {
-        const ENDPOINT_URL = process.env.ENDPOINT_URL || "ws://localhost:9944";
+async function providerOverrides(endpointUrl) {
         const MNEMONIC = process.env.MNEMONIC || "fox sight canyon orphan hotel grow hedgehog build bless august weather swarm";
 
-        const provider = EvmRpcProvider.from(ENDPOINT_URL);
+        const provider = EvmRpcProvider.from(endpointUrl);
         await provider.isReady();
 
         const gasPriceOverrides = (await provider._getEthGas()).gasPrice;
