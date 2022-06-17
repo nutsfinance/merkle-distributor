@@ -55,5 +55,13 @@ module.exports = {
       chainId: 686,
       timeout: 60000,
     },
+    acala: {
+      url: 'https://eth-rpc-acala.aca-api.network/',
+      accounts: {
+        mnemonic: process.env.MNEMONIC,
+      },
+      chainId: 787,
+      timeout: 60000,
+    },
   }
 };
