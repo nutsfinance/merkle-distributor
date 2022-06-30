@@ -1,21 +1,20 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
 const { ethers } = require("hardhat");
 
-const DISTRIBUTOR = '0xff066331be693BE721994CF19905b2DC7475C5c9';
-const NEW_ROOT = '0x89fea14f3b5e5e298fb4b42e04e50fac471ea5c0a0ca2a39bb64a4869c0cd7df';
+const DISTRIBUTOR = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9';
+const NEW_ROOT = '0x37f7215964e1f7b57a55cef00a92c11d73f6216af193f2be9fb89efe3662f9c6';
 const NEW_CYCLE = 1;
-const NEW_START_BLOCK = 0;
-const NEW_END_BLOCK = 1;
+const NEW_START_BLOCK = 1073272;
+const NEW_END_BLOCK = 1262000;
 
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
-    
     const ethParams = calcEthereumTransactionParams({
-        gasLimit: '21000010',
+        gasLimit: '800000',
         validUntil: (blockNumber + 100).toString(),
-        storageLimit: '640010',
+        storageLimit: '600',
         txFeePerGas: '199999946752',
-        storageByteDeposit: '100000000000000'
+        storageByteDeposit: '300000000000000'
     });
     const [deployer] = await ethers.getSigners();
 
@@ -25,7 +24,7 @@ async function main() {
 
     // const role = await distributor.ROOT_PROPOSER_ROLE();
     // console.log('Role: ' + role)
-    // console.log('Has role: ' + await distributor.hasRole(role, '0xb1a0E8F86546f33605Fba526AB539aa0E42725eb'));
+    // console.log('Has role: ' + await distributor.hasRole(role, '0x2932516D9564CB799DDA2c16559caD5b8357a0D6'));
     // const tx = await distributor.grantRole(role, '0xb1a0E8F86546f33605Fba526AB539aa0E42725eb');
     // await tx.wait();
     // console.log('Has role: ' + await distributor.hasRole(role, '0xb1a0E8F86546f33605Fba526AB539aa0E42725eb'));

@@ -1,21 +1,21 @@
 const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
 const { ethers } = require("hardhat");
 
-const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4';
-const NEW_ROOT = '0x515b29d3924e2e6c7df7a33f62748815e15e902e6884555dab51d8aab498be14';
-const NEW_CYCLE = 3;
-const NEW_START_BLOCK = 1991000;
-const NEW_END_BLOCK = 2039200;
+const DISTRIBUTOR = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9';
+const NEW_ROOT = '0xf819590e5ceef1e402aeb73c28b97965d7edae32cddf018aa035e403e7057fa5';
+const NEW_CYCLE = 2;
+const NEW_START_BLOCK = 1262000;
+const NEW_END_BLOCK = 1309900;
 
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
     
     const ethParams = calcEthereumTransactionParams({
-        gasLimit: '21000010',
+        gasLimit: '800000',
         validUntil: (blockNumber + 100).toString(),
-        storageLimit: '640010',
+        storageLimit: '600',
         txFeePerGas: '199999946752',
-        storageByteDeposit: '100000000000000'
+        storageByteDeposit: '300000000000000'
     });
     const [deployer] = await ethers.getSigners();
 
