@@ -1,6 +1,7 @@
 import { ethers, BigNumber } from "ethers";
 import { MerkleTree } from "./merkle-tree";
 import { keyring as Keyring } from '@polkadot/ui-keyring';
+import * as fs from 'fs';
 
 export interface TokenAmounts {
     [token: string]: BigNumber;
@@ -74,14 +75,23 @@ export class RewardList {
         const encodedNodes = [];
         const entries = [];
 
-        // Sort by user address
-        const users = Object.keys(this.claims).sort((u1, u2) => u1 > u2 ? -1 : 1);
+        const test = [];
+
+        // Index is based on the input list ordering
+        const users = Object.keys(this.claims);
+        
         for (let i = 0; i < users.length; i++) {
             const { node, encoded } = this.encodeUser(users[i], this.claims[users[i]], this.cycle, i);
             nodes.push(node);
             encodedNodes.push(encoded);
             entries.push({node, encoded});
+
+            const userAddress = Keyring.encodeAddress(Keyring.decodeAddress(users[i]), 42);
+
+            test.push(`${userAddress},${i},${encoded}`);
         }
+
+        fs.writeFileSync('user_target.txt', test.join("\n"));
 
         return {nodes, encodedNodes, entries};
     }
@@ -109,7 +119,7 @@ export class RewardList {
                 cycle: this.cycle,
                 tokens: entry.node.tokens,
                 cumulativeAmounts: entry.node.cumulativeAmounts,
-                proof: tree.getProof(encodedNodes[entry.node.index]),
+                proof: tree.getProof(entry.encoded),
                 node: entry.encoded
             };
         }

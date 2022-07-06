@@ -5,7 +5,8 @@ export class MerkleTree {
     public layers: string[][];
 
     constructor(nodes: string[]) {
-        this.elements = nodes.map(node => ethers.utils.keccak256(node)).sort((u1, u2) => u1 > u2 ? -1 : 1);
+        // Merkle tree elements are sorted
+        this.elements = nodes.map(node => ethers.utils.keccak256(node)).sort();
         this.layers = MerkleTree.getLayers(this.elements);
     }
 
@@ -21,7 +22,7 @@ export class MerkleTree {
         for (const layer of this.layers) {
             const pairIndex = index % 2 == 0 ? index + 1 : index - 1;
             if (pairIndex < layer.length) {
-                proof.push(ethers.utils.hexlify(layer[pairIndex]));
+                proof.push(layer[pairIndex]);
             }
             index = Math.floor(index / 2);
         }
@@ -42,7 +43,7 @@ export class MerkleTree {
 
     public static getNextLayer(elements: string[]): string[] {
         const next: string[] = [];
-        for (let i = 0; i < elements.length / 2; i += 2) {
+        for (let i = 0; i < elements.length; i += 2) {
             next.push(MerkleTree.combined(elements[i], elements[i + 1]));
         }
 
