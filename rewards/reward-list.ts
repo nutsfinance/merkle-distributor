@@ -65,8 +65,8 @@ export class RewardList {
                 Object.values(tokenAmounts).map(amount => amount.toString())
             ]
         );
-        const hash = ethers.utils.keccak256(encoded);
-        return {node, hash};
+        // const hash = ethers.utils.keccak256(encoded);
+        return {node, encoded};
     }
 
     public encodeList() {
@@ -77,10 +77,10 @@ export class RewardList {
         // Sort by user address
         const users = Object.keys(this.claims).sort((u1, u2) => u1 > u2 ? -1 : 1);
         for (let i = 0; i < users.length; i++) {
-            const { node, hash } = this.encodeUser(users[i], this.claims[users[i]], this.cycle, i);
+            const { node, encoded } = this.encodeUser(users[i], this.claims[users[i]], this.cycle, i);
             nodes.push(node);
-            encodedNodes.push(hash);
-            entries.push({node, hash});
+            encodedNodes.push(encoded);
+            entries.push({node, encoded});
         }
 
         return {nodes, encodedNodes, entries};
@@ -110,7 +110,7 @@ export class RewardList {
                 tokens: entry.node.tokens,
                 cumulativeAmounts: entry.node.cumulativeAmounts,
                 proof: tree.getProof(encodedNodes[entry.node.index]),
-                node: entry.hash
+                node: entry.encoded
             };
         }
 
