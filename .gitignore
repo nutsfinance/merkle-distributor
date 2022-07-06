@@ -114,3 +114,6 @@ cache
 artifacts
 
 .openzeppelin
+
+rewards_*
+taiksm_rewards*
