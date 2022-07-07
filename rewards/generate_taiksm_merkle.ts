@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { RewardList } from './reward-list';
 
-const CYCLE = 1;
+const CYCLE = 5;
 const START_BLOCK = 2039200;
 const END_BLOCK = 2082400;
 
