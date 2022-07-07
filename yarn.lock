@@ -117,6 +117,13 @@
   "resolved" "https://registry.npmjs.org/@ensdomains/resolver/-/resolver-0.2.4.tgz"
   "version" "0.2.4"
 
+"@ericxstone/hardhat-blockscout-verify@^1.0.0":
+  "integrity" "sha512-YGErQnwWhpznamKpf5XjzNPhcxZIi+cKUnYSEj63UQsPjYcg1/0FY/b4dPJGkoE+7bXTJrfNiR5DEMxiYh1pIw=="
+  "resolved" "https://registry.npmjs.org/@ericxstone/hardhat-blockscout-verify/-/hardhat-blockscout-verify-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "node-fetch" "2.0.0"
+
 "@ethereum-waffle/chai@^3.3.0":
   "integrity" "sha512-+vepCjttfOzCSnmiVEmd1bR8ctA2wYVrtWa8bDLhnTpj91BIIHotNDTwpeq7fyjrOCIBTN3Ai8ACfjNoatc4OA=="
   "resolved" "https://registry.npmjs.org/@ethereum-waffle/chai/-/chai-3.3.1.tgz"
@@ -7744,6 +7751,11 @@
   dependencies:
     "encoding" "^0.1.11"
     "is-stream" "^1.0.1"
+
+"node-fetch@2.0.0":
+  "integrity" "sha512-bici2HCWFnAghTYMcy12WPxrEwJ5qK7GQJOTwTfyEZjyL99ECWxbYQfabZ2U1zrHMKkOBE97Z9iHIuKQfCMdzQ=="
+  "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.0.0.tgz"
+  "version" "2.0.0"
 
 "node-fetch@2.1.2":
   "integrity" "sha1-q4hOjn5X44qUR1POxwb3iNF2i7U="

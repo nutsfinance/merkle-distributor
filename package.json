@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@acala-network/bodhi": "^2.4.10",
+    "@ericxstone/hardhat-blockscout-verify": "^1.0.0",
     "@polkadot/api": "^8.3.2",
     "@polkadot/types": "^8.3.2",
     "@polkadot/ui-keyring": "^2.7.2",
