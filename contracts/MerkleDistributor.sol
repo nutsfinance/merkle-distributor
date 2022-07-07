@@ -57,6 +57,8 @@ contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, 
     uint256 public lastProposeStartBlock;
     uint256 public lastProposeEndBlock;
 
+    mapping(uint256 => MerkleData) public merkles;
+
     function initialize(
         address admin,
         address initialProposer,
@@ -165,44 +167,89 @@ contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, 
     /// @notice Claim accumulated rewards for a set of tokens at a given cycle number
     function claim(
         bytes32 user,
-        address[] calldata tokens,
-        uint256[] calldata cumulativeAmounts,
+        address[] memory tokens,
+        uint256[] memory cumulativeAmounts,
         uint256 index,
         uint256 cycle,
-        bytes32[] calldata merkleProof
-    ) external whenNotPaused {
+        bytes32[] memory merkleProof
+    ) public whenNotPaused returns (uint256[] memory) {
+        (,uint256[] memory claimable) = getClaimableFor(user, tokens, cumulativeAmounts);
+
+        return claim(user, tokens, cumulativeAmounts, index, cycle, merkleProof, claimable);
+    }
+
+    /// @notice Claim accumulated rewards for a set of tokens at a given cycle number
+    function claim(
+        bytes32 user,
+        address[] memory tokens,
+        uint256[] memory cumulativeAmounts,
+        uint256 index,
+        uint256 cycle,
+        bytes32[] memory merkleProof,
+        uint256[] memory amountsToClaim
+    ) public whenNotPaused returns (uint256[] memory) {
         require(cycle == currentCycle, "Invalid cycle");
 
         // Verify the merkle proof.
         bytes32 node = keccak256(abi.encode(index, user, cycle, tokens, cumulativeAmounts));
         require(MerkleProofUpgradeable.verify(merkleProof, merkleRoot, node), "Invalid proof");
 
+        IEVMAccounts evmAccounts = IEVMAccounts(ADDRESS.EVMAccounts);
+        address userAddress = evmAccounts.getEvmAddress(user);
+        if (userAddress == address(0x0)) {
+            require(evmAccounts.claimDefaultEvmAddress(user), "Claim failed");
+            userAddress = evmAccounts.getEvmAddress(user);
+        }
+
+        uint256[] memory amountsClaimed = new uint256[](tokens.length);
         // Claim each token
         for (uint256 i = 0; i < tokens.length; i++) {
-            // If none claimable for token, skip
-            if (cumulativeAmounts[i] == 0) {
-                continue;
-            }
-
-            uint256 claimable = cumulativeAmounts[i] - claimed[user][tokens[i]];
-            // If all claimed, skip
-            if (claimable == 0) {
-                continue;
-            }
-
-            claimed[user][tokens[i]] += claimable;
-            totalClaimed[tokens[i]] += claimable;
-
-            IEVMAccounts evmAccounts = IEVMAccounts(ADDRESS.EVMAccounts);
-            address userAddress = evmAccounts.getEvmAddress(user);
-            if (userAddress == address(0x0)) {
-                require(evmAccounts.claimDefaultEvmAddress(user), "Claim failed");
-                userAddress = evmAccounts.getEvmAddress(user);
-            }
-            require(IERC20Upgradeable(tokens[i]).transfer(userAddress, claimable), "Transfer failed");
-
-            emit Claimed(user, userAddress, tokens[i], claimable, cycle, block.timestamp, block.number, msg.sender);
+            amountsClaimed[i] = _tryClaim(cycle, user, userAddress, tokens[i], cumulativeAmounts[i], amountsToClaim[i]);
         }
+
+        return amountsClaimed;
+    }
+
+    function _tryClaim(uint256 cycle, bytes32 user, address userAddress, address token, uint256 cumulative, uint256 amountToClaim) internal returns (uint256) {
+        // If none claimable for token, skip
+        if (cumulative == 0) {
+            return 0;
+        }
+
+        uint256 claimable = cumulative - claimed[user][token];
+        // If all claimed, skip
+        if (claimable == 0) {
+            return 0;
+        }
+        // If claim more than claimable, claim max
+        uint256 amount = amountToClaim;
+        if (amountToClaim > claimable) {
+            amount = claimable;
+        }
+
+        // Update first for re-entrancy protection
+        claimed[user][token] += amount;
+        totalClaimed[token] += amount;
+
+        try IERC20Upgradeable(token).transfer(userAddress, amount) {
+            emit Claimed(user, token, cycle, userAddress, amountToClaim, amount, block.timestamp, block.number);
+        } catch Error(string memory revertReason) {
+            // Revert
+            claimed[user][token] -= amount;
+            totalClaimed[token] -= amount;
+            emit ClaimFailed(user, token, cycle, userAddress, amountToClaim, revertReason, '');
+
+            return 0;
+        } catch (bytes memory returnData) {
+            // Revert
+            claimed[user][token] -= amount;
+            totalClaimed[token] -= amount;
+            emit ClaimFailed(user, token, cycle, userAddress, amountToClaim, '', returnData);
+
+            return 0;
+        }
+
+        return amount;
     }
 
     // ===== Root Updater Restricted =====
@@ -256,6 +303,15 @@ contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, 
 
         lastPublishTimestamp = block.timestamp;
         lastPublishBlockNumber = block.number;
+
+        merkles[cycle] = MerkleData({
+            root: root,
+            contentHash: contentHash,
+            timestamp: block.timestamp,
+            publishBlock: block.number,
+            startBlock: startBlock,
+            endBlock: endBlock
+        });
 
         emit RootUpdated(currentCycle, root, contentHash, startBlock, endBlock, block.timestamp, block.number);
     }
