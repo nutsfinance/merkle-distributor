@@ -232,19 +232,19 @@ contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, 
         totalClaimed[token] += amount;
 
         try IERC20Upgradeable(token).transfer(userAddress, amount) {
-            emit Claimed(user, token, cycle, userAddress, amountToClaim, amount, block.timestamp, block.number);
+            emit Claimed(user, userAddress, token, amount, cycle, block.timestamp, block.number, msg.sender);
         } catch Error(string memory revertReason) {
             // Revert
             claimed[user][token] -= amount;
             totalClaimed[token] -= amount;
-            emit ClaimFailed(user, token, cycle, userAddress, amountToClaim, revertReason, '');
+            emit ClaimFailed(user, userAddress, token, amount, cycle, block.timestamp, block.number, msg.sender, revertReason, '');
 
             return 0;
         } catch (bytes memory returnData) {
             // Revert
             claimed[user][token] -= amount;
             totalClaimed[token] -= amount;
-            emit ClaimFailed(user, token, cycle, userAddress, amountToClaim, '', returnData);
+            emit ClaimFailed(user, userAddress, token, amount, cycle, block.timestamp, block.number, msg.sender, '', returnData);
 
             return 0;
         }

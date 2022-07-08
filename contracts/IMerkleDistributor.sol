@@ -25,20 +25,23 @@ interface IMerkleDistributor {
     );
     event Claimed(
         bytes32 indexed user,
-        address indexed token,
-        uint256 indexed cycle,
         address userAddress,
-        uint256 amountToClaim,
-        uint256 amountClaimed,
+        address indexed token,
+        uint256 amount,
+        uint256 indexed cycle,
         uint256 timestamp,
-        uint256 blockNumber
+        uint256 blockNumber,
+        address claimer
     );
     event ClaimFailed(
         bytes32 indexed user,
-        address indexed token,
-        uint256 indexed cycle,
         address userAddress,
-        uint256 amountToClaim,
+        address indexed token,
+        uint256 amount,
+        uint256 indexed cycle,
+        uint256 timestamp,
+        uint256 blockNumber,
+        address claimer,
         string errorReason,
         bytes errorData
     );
