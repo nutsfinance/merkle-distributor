@@ -55,7 +55,9 @@
     "@polkadot/types": "^8.3.2",
     "@polkadot/ui-keyring": "^2.7.2",
     "@polkadot/util-crypto": "^9.2.1",
-    "dotenv": "^16.0.0"
+    "@types/lodash": "^4.14.182",
+    "dotenv": "^16.0.0",
+    "lodash": "^4.17.21"
   },
   "scripts": {
     "build": "hardhat compile",

@@ -2097,6 +2097,11 @@
     "@types/level-errors" "*"
     "@types/node" "*"
 
+"@types/lodash@^4.14.182":
+  "integrity" "sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.182.tgz"
+  "version" "4.14.182"
+
 "@types/lru-cache@^5.1.0":
   "integrity" "sha512-ssE3Vlrys7sdIzs5LOxCzTVMsU7i9oa/IaW92wF32JFb3CVczqOkru2xspuKczHEbG3nvmPY7IFqVmGGHdNbYw=="
   "resolved" "https://registry.npmjs.org/@types/lru-cache/-/lru-cache-5.1.1.tgz"
@@ -7143,7 +7148,7 @@
   "resolved" "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz"
   "version" "4.3.2"
 
-"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15":
+"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.21":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"

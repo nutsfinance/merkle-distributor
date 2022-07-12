@@ -2,6 +2,7 @@ import { ethers, BigNumber } from "ethers";
 import { MerkleTree } from "./merkle-tree";
 import { keyring as Keyring } from '@polkadot/ui-keyring';
 import * as fs from 'fs';
+import * as _ from 'lodash';
 
 export interface TokenAmounts {
     [token: string]: BigNumber;
@@ -18,6 +19,7 @@ export interface Distribution {
 
 export class RewardList {
     public claims: {[user: string]: TokenAmounts};
+    public reserves: {[user: string]: TokenAmounts};
     public totals: TokenAmounts;
     public cycle: number;
     public startBlock: number;
@@ -28,7 +30,13 @@ export class RewardList {
         this.startBlock = startBlock;
         this.endBlock = endBlock;
         this.claims = {};
+        this.reserves = {};
         this.totals = {};
+    }
+
+    public updateUserReserve(user: string, token: string, toUpdate: string) {
+        if (!this.reserves[user]) this.reserves[user] = {};
+        this.reserves[user][token] = BigNumber.from(toUpdate);
     }
 
     public increaseUserRewards(user: string, token: string, toAdd: string) {        
@@ -46,11 +54,13 @@ export class RewardList {
         }
     }
 
-    public encodeUser(user: string, tokenAmounts: TokenAmounts, cycle: number, index: number) {
+    public static encodeUser(user: string, tokenAmounts: TokenAmounts = {}, reserveAmounts: TokenAmounts = {}, cycle: number, index: number) {
+        const tokens = _.union(_.keys(tokenAmounts), _.keys(reserveAmounts));
         const node = {
             user,
-            tokens: Object.keys(tokenAmounts),
-            cumulativeAmounts: Object.values(tokenAmounts).map(amount => amount.toString()),
+            tokens,
+            cumulativeAmounts: tokens.map(token => tokenAmounts[token] || BigNumber.from(0)),
+            reserveAmounts: tokens.map(token => reserveAmounts[token] || BigNumber.from(0)),
             cycle,
             index
         };
@@ -81,7 +91,7 @@ export class RewardList {
         const users = Object.keys(this.claims);
         
         for (let i = 0; i < users.length; i++) {
-            const { node, encoded } = this.encodeUser(users[i], this.claims[users[i]], this.cycle, i);
+            const { node, encoded } = RewardList.encodeUser(users[i], this.claims[users[i]], this.reserves[users[i]], this.cycle, i);
             nodes.push(node);
             encodedNodes.push(encoded);
             entries.push({node, encoded});
@@ -118,7 +128,8 @@ export class RewardList {
                 user: entry.node.user,
                 cycle: this.cycle,
                 tokens: entry.node.tokens,
-                cumulativeAmounts: entry.node.cumulativeAmounts,
+                cumulativeAmounts: entry.node.cumulativeAmounts.map(amount => amount.toString()),
+                reserveAmounts: entry.node.reserveAmounts.map(amount => amount.toString()),
                 proof: tree.getProof(entry.encoded),
                 node: entry.encoded
             };
