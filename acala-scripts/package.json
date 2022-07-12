@@ -1,0 +1,64 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "repository": "https://github.com/AcalaNetwork/scripts.git",
+  "author": "Acala developers <hello@acala.network>",
+  "license": "Apache-2.0",
+  "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "lint": "tsc --project . --noEmit && eslint . --ext .js,.ts && prettier -c .",
+    "fix": "tsc --project . --noEmit && eslint . --ext .js,.ts --fix && prettier -w .",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
+  },
+  "resolutions": {
+    "@polkadot/api-derive": "^7.14.4-2",
+    "@polkadot/api": "^7.14.4-2",
+    "@polkadot/rpc-core": "^7.14.4-2",
+    "@polkadot/typegen": "^7.14.4-2",
+    "@polkadot/types-codec": "^7.14.4-2",
+    "@polkadot/types": "^7.14.4-2"
+  },
+  "dependencies": {
+    "@acala-network/api": "^4.0.4-4",
+    "@acala-network/sdk": "^4.0.4-4",
+    "@acala-network/sdk-core": "^4.0.4-4",
+    "@acala-network/sdk-wallet": "^4.0.4-4",
+    "@acala-network/types": "^4.0.4-4",
+    "@fast-csv/format": "^4.3.5",
+    "@open-web3/util": "^1.1.3",
+    "@polkadot/api": "^7.14.4-2",
+    "bn.js": "^5.2.0",
+    "dotenv": "^16.0.0",
+    "moment": "^2.29.2",
+    "rxjs": "^7.5.5",
+    "yargs": "^17.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/yargs": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "pinst": ">=2",
+    "prettier": "^2.6.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix",
+    "*.{js,ts,md}": "prettier --write"
+  }
+}
