@@ -1,9 +1,12 @@
 import json
-blocks = ['2216100','2223300','2230500','2237700','2244000']
+import os
+
+script_directory = os.path.dirname(os.path.realpath(__file__))
+blocks = ['2251200','2258400','2265600','2272800','2280000','2285000']
 account_data = {}
 
 for block in blocks:
-    with open("/Users/cyin/scripts/3usd-balances-" + block + ".csv") as input:
+    with open(script_directory + "/../acala-scripts/csv/3usd-balances-" + block + ".csv") as input:
         for line in input:
             addr, balance = line.rstrip().split(",")
             if not 'AccountId' in addr:
@@ -14,7 +17,7 @@ for block in blocks:
                 else:
                     account_data[addr]['balance'] += int(balance)
 
-with open("/Users/cyin/stable-asset-query/airdrop/3usd_fees_raw_4.csv", "w") as out:
+with open(script_directory + "/../stable-asset-query/airdrop/3usd_fees_raw_5.csv", "w") as out:
     for key in account_data:
         amount = account_data[key]['balance']
         out.write(key + "," + str(amount) + "\n")

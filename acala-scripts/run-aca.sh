@@ -1,6 +1,6 @@
-ts-node src/scripts/query-balance-aca.ts 1364600
-ts-node src/scripts/query-balance-aca.ts 1371800
-ts-node src/scripts/query-balance-aca.ts 1379000
-ts-node src/scripts/query-balance-aca.ts 1386200
-ts-node src/scripts/query-balance-aca.ts 1393400
-ts-node src/scripts/query-balance-aca.ts 1398500
+#!/usr/bin/env bash
+set -e
+allBlocks=(1405700 1412900 1420100 1427300 1434500 1441700 )
+for t in ${allBlocks[@]}; do
+  ts-node src/scripts/query-balance-aca.ts $t
+done

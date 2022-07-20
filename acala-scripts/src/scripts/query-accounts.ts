@@ -14,7 +14,7 @@ import runner from '../runner'
 runner()
   .requiredNetwork(['karura'])
   .withApiPromise()
-  .atBlock(2244000)
+  .atBlock(2285000)
   .run(async ({ apiAt }) => {
     const accs = await fetchEntriesToArray((startKey) =>
       apiAt.query.system.account.entriesPaged({
@@ -23,7 +23,7 @@ runner()
         startKey,
       })
     );
-    let fd = fs.openSync("/Users/cyin/scripts/accounts.txt", "w");
+    let fd = fs.openSync(__dirname + "/../../accounts.txt", "w");
     for (const [key, value] of accs) {
       const accountId = encodeAddress(key.slice(-32));
       fs.writeSync(fd, accountId + "\n");

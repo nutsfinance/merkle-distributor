@@ -14,8 +14,9 @@ import runner from '../runner'
 runner()
   .requiredNetwork(['acala'])
   .withApiPromise()
-  .atBlock(1398500)
+  .atBlock(1453000)
   .run(async ({ apiAt }) => {
+    console.log(__dirname + "/../../");
     const accs = await fetchEntriesToArray((startKey) =>
       apiAt.query.system.account.entriesPaged({
         args: [],
@@ -23,7 +24,7 @@ runner()
         startKey,
       })
     );
-    let fd = fs.openSync("/Users/cyin/scripts/aca-accounts.txt", "w");
+    let fd = fs.openSync(__dirname + "/../../aca-accounts.txt", "w");
     for (const [key, value] of accs) {
       const accountId = encodeAddress(key.slice(-32));
       fs.writeSync(fd, accountId + "\n");
