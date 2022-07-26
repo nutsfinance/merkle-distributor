@@ -17,7 +17,7 @@ runner()
   .run(async ({ apiAt }) => {
     const accs = fs.readFileSync(__dirname + "/../../accounts.txt",
             {encoding:'utf8', flag:'r'}).split("\n");
-    let fd = await fs.promises.open(__dirname + "/../../balances-" + process.argv[2] + ".csv", "w");
+    let fd = await fs.promises.open(__dirname + "/../../csv/balances-" + process.argv[2] + ".csv", "w");
     await fs.promises.writeFile(fd, "AccountId,Pool Balance,DEX Balance,Incentive Share\n");
     let promises: Promise<void>[] = [];
     for (const accountId of accs) {

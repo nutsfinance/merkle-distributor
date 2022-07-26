@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-allBlocks=(2251200 2258400 2265600 2272800 2280000 2285000)
+allBlocks=(2292200 2299400 2306600 2313800 2321000 2328200)
 for t in ${allBlocks[@]}; do
   ts-node src/scripts/query-balance.ts $t
 done

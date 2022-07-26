@@ -5,13 +5,13 @@ script_directory = os.path.dirname(os.path.realpath(__file__))
 fees = {}
 total_amount = 0
 
-fee_amount = 665377893390479
+fee_amount = 548047923160761
 tai_amount = 8000 * (10**12)
 tai_ksm_amount = 30 * (10**12)
 lksm_amount = 250 * (10**12)
 kar_amount = 2000 * (10**12)
 
-with open(script_directory + "/../stable-asset-query/airdrop/3usd_fees_raw_5.csv") as input:
+with open(script_directory + "/../stable-asset-query/airdrop/3usd_fees_raw_6.csv") as input:
     for line in input:
         addr, amount = line.rstrip().split(",")
         fees[addr] = int(float(amount))
@@ -20,7 +20,7 @@ print(total_amount)
 users = []
 total_map = {}
 tai_total = 0
-with open(script_directory + "/../stable-asset-query/airdrop/3usd-fees-5.csv", "w+") as out:
+with open(script_directory + "/../stable-asset-query/airdrop/3usd-fees-6.csv", "w+") as out:
     for user in fees:
         dict = {}
         dict['address'] = user
@@ -58,5 +58,5 @@ with open(script_directory + "/../stable-asset-query/airdrop/3usd-fees-5.csv", "
         ]
         out.write(user + "," + str(fee) + "," + str(tai) + "," + str(tai_ksm) + "," + str(lksm) + "," + str(kar) + "\n")
         users.append(dict)
-with open(script_directory + "/../stable-asset-query/airdrop/3usd-fees-5.json", "w+") as out:
+with open(script_directory + "/../stable-asset-query/airdrop/3usd-fees-6.json", "w+") as out:
     out.write(json.dumps(users, indent=2) + "\n")
