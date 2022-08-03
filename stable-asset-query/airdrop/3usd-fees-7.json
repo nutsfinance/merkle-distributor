@@ -1,0 +1,5492 @@
+[
+  {
+    "address": "5HdZGjnnFse8vGeFh2S27xKHYxLvjvVuoK1879i2wyXSX8AF",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3221810994461
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 31329628178970
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 117486105671
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 979050880593
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 7832407044742
+      }
+    ]
+  },
+  {
+    "address": "5Dy5xv3xnEqQLcCPaD5qv75z11brkYLzMJmF4AMG38Ma77cV",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 30441241902968
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 296017609898829
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1110066037121
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 9250550309338
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 74004402474707
+      }
+    ]
+  },
+  {
+    "address": "5CqJcCW5SMqCZBA9KhGsB5KEjuGzfevLZ4998jmhKib1qpdQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1412870202859
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 13739073520089
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 51521525700
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 429346047503
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3434768380022
+      }
+    ]
+  },
+  {
+    "address": "5EtXZ798ZS9RtzhTbxbCoHYN2ZVdHK5Yzvo3qdQQas5XC3D9",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4417046
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42952365
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161071
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1342261
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10738091
+      }
+    ]
+  },
+  {
+    "address": "5E2AnJctXaKKggX9u2Nnwsqpzw8sYxcK3U521xMqVDZHrsBx",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5001162244729
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 48632447359402
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 182371677598
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1519763979981
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 12158111839850
+      }
+    ]
+  },
+  {
+    "address": "5GREeQcGHt7na341Py6Y6Grr38KUYRvVoiFSiDB52Gt7VZiN",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1042430040
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 10136828516
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 38013107
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 316775891
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2534207129
+      }
+    ]
+  },
+  {
+    "address": "5D4rVcFgrWBptAQT9a17XUmksMq88i265FSiVHsFXCY9evJq",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 88435453968
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 859966613626
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3224874801
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 26873956676
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 214991653407
+      }
+    ]
+  },
+  {
+    "address": "5H44BvZyX7zGn54KE6jvTABBwnSfBf6kmsd11dTowbhJupRj",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 884367468699
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 8599791861023
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 32249219479
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 268743495657
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2149947965256
+      }
+    ]
+  },
+  {
+    "address": "5CesEBkUSDJ4U5XBqYTz4yjvijH2jGRsLnRdH8eYBs81v9yz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 44214225070766
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 429949253407466
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1612309700278
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13435914168983
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 107487313351866
+      }
+    ]
+  },
+  {
+    "address": "5EP3WQns43NRypgcqqb3sSXAugE73uExLXrtmzP4c9LEehyw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 98307382002
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 955963503346
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3584863138
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 29873859480
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 238990875836
+      }
+    ]
+  },
+  {
+    "address": "5Ci3a3phaao3tfsY6fLGKXR4QB6kLWUQ5f7ESSgKoPVHVbBG",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 10782037955
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 104847007080
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 393176277
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3276468971
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 26211751770
+      }
+    ]
+  },
+  {
+    "address": "5GTz97KnawgGMTZVBPGFZZj6AVMoYy6GXMkNRNPH7s9tRBdT",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 364874429470
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3548122539452
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 13305459523
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 110878829358
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 887030634863
+      }
+    ]
+  },
+  {
+    "address": "5G7HmJ1T8QPwB617axKgCeiwCPk7WiqqB41KrhKV8fWy3Q8V",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 23557817130309
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 229081610519577
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 859056039448
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 7158800328737
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 57270402629894
+      }
+    ]
+  },
+  {
+    "address": "5DjpRWntrhWigUNZdMhDGmpBfYw2iSJoSW3ZbrGczG4YPZZG",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 176729067766181
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1718553940951168
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 6444577278567
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 53704810654724
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 429638485237792
+      }
+    ]
+  },
+  {
+    "address": "5Ea6L5GjM2Xiykwyhf75Kc6JncNXKMvT6TDhTgkJA9JYApHk",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 60294102815
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 586313668254
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 2198676256
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 18322302133
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 146578417064
+      }
+    ]
+  },
+  {
+    "address": "5EErCfGUa8qgLPs4BaDXXXBG9msjoBBZCvjYCcuUQXkz2Kne",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 128424487471262
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1248829136304680
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 4683109261143
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 39025910509521
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 312207284076170
+      }
+    ]
+  },
+  {
+    "address": "5Hq41GACzMNR6qupzZdMPsnBFg4wSovv9qJuTZAN8aSwN44z",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 159755999865
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1553503940401
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 5825639777
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 48546998138
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 388375985100
+      }
+    ]
+  },
+  {
+    "address": "5CQ8QRp8VMyAJ1atSoSpdHTF52itZHULHdtKsNijYaA1RW4P",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 45025172042
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 437835087533
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1641881578
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13682346485
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 109458771883
+      }
+    ]
+  },
+  {
+    "address": "5G6eEHnBbokT4WrugPQP7Zm1nnbCcqtEANaxKAjPwL4ZHjVM",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 24031967810
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 233692360353
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 876346351
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 7302886261
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 58423090088
+      }
+    ]
+  },
+  {
+    "address": "5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 290092344645
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2820924415160
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 10578466557
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 88153887974
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 705231103790
+      }
+    ]
+  },
+  {
+    "address": "5CXvrq3GHgsXopmTtCGzhtkLRkEEwtgfyhaFXnskJE8YTyXZ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1679535544039
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 16332188386769
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 61245706450
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 510380887087
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4083047096692
+      }
+    ]
+  },
+  {
+    "address": "5DeyCtMXzWQfwdcBKGn84tepbfjdUL1NAB9gs8ADdHEt7Trw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1338022402
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 13011236356
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 48792136
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 406601136
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3252809089
+      }
+    ]
+  },
+  {
+    "address": "5HeB6AnhGdewvUJkufWdbEfoJk4gG2h3ATMdAmszBdCZ27Ve",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 159570365048
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1551698784920
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 5818870443
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 48490587029
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 387924696230
+      }
+    ]
+  },
+  {
+    "address": "5ESE8xBQvePbGKuCMPTgsyUetUqrqT2eyJcnQgG15nayUMsn",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2210126972
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 21491780986
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 80594179
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 671618156
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5372945246
+      }
+    ]
+  },
+  {
+    "address": "5G9Es892oATpPDnfGgGFS5McvYnjZpUVdVq9sfcwMVMTtNZC",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 9296618270141
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 90402445775399
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 339009171658
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2825076430481
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 22600611443850
+      }
+    ]
+  },
+  {
+    "address": "5GdnLe7t2VPrbUVszetCzKKtmH2rTDWoaEqCoQsZP2pzQait",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 45193053696
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 439467607197
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1648003527
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13733362725
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 109866901799
+      }
+    ]
+  },
+  {
+    "address": "5FZHxi7j86QuFsTFyvmbJh5RDxh3sBjKeWggn4GS8DRhigGo",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 738341871003
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 7179805496738
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 26924270613
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 224368921773
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1794951374184
+      }
+    ]
+  },
+  {
+    "address": "5HBVyX6JZkDt8YUWG5RFM5b3FtekJ9HNzMcDw2paEHSaM7m8",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 44323262653
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 431009559834
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1616285849
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13469048745
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 107752389958
+      }
+    ]
+  },
+  {
+    "address": "5D4nw4zCRs2zBvfjv2EnZhfdFaVPNBsE4RkxcsVLnvHN1rPC",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8835279500
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 85916281889
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 322186057
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2684883809
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 21479070472
+      }
+    ]
+  },
+  {
+    "address": "5DbupDvLeBf8B6Qz8TFT9yzfNvgTceyE847HUkdzxEGnKVoa",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2430781281470
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 23637474036738
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 88640527638
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 738671063648
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5909368509185
+      }
+    ]
+  },
+  {
+    "address": "5EZG5iDfZpqLdwe3G4pbgJcSCaUMYPtfRubFXhtuSSmcBCaw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 242619300510
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2359285658618
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 8847321220
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 73727676832
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 589821414655
+      }
+    ]
+  },
+  {
+    "address": "5DjxYSSBYhbUyvaPkub5S2NQzCeJHuytwWzFNWvEztXGjHyz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 656013224711
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 6379222879928
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 23922085800
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 199350714998
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1594805719982
+      }
+    ]
+  },
+  {
+    "address": "5DtrUkwsrtZ6DF6LYmqCAYCFCEin588TxCkm5o1dombNvFTx",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3975322104825
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 38656942834308
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 144963535629
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1208029463572
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 9664235708577
+      }
+    ]
+  },
+  {
+    "address": "5D2atEVuNsCz5GJKDd9bVFEZtWp2vcvuC2uHves23FC4tMe2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 48356278693
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 470227531717
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1763353244
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 14694610366
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 117556882929
+      }
+    ]
+  },
+  {
+    "address": "5H3dTwZXqTCCwwc7F7jEfdfXz6Q4cXCTXALfwSqomJR6CguK",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 7952228965
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 77329296197
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 289984861
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2416540506
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 19332324049
+      }
+    ]
+  },
+  {
+    "address": "5DXK1aY1DcRq2huEMUt2huKmrb7mUv1g4BcsNj64aVmDBwj4",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8831583384025
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 85880340010257
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 322051275038
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2683760625321
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 21470085002564
+      }
+    ]
+  },
+  {
+    "address": "5EZTRg4vuDT29v6gWp3p1CYgSoQuHvKs5iWrLNjw8XdYuJK9",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 23619519030
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 229681613927
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 861306052
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 7177550435
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 57420403482
+      }
+    ]
+  },
+  {
+    "address": "5E2QsndStQ89zAzY9doUv2WvY9HjTpNJ9uC2AB8ZaznbWXNu",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8638002988398
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 83997919896799
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 314992199613
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2624934996775
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 20999479974200
+      }
+    ]
+  },
+  {
+    "address": "5GZawrcGKpu9BQ8WjG9s9LZnAbJSgbVgrNedCDYgoz5RH2aX",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3185836265470
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 30979801672993
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 116174256274
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 968118802281
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 7744950418248
+      }
+    ]
+  },
+  {
+    "address": "5FW1NXfD9G9NjFD9d2chnd1oEK2PaQ1rHPCam7zqpJCPesYv",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 43850258029
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 426409954509
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1599037329
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13325311078
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 106602488627
+      }
+    ]
+  },
+  {
+    "address": "5Hm9WbxMuLb2oGqU699c7Nf1f1tkSpm2GRVYWg7NDThKjuNV",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3429299666
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 33347295555
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 125052358
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1042102986
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 8336823889
+      }
+    ]
+  },
+  {
+    "address": "5DPNMAHaf1PV2cFGyFRCS3bmVyeEpoaVdDFw9sqp6hmpAJkg",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 828357133382
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 8055134529269
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 30206754485
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 251722954040
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2013783632317
+      }
+    ]
+  },
+  {
+    "address": "5H8hArcS28RvxVdJXRaGdYz9mpZDR299uGMTiYFWzWxC5r4X",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1569350570276
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 15260724460166
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 57227716726
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 476897639380
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3815181115041
+      }
+    ]
+  },
+  {
+    "address": "5FUQqzctv4xisbDhrhwzWfJjezYhn5zXSmwHXYMn4Qs2Ezac",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 33313547011
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 323948562771
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1214807110
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 10123392587
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 80987140693
+      }
+    ]
+  },
+  {
+    "address": "5GF7qeEbq6J4SK7oGsbFngqV3TWS9YL1L2pfuYkrMYPphB4q",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 264875269226
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2575707796927
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 9658904238
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 80490868654
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 643926949232
+      }
+    ]
+  },
+  {
+    "address": "5Gru3MF8nF9W1gaZDgXq5QaKTAAT3WktTk1RU7t6Ca2UXshx",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 33123064313336
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 322096265382758
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1207860995185
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 10065508293211
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 80524066345689
+      }
+    ]
+  },
+  {
+    "address": "5Cf9vyQBhhpycKH5eoRf7nCPsCicmZEnERUqzY1nff3RHiTq",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2801787672
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 27245225173
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 102169594
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 851413287
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 6811306293
+      }
+    ]
+  },
+  {
+    "address": "5CfyFtZ2Rw9gWmDHxDFNBAj4MRuFVPz9e8yofmPbLZRLKWBz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 60100445535
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 584430500494
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 2191614377
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 18263453140
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 146107625124
+      }
+    ]
+  },
+  {
+    "address": "5F4iSLxHMEYw9R3xjftAZ4NZZT9wfKkDiNbsaPtDnda6o8Fq",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 97337377908
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 946530961320
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3549491105
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 29579092541
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 236632740330
+      }
+    ]
+  },
+  {
+    "address": "5CJX5TSEokNNvgN23BKDLg5wPrC1hjmNb99hwndgEJK5x5jK",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 35915464465389
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 349250204158535
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1309688265595
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 10914068879954
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 87312551039634
+      }
+    ]
+  },
+  {
+    "address": "5HYH1zVDPdszvwKUjDKs11HLgzFT1X6d4ho94BUmJTxqyDSw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 51925186431275
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 504932408143261
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1893496530537
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 15779137754477
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 126233102035815
+      }
+    ]
+  },
+  {
+    "address": "5D4ejSKFAKvahck5LezMqrKEd3AqmhG3ATtE6Nehamy3WSkT",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 335789830586
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3265297237057
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 12244864639
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 102040538658
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 816324309264
+      }
+    ]
+  },
+  {
+    "address": "5DAAtbSemjZJPWjBXNsHU6dGqZS2J9vVbzBBEQXfmrDTWcmQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 15172168837
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 147537645492
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 553266171
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4610551422
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 36884411373
+      }
+    ]
+  },
+  {
+    "address": "5DWntHtkniYkzWjCwcJoJnMyacwfGZBND9B9FH8npoCKzBz9",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 470012100591
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4570505338904
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 17139395021
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 142828291841
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1142626334726
+      }
+    ]
+  },
+  {
+    "address": "5H1aLcNJkzVDQeRXtcJdVQSCXkUechCY1tmsNRCtaTQPYmbg",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1660278611636
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 16144929564611
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 60543485867
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 504529048894
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4036232391153
+      }
+    ]
+  },
+  {
+    "address": "5Dq31Eg5dwrm6Ltqi2vpZp8AeNwtxesG212oyWPtj3aNK6dC",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 28362599
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 275804409
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1034267
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 8618888
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 68951102
+      }
+    ]
+  },
+  {
+    "address": "5DFT8448QfhnddLCRtb3s1uqWMnBijSV7EgdAkoVhfykhDPq",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 156044873199
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1517416094539
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 5690310355
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 47419252954
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 379354023635
+      }
+    ]
+  },
+  {
+    "address": "5FNNXRQAJDyTZojrNRPuhq32RRCCppVRZ2ckQCJFV5Vgc9uG",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 69306355540
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 673950878325
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 2527315794
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 21060964948
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 168487719581
+      }
+    ]
+  },
+  {
+    "address": "5G9pSYAqhkqcZFScBxdd9epKC4c5v75yGsXagqC6HJKSrdLd",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 15021772505
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 146075157107
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 547781839
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4564848660
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 36518789277
+      }
+    ]
+  },
+  {
+    "address": "5FUT3oPmttYxaEe8KbdXCwovvz7tSQHqmGzz968yGZtAcT8s",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 481330245622
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4680565574009
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 17552120903
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 146267674188
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1170141393502
+      }
+    ]
+  },
+  {
+    "address": "5FLXTXyMkRnGQLC4LrgtD22yMZP3mqrgqs6nSnoi62A6d8U6",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 678760797099
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 6600425484965
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 24751595569
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 206263296405
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1650106371241
+      }
+    ]
+  },
+  {
+    "address": "5EWXeMJDsd65gHLKfT6EQod4erLuoZj1MmNh1mvbyQx69eUM",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 6499076786
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 63198511509
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 236994418
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1974953485
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 15799627877
+      }
+    ]
+  },
+  {
+    "address": "5GseNQLxXpsizfxLfY8TM6vWmCwkkYz5A2aPtsDs3qLPBHQE",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5433807483
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 52839588770
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 198148458
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1651237149
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 13209897193
+      }
+    ]
+  },
+  {
+    "address": "5FU35Y6a89zDtz7DyGo8t9Xg4HkgM25rWyP6BGPehhmiopJ3",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4417046
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42952365
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161071
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1342261
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10738091
+      }
+    ]
+  },
+  {
+    "address": "5HNpf9ydo2C2TFBS1frahQeNDVdG2QABGckGsBNKxPq44Mgb",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 14256431822
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 138632808968
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 519873034
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4332275280
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 34658202242
+      }
+    ]
+  },
+  {
+    "address": "5Dtu2D65WXPBt5jkGSDpKYfJLvS5fJW7NEPGzro1VZg2SXvT",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 354034248046
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3442710131963
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 12910162995
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 107584691624
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 860677532991
+      }
+    ]
+  },
+  {
+    "address": "5Fmu43qLMNxjwWc7m4uPM6Xr9ATDRKukxZJSc117hqwqnfPh",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 465658781575
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4528172667517
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16980647503
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 141505395860
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1132043166879
+      }
+    ]
+  },
+  {
+    "address": "5CCk57vH4CbSXybiUW92NvL1pmZqLRFu5nkFBgtZsAaBCMQ8",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1619956934
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 15752832338
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 59073121
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 492276011
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3938208085
+      }
+    ]
+  },
+  {
+    "address": "5C5rWjRKfMExfmav864hS6aVXLG1183spgdUeQ7e1XuRMF2B",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 363729231369
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3536986370774
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 13263698890
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 110530824087
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 884246592694
+      }
+    ]
+  },
+  {
+    "address": "5FRBAAMoPshaG4fJoXShYMBG4FdGneQi2DZgrsurWqaTr41i",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2340856108714
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 22763021056347
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 85361328961
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 711344408011
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5690755264087
+      }
+    ]
+  },
+  {
+    "address": "5FHuXFtUH3r9GjayzJtED2YCcUZ2PzAT33Rjo3SDYxh1mwzQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 16758113667
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 162959736334
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 611099011
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 5092491760
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 40739934083
+      }
+    ]
+  },
+  {
+    "address": "5GmVv5FZb7zguzGftZ8KjpREs7UxnQA7xh9PnBrikqPn4VdV",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 264201334882
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2569154304973
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 9634328644
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 80286072030
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 642288576243
+      }
+    ]
+  },
+  {
+    "address": "5Dw7MaPSgN2Qh9bB1G83Gv5mmQwBKD93K961AaaYsV9RM168",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1646107992182
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 16007131214763
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 60026742055
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 500222850461
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4001782803691
+      }
+    ]
+  },
+  {
+    "address": "5GDzmFzUPA6ZVc4qfyjheAMynrjch1tJxi26QX3Di3sVXYJQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 310701917990
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3021336627707
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 11330012354
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 94416769616
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 755334156927
+      }
+    ]
+  },
+  {
+    "address": "5CRmfY13BHk5qMsyuNS7KuYCWPGbQxd4NerrtpRSnz979xwj",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 9125994772
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 88743263792
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 332787239
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2773226994
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 22185815948
+      }
+    ]
+  },
+  {
+    "address": "5DiD5n6Kc4wQQpMAz2pSC4y9Ect8QgKMuKh1biQDwr3pt4iA",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3184871252142
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 30970417662320
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 116139066234
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 967825551947
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 7742604415580
+      }
+    ]
+  },
+  {
+    "address": "5EWNs42A79pPN53rtSdFYPK9jzSuiD1zMKYfisDhipBzsoVo",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 220888009638
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2147965607866
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 8054871029
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 67123925246
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 536991401967
+      }
+    ]
+  },
+  {
+    "address": "5E2DPqokRg2XSyu7EcnN2nd34gSDvqnNaVrPMkFtRgX1HVCf",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1108057300775
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 10775003032128
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 40406261370
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 336718844754
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2693750758032
+      }
+    ]
+  },
+  {
+    "address": "5DJ8m3pJNW1SwVNLqgkxe1iuNMrQveA3v8Vtmj44Qu8dnnot",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 12045811490
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 117136230442
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 439260864
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3660507201
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 29284057610
+      }
+    ]
+  },
+  {
+    "address": "5Eqf2tkCeGL715hTHTi933BWeTqN1QrwAFXJfFqYjQtx2iA4",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 7134446053554
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 69376987819915
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 260163704325
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2168030869372
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 17344246954979
+      }
+    ]
+  },
+  {
+    "address": "5Cr8Vzny78WDmmcgBBuyQBniha3bxHyFPyFBvmq5dFAUADJb",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 7504952843
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 72979880717
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 273674553
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2280621272
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 18244970179
+      }
+    ]
+  },
+  {
+    "address": "5Exyar4kUgMtVgSNeeb1nzxQyyJuxmSFnjXHgAka1TneAmx6",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 11961229576418
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 116313736540335
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 436176512026
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3634804266885
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 29078434135084
+      }
+    ]
+  },
+  {
+    "address": "5Hor5gaoGwxmPZ4jwXuwLNPnQtUtKHLx8dENAcQJ5WoXGvgt",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1897581301295
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 18452515281360
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 69196932305
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 576641102542
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4613128820340
+      }
+    ]
+  },
+  {
+    "address": "5CPrZzBsYP8w3Fj58YoJQFE5bKaE5Gb5tf4EWubzM8LvPNcx",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 21695211833735
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 210969209920604
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 791134537202
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 6592787810019
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 52742302480151
+      }
+    ]
+  },
+  {
+    "address": "5DMVu9jTd7Vz97nxAuk3gvNQCJgtjFgnqNbhEetzr296FhVR",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 22071945230715
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 214632651776841
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 804872444163
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 6707270368026
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 53658162944210
+      }
+    ]
+  },
+  {
+    "address": "5FyPLvme4q2V7YWzaenF2tE4xiprf8rrimFLZUgmXEr9yDvj",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 88776727303
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 863285233716
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3237319626
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 26977663554
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 215821308429
+      }
+    ]
+  },
+  {
+    "address": "5Coiddko324JRzZpr7yKMEhXhhmEEZS1PL3bW3zuydiiyj1G",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 13246606684
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 128813037995
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 483048892
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4025407437
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 32203259499
+      }
+    ]
+  },
+  {
+    "address": "5CT5jwBEAhveEjgiSCQbkaKcKcUyF3VJ8qNXM9rXsuQyn3Kd",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4421488579413
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42995567843282
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161233379412
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1343611495103
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10748891960821
+      }
+    ]
+  },
+  {
+    "address": "5DvibJKhceQ8gk52hoQ4CTbMG1NNMUYPtvDWBhqKs2LVGdr5",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4417046
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42952365
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161071
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1342261
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10738091
+      }
+    ]
+  },
+  {
+    "address": "5GHtirraLbXNnFMyRrMFY1MfJHpPqZaaNw89n7yGiQx8d4aW",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 54902586026
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 533885323879
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 2002069965
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 16683916371
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 133471330970
+      }
+    ]
+  },
+  {
+    "address": "5GFibG3LzKFJDLTfcNv9QA9UGENMojR9kMSgzcvKug3LLZGH",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 44170457
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 429523647
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1610714
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13422614
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 107380912
+      }
+    ]
+  },
+  {
+    "address": "5CDpfudsfCWbFHRtGnYWaVxjX581gtTD9ZJoTYHkPXNJFTX3",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 409055832817
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3977752626906
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 14916572351
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 124304769591
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 994438156726
+      }
+    ]
+  },
+  {
+    "address": "5FgviVHUvpadN35ZaihRpuA8K4wajk6oEPru9pHNBuRJCfrn",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5387405606
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 52388366285
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 196456374
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1637136446
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 13097091571
+      }
+    ]
+  },
+  {
+    "address": "5EMjsd1DGwJ4H5hwqRYc9UELsJHpnV5FYHVp2HvC5wAj7Zv8",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 196064998295
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1906580958989
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 7149678596
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 59580654968
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 476645239747
+      }
+    ]
+  },
+  {
+    "address": "5CPqoKXqRmCcbxejNzzduBagDqyPvLUZX9KwZA722QC9JPz9",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 12807738852
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 124545386661
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 467045200
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3892043333
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 31136346665
+      }
+    ]
+  },
+  {
+    "address": "5HYR2pdURqirAyRGM3tCyAZsz6Nsmx3e7FZh7VjzvGZeE2fd",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 854537995
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 8309723229
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 31161462
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 259678851
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2077430807
+      }
+    ]
+  },
+  {
+    "address": "5F53GqgwJH5ebUvLdmxF1msHGTGzD7Y9soDVf8Qk8BzxiTsf",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 60645573377
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 589731448515
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 2211492932
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 18429107766
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 147432862129
+      }
+    ]
+  },
+  {
+    "address": "5DV7Q26MNZDyJTmhKit4R4gA4fCTnSUDAm5gqCX1uicU9doR",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 144165529892
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1401898638840
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 5257119896
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 43809332464
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 350474659710
+      }
+    ]
+  },
+  {
+    "address": "5Equ6c29s9LD7QxAJMhyFNniU4vS9LuG4djXyWPgndu1Fuyz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 11690257687021
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 113678743812226
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 426295289296
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3552460744132
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 28419685953057
+      }
+    ]
+  },
+  {
+    "address": "5EASy62zW862nu14KfFvTt14pijfqsBmemHDYKEBpfTL3Wcq",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 441426686051
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4292534219428
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16097003323
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134141694357
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1073133554857
+      }
+    ]
+  },
+  {
+    "address": "5CVURYA88iurYdjiSAAVZRYjYF8nep3e9HMBk7p5p8nwEjA1",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1270430599935
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 12353958190466
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 46327343214
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 386061193452
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3088489547616
+      }
+    ]
+  },
+  {
+    "address": "5EnrP6ky6oWTqMJfDuG8y1DxxNdMjEzdZeM7W8Lr35oCLBRG",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 176775520528
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1719005658244
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 6446271218
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 53718926820
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 429751414561
+      }
+    ]
+  },
+  {
+    "address": "5EFicbRUuWGorzQzkzCgFQtVYigPb2yrhQDAVJrF7mqRXEuD",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 10779416041202
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 104821510988042
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 393080666205
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3275672218376
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 26205377747011
+      }
+    ]
+  },
+  {
+    "address": "5CDTSxF5MtgQE1wXw9Bz3x42NNdT62kpwBpMaCTEnU8eTRiA",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 89712881634
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 872388612895
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3271457298
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 27262144153
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 218097153224
+      }
+    ]
+  },
+  {
+    "address": "5DLdMFBH4xPNUQ6VXVXcibhrv2wuuCaAQhnfebMiCzGX7QKk",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 441704467
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4295235428
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16107133
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134226107
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1073808857
+      }
+    ]
+  },
+  {
+    "address": "5G6GoquGzEbyDWXx7A7Fvp1626MZQGmUnojNLek2UiVnYuSn",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 11308279447
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 109964299902
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 412366125
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3436384372
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 27491074976
+      }
+    ]
+  },
+  {
+    "address": "5DJdLixdMEmxDzf4v9hfDg9jhPxvTTVxSQRYNNJAjnih2ktv",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 132895737142
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1292308592398
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 4846157221
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 40384643512
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 323077148100
+      }
+    ]
+  },
+  {
+    "address": "5EvYHM5XjDkGCqKUKfa4aNTroCAtJTFhcL515nSMD7E9pcg4",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 224720153438
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2185230252069
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 8194613445
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 68288445377
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 546307563017
+      }
+    ]
+  },
+  {
+    "address": "5G9BYoPuqw5SAt6p2Toh5yNEZCAdZFVZHwyvVJmZtg7Yzb1F",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 883721285
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 8593508219
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 32225656
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 268547132
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2148377055
+      }
+    ]
+  },
+  {
+    "address": "5DMEfKbMm2HqZaiwtkhaT252RJZiY2y388f5mD8xjL1Bs6G2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 83965337887
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 816498180820
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3061868178
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 25515568151
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 204124545205
+      }
+    ]
+  },
+  {
+    "address": "5FsEUyCnLhdv8jdT6X4rYB6WKi8VKazXahnSeh1ezhkTWUgz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5173013088904
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 50303564336624
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 188638366262
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1571986385519
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 12575891084156
+      }
+    ]
+  },
+  {
+    "address": "5FNhJGvys1dw8SB66YxnoiWXgJqNf1N1qZGa5Qgs8FcK5zPL",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 443814686242
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4315755680345
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16184083801
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134867365011
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1078938920086
+      }
+    ]
+  },
+  {
+    "address": "5HWQUukoM1bdgk1VyaLZpQP4rewNDDXkw3YYh4FJK9jnAeA7",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 49127196308
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 477724111207
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1791465417
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 14928878475
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 119431027802
+      }
+    ]
+  },
+  {
+    "address": "5GWQXH2Sw7fxhKiMuhBa44cxxy8j1NctCjDQiBdDAHcaw4P3",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 207027030176
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2013178268232
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 7549418506
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 62911820882
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 503294567058
+      }
+    ]
+  },
+  {
+    "address": "5GGsMhTB8B5rTzZdLQL3asESvPZDLnKXGSFAfTz5iqis9yS2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 714154832279
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 6944605191294
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 26042269467
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 217018912228
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1736151297824
+      }
+    ]
+  },
+  {
+    "address": "5HNdoz5P94bM7f6UeKQ8sYSQBbcsz7GrtZdps4mNkzkJzUXP",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2851884843938
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 27732381546722
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 103996430800
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 866636923335
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 6933095386681
+      }
+    ]
+  },
+  {
+    "address": "5HT4wqVT1d8AHyciCSTYVsYE7XVMNBjqX5tCshaV95xAAQBi",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3976208976
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 38665566969
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 144995876
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1208298968
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 9666391742
+      }
+    ]
+  },
+  {
+    "address": "5HRSgFPpsS9exdMsUtf6dfBDMxEQ2P2TkfvCdmH8AKoh8jVf",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 134853373399
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1311345095826
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 4917544109
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 40979534245
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 327836273957
+      }
+    ]
+  },
+  {
+    "address": "5GeT7Aazhx5X1DWM2h1xm2ZQUy2WxrxnSnTFNRZTLbipKqcP",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 11772760119
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 114481016363
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 429303811
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3577531761
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 28620254091
+      }
+    ]
+  },
+  {
+    "address": "5FCrLJ8JqGdPVPni6sa6av3xhHAB8hyobXxTQXZueSfnL5Wb",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 441546102
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4293695445
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16101358
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134177983
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1073423861
+      }
+    ]
+  },
+  {
+    "address": "5DUN5o3DamMh5U5rwvbAaCaqChv83FMXmV7LPM2fzqnr2p5Y",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 7918617720
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 77002452747
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 288759198
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2406326648
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 19250613187
+      }
+    ]
+  },
+  {
+    "address": "5CLeiSZAeK4rm1JkmcjzkRVbf84TWqWhE8s4gnMVaNQx7Zxh",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8848249941
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 86042409430
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 322659035
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2688825295
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 21510602357
+      }
+    ]
+  },
+  {
+    "address": "5CDXVxDMBsNPFMYYAYcbE55B8d2Q49EN1pQGAebWteFHpJTL",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 584025536461
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 5679198108080
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 21296992905
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 177474940878
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1419799527020
+      }
+    ]
+  },
+  {
+    "address": "5EYCAe5fiQJsoL71D8qNrZ7NznTuLKXk24Wjp9pe18su2Yk1",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 17291
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 168140
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 631
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 5254
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 42035
+      }
+    ]
+  },
+  {
+    "address": "5C7x44XWpXM2GSVkJF82oMRH9nrW6DVgbmgZu1g4scz8tFvu",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1330018897
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 12933408445
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 48500282
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 404169014
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3233352111
+      }
+    ]
+  },
+  {
+    "address": "5DJ6VEsn8wGU93upJbfQ2XvfY4QJkfsiBuTro8EmQg2F5gQt",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 50124077154
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 487418008924
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1827817533
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 15231812779
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 121854502231
+      }
+    ]
+  },
+  {
+    "address": "5DnWLHUmR3BKnYN6vBPqHa2YcDsHoTgrFMtQPPhvvNr9xWhM",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 555550927979
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 5402304492097
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 20258641845
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 168822015378
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1350576123024
+      }
+    ]
+  },
+  {
+    "address": "5GZSX6EYApUsFK2fFYc9atw1dEp7RTmSqkNdLLAKQGA9xhbj",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 9057367490314
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 88075916383579
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 330284686438
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2752372386987
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 22018979095895
+      }
+    ]
+  },
+  {
+    "address": "5FLatVBwAAfjX7yKt2d1TGZWJFxNC9yAnRzxxyQbQQeRg6My",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 129329488092
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1257629569659
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 4716110886
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 39300924052
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 314407392415
+      }
+    ]
+  },
+  {
+    "address": "5GBp9iGDmBhPbfwmDnzgCAAvCxF1WzzqoqsgrBDJfjaPPHk7",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 88572815055
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 861302344309
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3229883791
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 26915698260
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 215325586077
+      }
+    ]
+  },
+  {
+    "address": "5HmMKAy3jzPsNRTb9KimAswzr5pnU8J9TMippPvWdqqGqebm",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8225961599
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 79991135036
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 299966756
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2499722970
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 19997783759
+      }
+    ]
+  },
+  {
+    "address": "5Hp6cLUGQVYdGMN9TaLhwiCNXdpYbw82pmKdrut8tLFTfsH2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 308742684665
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 3002284594030
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 11258567228
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 93821393563
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 750571148507
+      }
+    ]
+  },
+  {
+    "address": "5GmYmLLtYBqz8LkVv2RbtQMLTXcXzM49YW671PncXLVhM2ju",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1465021966884
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 14246209220656
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 53423284577
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 445194038146
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 3561552305164
+      }
+    ]
+  },
+  {
+    "address": "5DZRYpZFHZCZpKfPwtVHDbssUkdaMcNdtqGahramkZUFFrsP",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 470111354721
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4571470508806
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 17143014408
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 142858453400
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1142867627201
+      }
+    ]
+  },
+  {
+    "address": "5F9mgKGTNtVJJQvG4oGgUzfiMXLaALQTnHnyLBmt7biN5Vcr",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 581161139
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 5651344052
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 21192540
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 176604502
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1412836013
+      }
+    ]
+  },
+  {
+    "address": "5CconAo6vbEQvHkX48C51xLGjSK6GYCaZ1rxnmdBAhq9szvh",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 48230703427
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 469006409058
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1758774034
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 14656450283
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 117251602265
+      }
+    ]
+  },
+  {
+    "address": "5GEvXCzvKcpYbDbBYwyR36rpAS6a4CottpBkS8RZ5sRWwoFi",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3184183772004
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 30963732447969
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 116113996680
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 967616638999
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 7740933111992
+      }
+    ]
+  },
+  {
+    "address": "5EYCAe5fiQJsnxr7i8DVKQ6rmv8PKK6amkXrAN2zemFs7J18",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 44179665152232
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 429613184842475
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1611049443159
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 13425412026327
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 107403296210619
+      }
+    ]
+  },
+  {
+    "address": "5HmgxDrKNSbXQRK4gvNao74zVu3FC4wL86FBnuaWAQ4tvtQM",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3576600651
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 34779684072
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 130423815
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1086865127
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 8694921018
+      }
+    ]
+  },
+  {
+    "address": "5HeU36FV5suZFpGHatJPz2gE2X3rTT2LkBwJJ6cpjsZfPim2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2275234907822
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 22124905466032
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 82968395498
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 691403295814
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5531226366508
+      }
+    ]
+  },
+  {
+    "address": "5Chmaw6sQM8wxkf4dM3eSBnj4uQyJGciHZnhjP9Dy2YU1eoa",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 8826158193
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 85827584206
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 321853441
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 2682112006
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 21456896052
+      }
+    ]
+  },
+  {
+    "address": "5GHhsChEguttmZxcwNuGy4UQzymkbVKzg1sdzdLu7Ubji6xF",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 91892313
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 893581902
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3350932
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 27924434
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 223395476
+      }
+    ]
+  },
+  {
+    "address": "5HNjLj8roo3fHVEUEafcmm5adVCYa23ZBu4BDaLwgyPHhSep",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4741713241
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 46109505815
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 172910647
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1440922057
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 11527376454
+      }
+    ]
+  },
+  {
+    "address": "5GBo9tzSrigJXxboRRW7obT3KXr2cJWEZwzEryGCsqA6KqeM",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5300196820
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 51540328071
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 193276230
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1610635252
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 12885082018
+      }
+    ]
+  },
+  {
+    "address": "5EZQeB9bzZn2PFYkEERkb7gh4gFJB8Sv6FoZT1XJiMayaT1Z",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 30930334265
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 300773656069
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1127901210
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 9399176752
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 75193414017
+      }
+    ]
+  },
+  {
+    "address": "5Cm9baRmyGiBSU4T6x16BeiPSXZgVnooTXr9fkJbFWxQY1LE",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 17635931024245
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 171495833408452
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 643109375282
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 5359244794014
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 42873958352113
+      }
+    ]
+  },
+  {
+    "address": "5Do5MAVJyPESuGnm3H8acxpDr5UPZdr85EWz9YFCdLn5A72D",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 442392322060
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4301924285191
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16132216069
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134435133912
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1075481071298
+      }
+    ]
+  },
+  {
+    "address": "5FzyUopuowkGGpPzCj9V5V9RpzfDT7t3q9gPqaxKRgy8JQSr",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4418042801922
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42962060313588
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161107726176
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1342564384800
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10740515078397
+      }
+    ]
+  },
+  {
+    "address": "5CDhFeQja81cWFMxLfJN4Fo1vUzY3SefNXeSsiuhS9zkmdBa",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 270615129736
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 2631523515438
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 9868213183
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 82235109857
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 657880878860
+      }
+    ]
+  },
+  {
+    "address": "5DnyS2Cbkbgs96KPcvdah6PHMghZ5zL9JjYF5YU9JJb8A8LY",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1938367122243
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 18849125947676
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 70684222304
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 589035185865
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4712281486919
+      }
+    ]
+  },
+  {
+    "address": "5FTkwPokcQSMt1EH7H2iffGcRcKfDL4tKTvpTAMmduJa683n",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 88082525459
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 856534655954
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3212004960
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 26766707999
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 214133663989
+      }
+    ]
+  },
+  {
+    "address": "5HQWx9SXXDUGfLNjuhcYXAwzuKBDnTmvuz33zWZ27nGVYjgh",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 19868174051
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 193202675971
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 724510035
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 6037583624
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 48300668993
+      }
+    ]
+  },
+  {
+    "address": "5Cy9sRftGXBbdTLRrSpo4yvmuyv57CBTyiM4sNvyhvLrBEcw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 534425997638
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 5196880830053
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 19488303113
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 162402525939
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1299220207513
+      }
+    ]
+  },
+  {
+    "address": "5F4EaC3JuxjyU5Kk2rwj7iT5SQyivhMseMTRYuGxMPiKVEgF",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 88340914928
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 859047294342
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3221427354
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 26845227948
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 214761823586
+      }
+    ]
+  },
+  {
+    "address": "5HRH7PXrRLY8akMe2LRTdanRyMWk6PCPZk9pFSKpTMhuyY8S",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 11276594999409
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 109656193073930
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 411210724027
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 3426756033560
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 27414048268483
+      }
+    ]
+  },
+  {
+    "address": "5Cd1K9UM2vGkqpBeTqinwXiSXhdZNexe6qrzRZsqLK8RssE1",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 13290475517200
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 129239628578910
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 484648607171
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4038738393091
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 32309907144728
+      }
+    ]
+  },
+  {
+    "address": "5CiKFux6F6raNYLMePtGZn1o9BLjwyyQkyi4m8E4KbFwh8nH",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 502825303607
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4889588442053
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 18335956658
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 152799638814
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1222397110513
+      }
+    ]
+  },
+  {
+    "address": "5GgpVcZiWnr3qzoDtRDsnJbZAggaHyNnceZ2VREYmidp3MT8",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 95710275456
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 930708644333
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3490157416
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 29084645135
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 232677161083
+      }
+    ]
+  },
+  {
+    "address": "5H5zEN6MLFhbaz6WdnZfLvypN1J1BDyzfjevucDL8rc6xNnV",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 15561295173
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 151321599126
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 567455997
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 4728799973
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 37830399782
+      }
+    ]
+  },
+  {
+    "address": "5HRRU6LUDYUowbneh4iH6X3iVThRBpKTRCYLhYWbvxsxrwxT",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2070985065866
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 20138733212267
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 75520249546
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 629335412883
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5034683303067
+      }
+    ]
+  },
+  {
+    "address": "5CRjsjGHwcXea7QePdZYHUxcoqkjJnjLUwAAjuiHmP1ViWtp",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2037488517520
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 19813005102590
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 74298769135
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 619156409456
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4953251275647
+      }
+    ]
+  },
+  {
+    "address": "5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 441704575
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4295236472
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16107137
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134226140
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1073809118
+      }
+    ]
+  },
+  {
+    "address": "5D7kGpWZVH9EEEZTxZsnzXJarkSVJDjafxrxn6h79uf632W2",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 106047157244
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1031226850866
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3867100691
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 32225839090
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 257806712717
+      }
+    ]
+  },
+  {
+    "address": "5Hn21s6apbsGpsxEigL27Bvgffjy16aM5zTGTQy9N4LGDapp",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 198804155866
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1933217154706
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 7249564330
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 60413036085
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 483304288677
+      }
+    ]
+  },
+  {
+    "address": "5EHQ1C8sZTSLEZ5Ao2yZtZ5d2khvtEshbs5aCNANt28a5zMJ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 1768535449871
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 17197643859631
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 64491164474
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 537426370613
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 4299410964908
+      }
+    ]
+  },
+  {
+    "address": "5DqzZ761penxw9EpCvtoA7z8hX19bQuyh8fY8vD1a5J2Ho8C",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 17364545064
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 168856814161
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 633213053
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 5276775443
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 42214203540
+      }
+    ]
+  },
+  {
+    "address": "5CS7nMVEJegf7oR8aei6qAn9gSg671PqDjeynDvxhTHs5gxD",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 798815458656
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 7767864516674
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 29129491938
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 242745766146
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1941966129169
+      }
+    ]
+  },
+  {
+    "address": "5ELpMJRj5P6LjTsBr9HeHajur8dWz8y4XSHCEveoE5fXBURv",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 22528987251
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 219077033079
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 821538874
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 6846157284
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 54769258270
+      }
+    ]
+  },
+  {
+    "address": "5ENfodHPg8A1W27pwEXgGkxVApzrWcv9PV8Tfe6MVauce6bQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2207945496
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 21470567813
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 80514629
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 670955244
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 5367641953
+      }
+    ]
+  },
+  {
+    "address": "5D9ieEbJL9pavGApHs6wSAGnUbN1J5DZshoJ2skTBFg6Z7z4",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 198767058587
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1932856412270
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 7248211546
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 60401762883
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 483214103067
+      }
+    ]
+  },
+  {
+    "address": "5EeaPtdTx3fDYnBiHdZEJbGkqBsW3nTy5ybzDakpQqQnHvHT",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 453223256293
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4407246770880
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16527175391
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 137726461590
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1101811692720
+      }
+    ]
+  },
+  {
+    "address": "5HU1DxoUsjCCfZKQ2emX9uaYHAqHqu7nSAQHQ3pM58RyLooE",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 2847043664322
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 27685304807100
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 103819893027
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 865165775222
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 6921326201775
+      }
+    ]
+  },
+  {
+    "address": "5FbXQWHcqBWNVY6wBaYwRDnwWmVMkJ8F9m1ogFqKMT8tugWw",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 94276631945
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 916767566407
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3437878374
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 28648986450
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 229191891602
+      }
+    ]
+  },
+  {
+    "address": "5Df86iGeKgZWNbF3ZSQuxLH2gT8rMP59QkZeuuxFmPFHL9dQ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 103160546701
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1003156788660
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 3761837957
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 31348649646
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 250789197165
+      }
+    ]
+  },
+  {
+    "address": "5FbfjNGvTd2gqeN849dvYF3jf2T6DdoVpHoabfbqdZZ9nzaa",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 5499049
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 53474011
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 200528
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1671063
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 13368503
+      }
+    ]
+  },
+  {
+    "address": "5DMCXNBU8W7UuMQp6FibbXHm6AcCSx11gaPq8RZYkjmbEiya",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 841424220975
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 8182201882494
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 30683257059
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 255693808828
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 2045550470624
+      }
+    ]
+  },
+  {
+    "address": "5FHwnP5LRpVz28hoj1jbBeatDsR6hKqy22qETZjzLoZ4SLzz",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 52242980147
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 508022707034
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1905085151
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 15875709595
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 127005676759
+      }
+    ]
+  },
+  {
+    "address": "5FdxQukmwiRbHtXYVA4UwJDdbnd9x1zxX7C2994CxQ24wX33",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 33463832224
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 325409970611
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 1220287390
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 10169061582
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 81352492653
+      }
+    ]
+  },
+  {
+    "address": "5FTzBVrGJhsKioJ7VHgaebyJC53QnE2hbKR3rZfeSMJzz3T3",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 3083900783
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 29988557692
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 112457091
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 937142428
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 7497139423
+      }
+    ]
+  },
+  {
+    "address": "5FyFTDE8U2dWyocMnedLBh5PMjCuYsJRjZHAosbrcmLD1Xbc",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 4419907173
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 42980189887
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 161175712
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 1343130934
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 10745047472
+      }
+    ]
+  },
+  {
+    "address": "5E7QPFfwyhbfM4iJPa2WfvgNPwrUAjbZCbMNMbnjZQSdkfKL",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 151626889721
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 1474454611102
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 5529204792
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 46076706597
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 368613652775
+      }
+    ]
+  },
+  {
+    "address": "5DtkptGAdj7bLoXvTy7qNYc26sx5iggWHVLiojh3bKxMzfiJ",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 21477936
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 208856369
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 783211
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 6526762
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 52214092
+      }
+    ]
+  },
+  {
+    "address": "5GEMry94WvPwHCwdDFcEjBueFP4MrnNCDDB7tbff27Cmnu5k",
+    "feesList": [
+      {
+        "title": "3USD LP Fees",
+        "tokenName": "3USD",
+        "claimable": 441802159
+      },
+      {
+        "title": "TAI Incentives",
+        "tokenName": "TAI",
+        "claimable": 4296185406
+      },
+      {
+        "title": "taiKSM Incentives",
+        "tokenName": "taiKSM",
+        "claimable": 16110695
+      },
+      {
+        "title": "LKSM Incentives",
+        "tokenName": "LKSM",
+        "claimable": 134255794
+      },
+      {
+        "title": "KAR Incentives",
+        "tokenName": "KAR",
+        "claimable": 1074046352
+      }
+    ]
+  }
+]
