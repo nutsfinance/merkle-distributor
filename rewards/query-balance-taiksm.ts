@@ -7,9 +7,13 @@ import { BN } from 'bn.js'
 import runner from './lib/runner'
 import * as fs from 'fs'
 
-export const getTaiKsmBalance = async (block: number) => {
+export const getTaiKsmRawBalance = async (block: number) => {
   const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const balanceFile = __dirname + `/data/balances/taiksm_${block}.csv`;
+  const rawBalanceFile = __dirname + `/data/balances/taiksm_${block}_raw.csv`;
+  if (fs.existsSync(rawBalanceFile)) {
+    console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
+    return;
+  }
 
   await runner()
     .requiredNetwork(['karura'])
@@ -18,7 +22,7 @@ export const getTaiKsmBalance = async (block: number) => {
     .run(async ({ apiAt }) => {
       const accs = fs.readFileSync(accountFile, {encoding:'utf8', flag:'r'}).split("\n");
       console.log(`Account number: ${accs.length}`);
-      const fd = await fs.promises.open(balanceFile, "w");
+      const fd = await fs.promises.open(rawBalanceFile, "w");
       await fs.promises.writeFile(fd, "AccountId,Pool Balance,DEX Balance,Incentive Share\n");
 
       let promises: Promise<void>[] = [];
@@ -55,4 +59,60 @@ export const getTaiKsmBalance = async (block: number) => {
       console.log(`End querying taiKSM balance at ${end.toTimeString()}`);
       console.log(`taiKSM account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
     });
+}
+
+export const getTaiKsmBalance = async (block: number) => {
+  const rawBalanceFile = __dirname + `/data/balances/taiksm_${block}_raw.csv`;
+  const balanceFile = __dirname + `/data/balances/taiksm_${block}.csv`;
+  if (fs.existsSync(balanceFile)) {
+    console.log(`${balanceFile} exists. Skip querying raw balances.`);
+    return;
+  }
+
+  const excluded = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
+  // const accountData: {[address: string]: {balance: BN, dex: typeof BN, incentive: typeof BN}} = {}
+  const accountData: {[address: string]: any} = {};
+  let dexTotal = new BN(0);
+  let incentiveTotal = new BN(0);
+
+  const rawBalances = fs.readFileSync(rawBalanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+  for (const rawBalance of rawBalances) {
+    if (rawBalance.includes("AccountId")) continue;
+
+    const [address, balance, dex, incentive] = rawBalance.split(",");
+    if (!address) continue;
+    dexTotal = dexTotal.add(new BN(dex));
+    incentiveTotal = incentiveTotal.add(new BN(incentive));
+
+    if (!accountData[address]) {
+      accountData[address] = {
+        balance: new BN(0),
+        dex: new BN(0),
+        incentive: new BN(0)
+      }
+    }
+    accountData[address].balance = accountData[address].balance.add(new BN(balance.toString()));
+    accountData[address].dex = accountData[address].dex.add(new BN(dex.toString()));
+    accountData[address].incentive = accountData[address].incentive.add(new BN(incentive.toString()));
+  }
+
+  const dexBalance = accountData['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd'].balance;
+  const incentiveBalance = accountData['5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'].balance;
+  console.log(`DEX balance: ${dexBalance.toString()}`);
+  console.log(`Incentive balance: ${incentiveBalance.toString()}`);
+  console.log(`Dex total: ${dexTotal.toString()}`)
+  console.log(`Incentive total: ${incentiveTotal.toString()}`);
+
+  const fd = await fs.promises.open(balanceFile, "w");
+  for (const address in accountData) {
+    if (excluded.includes(address)) continue;
+    const userBalance = accountData[address].balance;
+
+    const userDex = accountData[address].dex.mul(dexBalance).div(dexTotal);
+    const userIncentive = accountData[address].incentive.mul(incentiveBalance).div(incentiveTotal);
+
+    const total = userBalance.add(userDex).add(userIncentive);
+    await fs.promises.writeFile(fd, address + "," + total.toString() + "\n");
+  }
+  await fd.close();
 }
