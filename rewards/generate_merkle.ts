@@ -7,7 +7,7 @@ import { Provider } from "@acala-network/bodhi";
 
 import * as fs from 'fs';
 import { keyring as Keyring } from '@polkadot/ui-keyring';
-import { RewardList } from './reward-list';
+import { RewardList } from './lib/reward-list';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
 
@@ -61,7 +61,12 @@ export const generateMerkle = async (asset: string, block: number) => {
         if (values[0])  continue;
         for (let i = 1; i < headers.length; i++) {
             // values[0] is the address
-            rewardList.increaseUserRewards(values[0], headers[i], values[i]);
+            // If this is a reserve
+            if (headers[i].startsWith("reserve-")) {
+                rewardList.updateUserReserve(values[0], headers[i].replace("reserve-", ""), values[i]);
+            } else {
+                rewardList.increaseUserRewards(values[0], headers[i], values[i]);
+            }
         }
     }
 
