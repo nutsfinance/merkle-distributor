@@ -2,7 +2,7 @@ import hre from "hardhat";
 import { getTxParams } from "../utils/deployUtils";
 
 async function main() {
-  const distributor = "0xf595F4a81B27E5CC1Daca349A69c834f375224F4";
+  const distributor = "0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9";
 
   const params = await getTxParams(hre);
   const RewardCollector = await hre.ethers.getContractFactory("RewardCollector");
