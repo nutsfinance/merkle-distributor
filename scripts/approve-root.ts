@@ -1,5 +1,5 @@
-import calcEthereumTransactionParams from "@acala-network/eth-providers";
-import ethers from "hardhat";
+import { calcEthereumTransactionParams } from "@acala-network/eth-providers";
+import { ethers } from "hardhat";
 
 const DISTRIBUTOR = '0x77C3248643130b594385386453e7263dBF23C1cF';
 const NEW_ROOT = '0x5b152f81d7bf64a872109b54f9a60db67209dc8f35696796d8537a8e35064a17';
