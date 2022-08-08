@@ -90,5 +90,7 @@ export const distributeTaiKsm = async (block: number) => {
                 await fs.promises.writeFile(fd, `${address},${threeUsd.toString()},${tai.toString()},${taiKsm.toString()},${lksm.toString()},${kar.toString()}\n`);
             }
             await fd.close();
+
+            // TODO Transfer 3USD to merkle distributor from fee and yield recipients
         });
 }

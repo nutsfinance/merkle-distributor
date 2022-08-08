@@ -1,4 +1,5 @@
 import { distributeTaiKsm } from "./distribute-taiksm";
+import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
 import { getTaiKsmRawBalance, getTaiKsmBalance } from "./query-balance-taiksm";
 
@@ -10,6 +11,7 @@ const main = async () => {
         await getTaiKsmRawBalance(BLOCK);
         await getTaiKsmBalance(BLOCK);
         await distributeTaiKsm(BLOCK);
+        await generateMerkle("taiksm", BLOCK);
 
         process.exit(0);
     } catch(error) {

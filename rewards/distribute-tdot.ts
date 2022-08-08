@@ -51,5 +51,7 @@ export const distributeTaiKsm = async (block: number) => {
                 await fs.promises.writeFile(fd, `${address},${tdot.toString()}\n`);
             }
             await fd.close();
+
+            // TODO Transfer tDOT to merkle distributor from fee and yield recipients
         });
 }
