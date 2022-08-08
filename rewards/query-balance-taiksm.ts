@@ -22,9 +22,8 @@ export const getTaiKsmRawBalance = async (block: number) => {
     .run(async ({ apiAt }) => {
       const accs = fs.readFileSync(accountFile, {encoding:'utf8', flag:'r'}).split("\n");
       console.log(`Account number: ${accs.length}`);
-      const fd = await fs.promises.open(rawBalanceFile, "w");
-      await fs.promises.writeFile(fd, "AccountId,Pool Balance,DEX Balance,Incentive Share\n");
-
+      let content = "AccountId,Pool Balance,DEX Balance,Incentive Share\n";
+      
       let promises: Promise<void>[] = [];
       let count = 0;
       const start = new Date();
@@ -40,7 +39,7 @@ export const getTaiKsmRawBalance = async (block: number) => {
             const dex = await apiAt.query.tokens.accounts(accountId, {'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any;
 
             if (balance.free.gt(new BN(0)) || dex.free.gt(new BN(0)) || incentives[0].gt(new BN(0))) {
-              await fs.promises.writeFile(fd, accountId + "," + balance.free + "," + dex.free + "," + incentives[0] + "\n");
+              content += accountId + "," + balance.free + "," + dex.free + "," + incentives[0] + "\n";
               count++;
             }
           })());
@@ -54,6 +53,9 @@ export const getTaiKsmRawBalance = async (block: number) => {
       if (promises.length > 0) {
         await Promise.all(promises);
       }
+
+      const fd = await fs.promises.open(rawBalanceFile, "w");
+      await fs.promises.writeFile(fd, content);
       await fd.close();
       const end = new Date();
       console.log(`End querying taiKSM balance at ${end.toTimeString()}`);
