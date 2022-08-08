@@ -14,7 +14,7 @@ import runner from '../runner'
 runner()
   .requiredNetwork(['acala'])
   .withApiPromise()
-  .atBlock(1548800)
+  .atBlock(1596700)
   .run(async ({ apiAt }) => {
     console.log(__dirname + "/../../");
     const accs = await fetchEntriesToArray((startKey) =>

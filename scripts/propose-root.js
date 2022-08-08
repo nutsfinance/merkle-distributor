@@ -2,12 +2,12 @@ const { calcEthereumTransactionParams } = require("@acala-network/eth-providers"
 const { ethers } = require("hardhat");
 
 //const DISTRIBUTOR = '0xff066331be693BE721994CF19905b2DC7475C5c9'; //3usd
-//const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4'; //taiKSM
-const DISTRIBUTOR = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9'; //tdot
-const NEW_ROOT = '0x8988dfa66863d1e1c28b7d04c6b9c7566f876147633a109cfbd8757b9eb22697';
-const NEW_CYCLE = 7;
-const NEW_START_BLOCK = 1501000;
-const NEW_END_BLOCK = 1548800;
+const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4'; //taiKSM
+//const DISTRIBUTOR = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9'; //tdot
+const NEW_ROOT = '0xadefab4a55c7179388eb30b6ac78b9e05ec46f0f93a4b9cc5df3866d8b1e4b73';
+const NEW_CYCLE = 12;
+const NEW_START_BLOCK = 2372400;
+const NEW_END_BLOCK = 2411800;
 
 async function main() {
     const blockNumber = await ethers.provider.getBlockNumber();
