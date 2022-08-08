@@ -8,10 +8,15 @@ const BLOCK = 2372400;
 
 const main = async () => {
     try {
+        // Common
         await getAccounts('karura', BLOCK);
+
+        // Asset-specific
         await getTaiKsmRawBalance(BLOCK);
         await getTaiKsmBalance(BLOCK);
         await distributeTaiKsm(BLOCK);
+
+        // Common
         await generateMerkle("taiksm", BLOCK);
         await submitMerkle("taiksm");
 
