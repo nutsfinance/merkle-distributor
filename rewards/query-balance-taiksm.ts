@@ -9,7 +9,7 @@ import * as fs from 'fs'
 
 export const getTaiKsmRawBalance = async (block: number) => {
   const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const rawBalanceFile = __dirname + `/data/balances/taiksm_${block}_raw.csv`;
+  const rawBalanceFile = __dirname + `/data/balances/karura_taiksm_${block}_raw.csv`;
   if (fs.existsSync(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
     return;
@@ -64,8 +64,8 @@ export const getTaiKsmRawBalance = async (block: number) => {
 }
 
 export const getTaiKsmBalance = async (block: number) => {
-  const rawBalanceFile = __dirname + `/data/balances/taiksm_${block}_raw.csv`;
-  const balanceFile = __dirname + `/data/balances/taiksm_${block}.csv`;
+  const rawBalanceFile = __dirname + `/data/balances/karura_taiksm_${block}_raw.csv`;
+  const balanceFile = __dirname + `/data/balances/karura_taiksm_${block}.csv`;
   if (fs.existsSync(balanceFile)) {
     console.log(`${balanceFile} exists. Skip querying raw balances.`);
     return;

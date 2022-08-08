@@ -8,8 +8,8 @@ import runner from './lib/runner'
 import * as fs from 'fs'
 
 export const getTdotRawBalance = async (block: number) => {
-  const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const rawBalanceFile = __dirname + `/data/balances/tdot_${block}_raw.csv`;
+  const accountFile = __dirname + `/data/accounts/acala_${block}.txt`;
+  const rawBalanceFile = __dirname + `/data/balances/acala_tdot_${block}_raw.csv`;
   if (fs.existsSync(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
     return;
@@ -60,8 +60,8 @@ export const getTdotRawBalance = async (block: number) => {
 }
 
 export const getTdotBalance = async (block: number) => {
-  const rawBalanceFile = __dirname + `/data/balances/tdot_${block}_raw.csv`;
-  const balanceFile = __dirname + `/data/balances/tdot_${block}.csv`;
+  const rawBalanceFile = __dirname + `/data/balances/acala_tdot_${block}_raw.csv`;
+  const balanceFile = __dirname + `/data/balances/acala_tdot_${block}.csv`;
   if (fs.existsSync(balanceFile)) {
     console.log(`${balanceFile} exists. Skip querying raw balances.`);
     return;

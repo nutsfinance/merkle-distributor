@@ -12,8 +12,8 @@ const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";
 const BUFFER = new BN("100000000000");
 
 export const distributeTaiKsm = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/tdot_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/tdot_${block}.csv`;
+    const balanceFile = __dirname + `/data/balances/acala_tdot_${block}.csv`;
+    const distributionFile = __dirname + `/data/distributions/acala_tdot_${block}.csv`;
     if (fs.existsSync(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;

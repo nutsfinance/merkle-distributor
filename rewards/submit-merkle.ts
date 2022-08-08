@@ -13,7 +13,7 @@ export const submitMerkle = async (asset: string) => {
     await provider.api.isReady;
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
-    const newMerkleFile = __dirname + `/data/merkle/${CONFIG[asset].network}_${CONFIG[asset].poolId}_${currentCycle + 1}.json`;
+    const newMerkleFile = __dirname + `/data/merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
     const newMerkle = fs.readFileSync(newMerkleFile, {encoding:'utf8', flag:'r'});
     const newMerkleTree = JSON.parse(newMerkle);
 

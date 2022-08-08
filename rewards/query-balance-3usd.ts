@@ -10,7 +10,7 @@ import * as fs from 'fs'
 // 3USD only exists in wallet, so record it directly
 export const get3UsdBalance = async (block: number) => {
   const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const balanceFile = __dirname + `/data/balances/3usd_${block}.csv`;
+  const balanceFile = __dirname + `/data/balances/karura_3usd_${block}.csv`;
 
   await runner()
     .requiredNetwork(['karura'])

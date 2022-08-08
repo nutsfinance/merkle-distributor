@@ -22,8 +22,8 @@ const WEEKLY_TAI_REWARD = new BN("28000").mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 export const distributeTaiKsm = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/taiksm_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/taiksm_${block}.csv`;
+    const balanceFile = __dirname + `/data/balances/karura_taiksm_${block}.csv`;
+    const distributionFile = __dirname + `/data/distributions/karura_taiksm_${block}.csv`;
     if (fs.existsSync(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;

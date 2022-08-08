@@ -30,8 +30,8 @@ const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 export const distributeTaiKsm = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/3usd_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/3usd_${block}.csv`;
+    const balanceFile = __dirname + `/data/balances/karura_3usd_${block}.csv`;
+    const distributionFile = __dirname + `/data/distributions/karura_3usd_${block}.csv`;
     if (fs.existsSync(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;

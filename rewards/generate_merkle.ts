@@ -28,9 +28,9 @@ export const generateMerkle = async (asset: string, block: number) => {
         return;
     }
 
-    const distributionFile = __dirname + `/data/distributions/taiksm_${block}.csv`;
-    const currentMerkleFile = __dirname + `/data/merkle/${CONFIG[asset].network}_${CONFIG[asset].poolId}_${currentCycle}.json`;
-    const merkleFile = __dirname + `/data/merkle/${CONFIG[asset].network}_${CONFIG[asset].poolId}_${currentCycle + 1}.json`;
+    const distributionFile = __dirname + `/data/distributions/${CONFIG[asset].network}_${asset}_${block}.csv`;
+    const currentMerkleFile = __dirname + `/data/merkle/${CONFIG[asset].network}_${asset}_${currentCycle}.json`;
+    const merkleFile = __dirname + `/data/merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
     if (fs.existsSync(merkleFile)) {
         console.log(`${merkleFile} exists. Skip distribution.`);
         return;
