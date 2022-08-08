@@ -1,4 +1,4 @@
-const { ethers } = require("hardhat");
+import ethers from "hardhat";
 
 const DISTRIBUTOR = '0xF7A5B5792672D06d8FD2B5A6dAcE0C19d578BaCF';
 

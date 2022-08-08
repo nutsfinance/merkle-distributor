@@ -1,5 +1,5 @@
-const { calcEthereumTransactionParams } = require("@acala-network/eth-providers");
-const { ethers } = require("hardhat");
+import calcEthereumTransactionParams from "@acala-network/eth-providers";
+import ethers from "hardhat";
 
 //const DISTRIBUTOR = '0xff066331be693BE721994CF19905b2DC7475C5c9'; //3usd
 const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4'; //taiKSM
