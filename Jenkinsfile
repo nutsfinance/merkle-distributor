@@ -8,6 +8,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
+  serviceAccountName: jenkins-s3
   containers:
   - name: build
     image: node:16
