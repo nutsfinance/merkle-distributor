@@ -30,7 +30,7 @@ spec:
       }
       steps {
         container(name: 'build') {
-          sh "mkdir -p /root/.config/hardhat-nodejs && chmod -R 777 /root/"
+          sh "mkdir -p /root/.cache/hardhat-nodejs && chmod -R 777 /root/"
           sh "npm install"
           sh "npx hardhat run rewards/run_taiksm.ts"
         }
