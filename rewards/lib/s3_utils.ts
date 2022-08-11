@@ -33,7 +33,7 @@ export const createFile = async (file: string, content: string) => {
 export const getFile = async (file: string) => {
     // It's easier to file from static site directly
     const response = await fetch(`http://reward-data.s3-website-us-west-1.amazonaws.com/${file}`);
-    console.log(response.data)
+    if (response.status != 200) return "";
 
     return response.data;
 }

@@ -5,11 +5,11 @@ import '@acala-network/types/interfaces/types-lookup';
 import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
 
-import * as fs from 'fs';
 import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { RewardList } from './lib/reward-list';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
+import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 export const generateMerkle = async (asset: string, block: number) => {
     Keyring.loadAll({ type: 'sr25519' });
@@ -28,10 +28,10 @@ export const generateMerkle = async (asset: string, block: number) => {
         return;
     }
 
-    const distributionFile = __dirname + `/data/distributions/${CONFIG[asset].network}_${asset}_${block}.csv`;
-    const currentMerkleFile = __dirname + `/data/merkle/${CONFIG[asset].network}_${asset}_${currentCycle}.json`;
-    const merkleFile = __dirname + `/data/merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
-    if (fs.existsSync(merkleFile)) {
+    const distributionFile = `distributions/${CONFIG[asset].network}_${asset}_${block}.csv`;
+    const currentMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle}.json`;
+    const merkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
+    if (await fileExists(merkleFile)) {
         console.log(`${merkleFile} exists. Skip distribution.`);
         return;
     }
@@ -39,7 +39,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     const rewardList = new RewardList(currentCycle + 1, currentEndBlock, block);
 
     // Load the current merkle
-    const currentMerkle = fs.readFileSync(currentMerkleFile, {encoding:'utf8', flag:'r'});
+    const currentMerkle = await getFile(currentMerkleFile);
     const currentMerkleTree = JSON.parse(currentMerkle);
     for (const user in currentMerkleTree.claims) {
         const tokens = currentMerkleTree.claims[user].tokens;
@@ -51,7 +51,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     }
 
     // Add new distribution
-    const distributionList = fs.readFileSync(distributionFile, {encoding:'utf8', flag:'r'}).split("\n");
+    const distributionList = (await getFile(distributionFile)).split("\n");
     const headers = distributionList[0].split(",");
     for (const distribution of distributionList) {
         // Skip header
@@ -72,5 +72,6 @@ export const generateMerkle = async (asset: string, block: number) => {
 
     const newMerkleTree = rewardList.toMerkleTree();
     console.log('Merkle root: ' + newMerkleTree.merkleRoot);
-    await fs.promises.writeFile(merkleFile, JSON.stringify(newMerkleTree));
+    
+    await createFile(merkleFile, JSON.stringify(newMerkleTree));
 }
