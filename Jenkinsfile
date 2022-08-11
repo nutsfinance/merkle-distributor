@@ -23,7 +23,6 @@ spec:
       }
       steps {
         container(name: 'build') {
-          sh "npm install -g yarn"
           sh "npm install -g ts-node"
           sh "yarn install"
           sh "ts-node rewards/run_taiksm.ts"
