@@ -10,6 +10,7 @@ import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { RewardList } from './lib/reward-list';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
+import * as ethers from 'ethers';
 
 export const generateMerkle = async (asset: string, block: number) => {
     Keyring.loadAll({ type: 'sr25519' });
