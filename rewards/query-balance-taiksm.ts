@@ -58,8 +58,8 @@ export const getTaiKsmRawBalance = async (block: number) => {
       await fs.promises.writeFile(fd, content);
       await fd.close();
       const end = new Date();
-      console.log(`End querying LKSM balance at ${end.toTimeString()}`);
-      console.log(`LKSM account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
+      console.log(`End querying taiKSM balance at ${end.toTimeString()}`);
+      console.log(`taiKSM account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
     });
 }
 
