@@ -13,6 +13,12 @@ spec:
     image: node:16
     tty: true
     command: ['cat']
+    env:
+    - name: MNEMONIC
+      valueFrom:
+        secretKeyRef:
+          name: jenkins-mnemonic
+          key: mnemonic
 """
     }
   }
