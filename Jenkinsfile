@@ -23,9 +23,8 @@ spec:
       }
       steps {
         container(name: 'build') {
-          sh "npm install -g ts-node"
           sh "yarn install"
-          sh "ts-node rewards/run_taiksm.ts"
+          sh "npx hardhat run rewards/run_taiksm.ts"
         }
       }
     }
