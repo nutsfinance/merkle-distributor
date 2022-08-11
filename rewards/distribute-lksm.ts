@@ -20,10 +20,6 @@ const WEEKLY_KAR_REWARD = new BN(75000).mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
 
-// 80% rewards will award free lksm(free lksm + in loan)
-const FREE_REWARD_RATE = new BN(10).pow(new BN(17)).mul(new BN(8));
-// 20% rewards will award lksm in taiKSM 
-const IN_TAI_REWARD_RATE = new BN(10).pow(new BN(17)).mul(new BN(2));
 // 50% reward will be reserved
 const RESERVED_RATE = new BN(10).pow(new BN(17)).mul(new BN(5));
 
@@ -93,14 +89,11 @@ export const distributeLKSM = async (block: number) => {
             // TODO: mock block
             const block = 3000000;
             const totalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
-            const totalFreeRewardAmount = totalReward.mul(FREE_REWARD_RATE).div(new BN(10).pow(new BN(8)));
-            const totalInTaiRewardAmount = totalReward.mul(IN_TAI_REWARD_RATE).div(new BN(10).pow(new BN(8)));
             const incressRewards: Record<string, any> = {};
 
             // calculate rewards and reserved
             for (const address in accountBalance) {
-                incressRewards[address] = accountBalance[address].free.mul(totalFreeRewardAmount).div(balanceTotal);
-                incressRewards[address] = incressRewards[address].add(accountBalance[address].inTai.mul(totalInTaiRewardAmount).div(balanceInTaiTotal));
+                incressRewards[address] = (accountBalance[address].free.add(accountBalance[address].inTai)).mul(totalReward).div(balanceTotal);
             }
 
             // split rewards to reserved
