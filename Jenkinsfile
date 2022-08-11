@@ -29,6 +29,7 @@ spec:
       }
       steps {
         container(name: 'build') {
+          sh "mkdir -p /root/.config/hardhat-nodejs"
           sh "yarn install"
           sh "npx hardhat run rewards/run_taiksm.ts"
         }
