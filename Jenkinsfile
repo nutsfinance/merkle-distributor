@@ -8,6 +8,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
+  serviceAccountName: jenkins-s3
   containers:
   - name: build
     image: node:16
@@ -29,8 +30,8 @@ spec:
       }
       steps {
         container(name: 'build') {
-          sh "mkdir -p /root/.config/hardhat-nodejs && chmod -R 777 /root/"
-          sh "yarn install"
+          sh "mkdir -p /root/.cache/hardhat-nodejs && chmod -R 777 /root/"
+          sh "npm install"
           sh "npx hardhat run rewards/run_taiksm.ts"
         }
       }
