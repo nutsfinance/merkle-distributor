@@ -86,5 +86,7 @@ export const distributeTaiKsm = async (block: number) => {
             await createFile(distributionFile, content);
 
             // TODO Transfer taiKSM to merkle distributor from fee and yield recipients
+            // This can be done after fee and yield recipients are updated.
+            // For now we need to continue to use multisig
         });
 }

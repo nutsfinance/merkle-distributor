@@ -18,7 +18,7 @@ const runTaiKsmPipeline = async (block: number) => {
 
         // Common
         await generateMerkle("taiksm", block);
-        // await submitMerkle("taiksm");
+        await submitMerkle("taiksm");
     } catch(error) {
         console.error(error);
         process.exit(1);
