@@ -5,12 +5,12 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner'
-import * as fs from 'fs'
+import { createFile, fileExists, getFile } from './lib/s3_utils'
 
 export const getTdotRawBalance = async (block: number) => {
-  const accountFile = __dirname + `/data/accounts/acala_${block}.txt`;
-  const rawBalanceFile = __dirname + `/data/balances/acala_tdot_${block}_raw.csv`;
-  if (fs.existsSync(rawBalanceFile)) {
+  const accountFile = `accounts/acala_${block}.txt`;
+  const rawBalanceFile = `balances/acala_tdot_${block}_raw.csv`;
+  if (await fileExists(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
     return;
   }
@@ -20,8 +20,9 @@ export const getTdotRawBalance = async (block: number) => {
     .withApiPromise()
     .atBlock(block)
     .run(async ({ apiAt }) => {
-      const accs = fs.readFileSync(accountFile, {encoding:'utf8', flag:'r'}).split("\n");
+      const accs = (await getFile(accountFile)).split("\n");
       console.log(`Account number: ${accs.length}`);
+
       let content = "AccountId,Pool Balance,Incentive Share\n";
 
       let promises: Promise<void>[] = [];
@@ -49,9 +50,7 @@ export const getTdotRawBalance = async (block: number) => {
       if (promises.length > 0) {
         await Promise.all(promises);
       }
-      const fd = await fs.promises.open(rawBalanceFile, "w");
-      await fs.promises.writeFile(fd, content);
-      await fd.close();
+      await createFile(rawBalanceFile, content);
 
       const end = new Date();
       console.log(`End querying taiKSM balance at ${end.toTimeString()}`);
@@ -60,9 +59,9 @@ export const getTdotRawBalance = async (block: number) => {
 }
 
 export const getTdotBalance = async (block: number) => {
-  const rawBalanceFile = __dirname + `/data/balances/acala_tdot_${block}_raw.csv`;
-  const balanceFile = __dirname + `/data/balances/acala_tdot_${block}.csv`;
-  if (fs.existsSync(balanceFile)) {
+  const rawBalanceFile = `balances/acala_tdot_${block}_raw.csv`;
+  const balanceFile = `balances/acala_tdot_${block}.csv`;
+  if (await fileExists(balanceFile)) {
     console.log(`${balanceFile} exists. Skip querying raw balances.`);
     return;
   }
@@ -72,7 +71,7 @@ export const getTdotBalance = async (block: number) => {
   const accountData: {[address: string]: any} = {};
   let incentiveTotal = new BN(0);
 
-  const rawBalances = fs.readFileSync(rawBalanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+  const rawBalances = (await getFile(rawBalanceFile)).split("\n");
   for (const rawBalance of rawBalances) {
     if (rawBalance.includes("AccountId")) continue;
 
@@ -95,13 +94,14 @@ export const getTdotBalance = async (block: number) => {
   console.log(`Incentive balance: ${incentiveBalance.toString()}`);
   console.log(`Incentive total: ${incentiveTotal.toString()}`);
 
-  const fd = await fs.promises.open(balanceFile, "w");
+  let content = "";
   for (const address in accountData) {
     if (excluded.includes(address)) continue;
     const userBalance = accountData[address].balance;
     const userIncentive = accountData[address].incentive.mul(incentiveBalance).div(incentiveTotal);
     const total = userBalance.add(userIncentive);
-    await fs.promises.writeFile(fd, address + "," + total.toString() + "\n");
+    content += address + "," + total.toString() + "\n";
   }
-  await fd.close();
+  
+  await createFile(balanceFile, content);
 }

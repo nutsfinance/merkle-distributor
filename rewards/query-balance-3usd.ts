@@ -5,19 +5,25 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner'
-import * as fs from 'fs'
+import { createFile, fileExists, getFile } from './lib/s3_utils'
 
 // 3USD only exists in wallet, so record it directly
 export const get3UsdBalance = async (block: number) => {
-  const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const balanceFile = __dirname + `/data/balances/karura_3usd_${block}.csv`;
+  const accountFile = `accounts/karura_${block}.txt`;
+  const balanceFile = `balances/karura_3usd_${block}.csv`;
+
+  if (await fileExists(balanceFile)) {
+    console.log(`${balanceFile} exists. Skip querying raw balances.`);
+    return;
+  }
 
   await runner()
     .requiredNetwork(['karura'])
     .withApiPromise()
     .atBlock(block)
     .run(async ({ apiAt }) => {
-      const accs = fs.readFileSync(accountFile, {encoding:'utf8', flag:'r'}).split("\n");
+      const accs = (await getFile(accountFile)).split("\n");
+      console.log(`Account number: ${accs.length}`);
       let content = "";; 
 
       let promises: Promise<void>[] = [];
@@ -37,8 +43,7 @@ export const get3UsdBalance = async (block: number) => {
       if (promises.length > 0) {
         await Promise.all(promises);
       }
-      let fd = await fs.promises.open(balanceFile, "w");
-      await fs.promises.writeFile(fd, content);
-      await fd.close();
+
+      await createFile(balanceFile, content);
     });
 }

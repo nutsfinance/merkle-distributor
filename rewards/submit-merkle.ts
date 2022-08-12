@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { abi } from "./merkle-distributor.abi";
 import { CONFIG } from "./config";
 import * as fs from 'fs';
+import { getFile } from "./lib/s3_utils";
 
 export const submitMerkle = async (asset: string) => {
 
@@ -13,8 +14,9 @@ export const submitMerkle = async (asset: string) => {
     await provider.api.isReady;
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
-    const newMerkleFile = __dirname + `/data/merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
-    const newMerkle = fs.readFileSync(newMerkleFile, {encoding:'utf8', flag:'r'});
+
+    const newMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
+    const newMerkle = await getFile(newMerkleFile);
     const newMerkleTree = JSON.parse(newMerkle);
 
     const blockNumber = await provider.getBlockNumber();

@@ -2,16 +2,16 @@
 
 import '@acala-network/types'
 import '@acala-network/types/interfaces/types-lookup'
-import * as fs from 'fs';
 import { fetchEntriesToArray } from '@open-web3/util'
 import { encodeAddress } from '@polkadot/util-crypto'
 import runner from './lib/runner'
 import { Networks } from './lib/networks';
-
+import { createFile, fileExists } from './lib/s3_utils';
 
 export const getAccounts = async (network: Networks, block: number) => {
-  const fileName = __dirname + `/data/accounts/${network}_${block}.txt`;
-  if (fs.existsSync(fileName))  {
+
+  const fileName = `accounts/${network}_${block}.txt`;
+  if (await fileExists(fileName))  {
     console.log(`${fileName} exists. Skip querying accounts.`);
     return;
   }
@@ -31,12 +31,12 @@ export const getAccounts = async (network: Networks, block: number) => {
         })
       );
       
-      let fd = fs.openSync(fileName, "w");
+      let data = "";
       for (const [key, value] of accs) {
         const accountId = encodeAddress(key.slice(-32));
-        fs.writeSync(fd, accountId + "\n");
+        data += accountId + "\n";
       }
-      fs.closeSync(fd);
+      await createFile(fileName, data);
       const end = new Date();
       console.log(`End querying accounts at ${end.toTimeString()}`);
       console.log(`Account number: ${accs.length}, duration: ${(end.getTime() - start.getTime())/ 1000}s`);

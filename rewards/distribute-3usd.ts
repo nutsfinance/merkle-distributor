@@ -6,10 +6,10 @@ import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
 
 import { BN } from 'bn.js'
-import * as fs from 'fs'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
+import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 const THREEUSD_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
 const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
@@ -30,14 +30,14 @@ const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 export const distributeTaiKsm = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/karura_3usd_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/karura_3usd_${block}.csv`;
-    if (fs.existsSync(distributionFile)) {
+    const balanceFile = `balances/karura_3usd_${block}.csv`;
+    const distributionFile = `distributions/karura_3usd_${block}.csv`;
+    if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
     }
 
-    const balances = fs.readFileSync(balanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+    const balances = (await getFile(balanceFile)).split("\n");
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
     for (const balanceLine of balances) {
@@ -78,8 +78,7 @@ export const distributeTaiKsm = async (block: number) => {
             const lksmAmount = WEEKLY_LKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const karAmount = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
-            let fd = await fs.promises.open(distributionFile, "w");
-            await fs.promises.writeFile(fd, "AccountId,0x0000000000000000000300000000000000000001,0x0000000000000000000100000000000000000084,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000083,0x0000000000000000000100000000000000000080\n");
+            let content = "AccountId,0x0000000000000000000300000000000000000001,0x0000000000000000000100000000000000000084,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000083,0x0000000000000000000100000000000000000080\n";
             for (const address in accountBalance) {
                 if (!address)   continue;
                 const threeUsd = accountBalance[address].mul(threeUsdAmount).div(balanceTotal);
@@ -87,9 +86,9 @@ export const distributeTaiKsm = async (block: number) => {
                 const taiKsm = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
                 const lksm = accountBalance[address].mul(lksmAmount).div(balanceTotal);
                 const kar = accountBalance[address].mul(karAmount).div(balanceTotal);
-                await fs.promises.writeFile(fd, `${address},${threeUsd.toString()},${tai.toString()},${taiKsm.toString()},${lksm.toString()},${kar.toString()}\n`);
+                content += `${address},${threeUsd.toString()},${tai.toString()},${taiKsm.toString()},${lksm.toString()},${kar.toString()}\n`;
             }
-            await fd.close();
+            await createFile(distributionFile, content);
 
             // TODO Transfer 3USD to merkle distributor from fee and yield recipients
         });

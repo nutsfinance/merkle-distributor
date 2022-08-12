@@ -4,22 +4,22 @@ import '@acala-network/types'
 import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
-import * as fs from 'fs'
 import runner from './lib/runner';
+import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
 const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";
 const BUFFER = new BN("100000000000");
 
 export const distributeTaiKsm = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/acala_tdot_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/acala_tdot_${block}.csv`;
-    if (fs.existsSync(distributionFile)) {
+    const balanceFile = `balances/acala_tdot_${block}.csv`;
+    const distributionFile = `distributions/acala_tdot_${block}.csv`;
+    if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
     }
 
-    const balances = fs.readFileSync(balanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+    const balances = (await getFile(balanceFile)).split("\n");
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
     for (const balanceLine of balances) {
@@ -43,14 +43,13 @@ export const distributeTaiKsm = async (block: number) => {
 
             const tdotAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
 
-            let fd = await fs.promises.open(distributionFile, "w");
-            await fs.promises.writeFile(fd, "AccountId,0x0000000000000000000300000000000000000000\n");
+            let content = "AccountId,0x0000000000000000000300000000000000000000\n";
             for (const address in accountBalance) {
                 if (!address)   continue;
                 const tdot = accountBalance[address].mul(tdotAmount).div(balanceTotal);
-                await fs.promises.writeFile(fd, `${address},${tdot.toString()}\n`);
+                content += `${address},${tdot.toString()}\n`;
             }
-            await fd.close();
+            await createFile(distributionFile, content);
 
             // TODO Transfer tDOT to merkle distributor from fee and yield recipients
         });
