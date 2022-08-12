@@ -32,7 +32,7 @@ const main = async () => {
     const block = Math.floor(blockNumber / 100) * 100;
     console.log(`taiKSM pipeline runs at block ${block}`);
 
-    await runTaiKsmPipeline(block);
+    await runTaiKsmPipeline(2441300);
 }
 
 main().then(() => {

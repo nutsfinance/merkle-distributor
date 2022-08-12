@@ -38,7 +38,7 @@ export const getFile = async (file: string) => {
     const response = await fetch(`http://reward-data.s3-website-us-west-1.amazonaws.com/${file}`);
     if (response.status != 200) return "";
 
-    return response.data.toString();
+    return response.data;
 }
 
 /**

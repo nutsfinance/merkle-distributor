@@ -22,6 +22,8 @@ export const submitMerkle = async (asset: string) => {
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, wallet);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
 
+    console.log(`Current cycle: ${currentCycle}`);
+
     const newMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
     const newMerkleTree = await getFile(newMerkleFile);
 
@@ -34,6 +36,8 @@ export const submitMerkle = async (asset: string) => {
         txFeePerGas: '199999946752',
         storageByteDeposit
     });
+
+    console.log(`Proposing cycle: ${currentCycle + 1}: root = ${newMerkleTree.merkleRoot}, start = ${newMerkleTree.startBlock}, end = ${newMerkleTree.endBlock}`);
 
     const tx1 = await merkleDistributor.proposeRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {
         gasPrice: ethParams.txGasPrice,
