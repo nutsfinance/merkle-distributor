@@ -8,6 +8,11 @@ import runner from './lib/runner';
 import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 export const getTaiKsmRawBalance = async (block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*        Query taiKSM Balance             *');
+  console.log('------------------------------------------\n');
+
+
   const accountFile = `accounts/karura_${block}.txt`;
   const rawBalanceFile = `balances/karura_taiksm_${block}_raw.csv`;
   if (await fileExists(rawBalanceFile)) {

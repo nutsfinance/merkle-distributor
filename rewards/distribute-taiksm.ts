@@ -12,8 +12,11 @@ import { abi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 const TAIKSM_REWARD_DISTRIBUTOR = "0xf595F4a81B27E5CC1Daca349A69c834f375224F4";
-const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
-const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
+// const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
+// const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
+
+const TAIKSM_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
+const TAIKSM_YIELD_RECIPIENT = "sfyxDFLkQQCx9f7oJiL32725mF7dM5GXGphUSxmC9Zq9Xec";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
@@ -22,6 +25,10 @@ const WEEKLY_TAI_REWARD = new BN("28000").mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 export const distributeTaiKsm = async (block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*      Distribute taiKSM Rewards          *');
+    console.log('------------------------------------------\n');
+
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     if (await fileExists(distributionFile)) {
@@ -58,13 +65,15 @@ export const distributeTaiKsm = async (block: number) => {
         .withApiPromise()
         .atBlock(block)
         .run(async ({ apiAt }) => {
-            const feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
-            const yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            let feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            let yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            feeBalance = feeBalance.gt(BUFFER) ? feeBalance.sub(BUFFER) : new BN(0);
+            yieldBalance = yieldBalance.gt(BUFFER) ? yieldBalance.sub(BUFFER) : new BN(0);
 
-            console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
-            console.log(`Yield balance: ${yieldBalance.sub(BUFFER).toString()}`);
+            console.log(`Fee balance: ${feeBalance.toString()}`);
+            console.log(`Yield balance: ${yieldBalance.toString()}`);
 
-            const taiKsmAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
+            const taiKsmAmount = feeBalance.add(yieldBalance);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
             let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084\n";

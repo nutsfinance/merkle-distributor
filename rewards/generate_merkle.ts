@@ -12,6 +12,10 @@ import { CONFIG } from './config';
 import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 export const generateMerkle = async (asset: string, block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*        Generate Merkle Tree            *');
+    console.log('------------------------------------------\n');
+
     Keyring.loadAll({ type: 'sr25519' });
 
     // Get the current cycle

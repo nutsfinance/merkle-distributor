@@ -8,6 +8,10 @@ import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/s3_utils'
 
 export const getTdotRawBalance = async (block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*          Query tDOT Balance             *');
+  console.log('------------------------------------------\n');
+
   const accountFile = `accounts/acala_${block}.txt`;
   const rawBalanceFile = `balances/acala_tdot_${block}_raw.csv`;
   if (await fileExists(rawBalanceFile)) {

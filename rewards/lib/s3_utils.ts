@@ -1,6 +1,7 @@
 import { S3, PutObjectCommand, GetObjectCommand, HeadObjectCommand } from "@aws-sdk//client-s3";
 import fetch from "axios";
 import * as dotenv from "dotenv";
+import * as fs from 'fs';
 
 dotenv.config();
 
@@ -37,13 +38,24 @@ export const getFile = async (file: string) => {
     const response = await fetch(`http://reward-data.s3-website-us-west-1.amazonaws.com/${file}`);
     if (response.status != 200) return "";
 
-    return response.data;
+    return response.data.toString();
 }
 
+/**
+ * Localized versioon of the file handlers. 
+ */
 
+// export const fileExists = async (file: string) => {
+//     const filePath = __dirname + '/../data/' + file;
+//     return fs.existsSync(filePath);
+// }
 
-// createFile("test/data.txt", "Test");
+// export const createFile = async (file: string, content: string) => {
+//     const filePath = __dirname + '/../data/' + file;
+//     fs.writeFileSync(filePath, content);
+// }
 
-// fileExists("test/data.txt")
-
-getFile("merkles/karura_taiksm_12.json")
+// export const getFile = async (file: string) => {
+//     const filePath = __dirname + '/../data/' + file;
+//     return fs.readFileSync(filePath).toString();
+// }

@@ -7,11 +7,18 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { createFile, fileExists, getFile } from './lib/s3_utils';
 
-const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
-const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";
+// const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
+// const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";
+
+const TDOT_FEE_RECIPIENT = "24qzxzg1TfciVh819jkXX23QtvmNY66XQHRP3KekzRuwC68t";
+const TDOT_YIELD_RECIPIENT = "25FJUCL9Wz9fGGU3cNUNnpdsNjXhjiLJu9vxhpFN7rkoi3zE";
 const BUFFER = new BN("100000000000");
 
 export const distributeTaiKsm = async (block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*      Distribute tDOT Rewards            *');
+    console.log('------------------------------------------\n');
+
     const balanceFile = `balances/acala_tdot_${block}.csv`;
     const distributionFile = `distributions/acala_tdot_${block}.csv`;
     if (await fileExists(distributionFile)) {

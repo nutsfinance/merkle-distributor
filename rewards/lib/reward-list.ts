@@ -117,6 +117,7 @@ export class RewardList {
             tokenTotals: {},
             claims: {}
         };
+        
 
         for (const token in this.totals) {
             distribution["tokenTotals"][token] = this.totals[token].toString();

@@ -9,6 +9,9 @@ import { Networks } from './lib/networks';
 import { createFile, fileExists } from './lib/s3_utils';
 
 export const getAccounts = async (network: Networks, block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*             Query Accounts             *');
+  console.log('------------------------------------------\n');
 
   const fileName = `accounts/${network}_${block}.txt`;
   if (await fileExists(fileName))  {
