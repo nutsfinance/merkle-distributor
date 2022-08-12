@@ -52,7 +52,7 @@ export const generateMerkle = async (asset: string, block: number) => {
         if (distribution.includes("AccountId")) continue;
 
         const values = distribution.split(",");
-        if (values[0])  continue;
+        if (!values[0])  continue;
         for (let i = 1; i < headers.length; i++) {
             // values[0] is the address
             // If this is a reserve
