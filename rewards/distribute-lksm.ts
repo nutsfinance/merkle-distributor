@@ -21,7 +21,8 @@ const WEEKLY_KAR_REWARD = new BN(75000).mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 // 50% reward will be reserved
-const RESERVED_RATE = new BN(10).pow(new BN(17)).mul(new BN(5));
+const RESERVED_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
+const CLAIMABLE_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
 
 export const distributeLKSM = async (block: number) => {
     const balanceFile = __dirname + `/data/balances/karura_lksm_${block}.csv`;
@@ -50,23 +51,20 @@ export const distributeLKSM = async (block: number) => {
     }
 
     let balanceTotal = new BN(0);
-    let balanceInTaiTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
 
     for (const balanceLine of balances) {
         const [address, free, inTai] = balanceLine.split(",");
         if (!accountBalance[address]) {
-            accountBalance[address] = {};
-            accountBalance[address].free = new BN(0);
-            accountBalance[address].inTai = new BN(0);
+            accountBalance[address] = {
+                free: new BN(0),
+                inTai: new BN(0)
+            };
         }
         accountBalance[address].free = accountBalance[address].free.add(new BN(free));
         accountBalance[address].inTai = accountBalance[address].inTai.add(new BN(inTai));
         balanceTotal = balanceTotal.add(new BN(free));
-        balanceInTaiTotal = balanceInTaiTotal.add(new BN(inTai));
     }
-
-    console.log(balanceTotal.toString(), balanceInTaiTotal.toString());
 
     const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
 
@@ -93,7 +91,7 @@ export const distributeLKSM = async (block: number) => {
 
             // calculate rewards and reserved
             for (const address in accountBalance) {
-                incressRewards[address] = (accountBalance[address].free.add(accountBalance[address].inTai)).mul(totalReward).div(balanceTotal);
+                incressRewards[address] = (accountBalance[address].free).mul(totalReward).div(balanceTotal).mul(CLAIMABLE_RATE).div(ONE);
             }
 
             // split rewards to reserved
@@ -101,8 +99,8 @@ export const distributeLKSM = async (block: number) => {
                 if (!reserved[address]) {
                     reserved[address] = new BN(0);
                 }
-
-                reserved[address] = reserved[address].add(incressRewards[address].mul(RESERVED_RATE).div(new BN(10).pow(new BN(18))));
+                const total = accountBalance[address].free.add(accountBalance[address].inTai);
+                reserved[address] = incressRewards[address] = total.mul(totalReward).div(balanceTotal).mul(RESERVED_RATE).div(ONE);
             }
 
             // redistribute reserved rewards
