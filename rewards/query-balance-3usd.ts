@@ -22,7 +22,7 @@ export const get3UsdBalance = async (block: number) => {
     .withApiPromise()
     .atBlock(block)
     .run(async ({ apiAt }) => {
-      const accs = await getFile(accountFile);
+      const accs = (await getFile(accountFile)).split("\n");
       console.log(`Account number: ${accs.length}`);
       let content = "";; 
 

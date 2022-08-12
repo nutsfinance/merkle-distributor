@@ -20,7 +20,7 @@ export const getTdotRawBalance = async (block: number) => {
     .withApiPromise()
     .atBlock(block)
     .run(async ({ apiAt }) => {
-      const accs = await getFile(accountFile);
+      const accs = (await getFile(accountFile)).split("\n");
       console.log(`Account number: ${accs.length}`);
 
       let content = "AccountId,Pool Balance,Incentive Share\n";
