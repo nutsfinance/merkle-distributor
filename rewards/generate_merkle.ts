@@ -31,11 +31,6 @@ export const generateMerkle = async (asset: string, block: number) => {
     const distributionFile = `distributions/${CONFIG[asset].network}_${asset}_${block}.csv`;
     const currentMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle}.json`;
     const merkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
-    if (await fileExists(merkleFile)) {
-        console.log(`${merkleFile} exists. Skip distribution.`);
-        return;
-    }
-
     const rewardList = new RewardList(currentCycle + 1, currentEndBlock, block);
 
     // Load the current merkle

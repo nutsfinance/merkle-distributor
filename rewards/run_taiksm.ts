@@ -27,8 +27,10 @@ const runTaiKsmPipeline = async (block: number) => {
 
 const main = async () => {
     const blockNumber = await ethers.provider.getBlockNumber();
+    console.log('Current block number: ' + blockNumber)
     // Round down to nearest 100 blocks
     const block = Math.floor(blockNumber / 100) * 100;
+    console.log(`taiKSM pipeline runs at block ${block}`);
 
     await runTaiKsmPipeline(block);
 }
