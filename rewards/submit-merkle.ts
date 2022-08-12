@@ -23,8 +23,7 @@ export const submitMerkle = async (asset: string) => {
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
 
     const newMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
-    const newMerkle = await getFile(newMerkleFile);
-    const newMerkleTree = JSON.parse(newMerkle);
+    const newMerkleTree = await getFile(newMerkleFile);
 
     const blockNumber = await provider.getBlockNumber();
     const storageByteDeposit = CONFIG[asset].network === 'acala' ? "300000000000000" : "100000000000000";
