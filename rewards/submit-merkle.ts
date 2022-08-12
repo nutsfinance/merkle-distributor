@@ -1,8 +1,9 @@
 import { calcEthereumTransactionParams } from "@acala-network/eth-providers";
+import { WsProvider } from "@polkadot/api";
+import { Provider } from "@acala-network/bodhi";
 import { ethers } from "ethers";
 import { abi } from "./merkle-distributor.abi";
 import { CONFIG } from "./config";
-import * as fs from 'fs';
 import { getFile } from "./lib/s3_utils";
 import * as dotenv from 'dotenv';
 
@@ -11,15 +12,14 @@ dotenv.config();
 export const submitMerkle = async (asset: string) => {
 
     // Get the current cycle
-    const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC!);
     const provider = new Provider({
         provider: new WsProvider("wss://karura.api.onfinality.io/public-ws"),
-        Signer: wallet
     });
+    const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC!).connect(provider);
     console.log(`Signing address: ${wallet.address}`);
 
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, wallet);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
 
     const newMerkleFile = `merkles/${CONFIG[asset].network}_${asset}_${currentCycle + 1}.json`;
