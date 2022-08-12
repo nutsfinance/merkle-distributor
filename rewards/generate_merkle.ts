@@ -34,8 +34,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     const rewardList = new RewardList(currentCycle + 1, currentEndBlock, block);
 
     // Load the current merkle
-    const currentMerkle = await getFile(currentMerkleFile);
-    const currentMerkleTree = JSON.parse(currentMerkle);
+    const currentMerkleTree = await getFile(currentMerkleFile);
     for (const user in currentMerkleTree.claims) {
         const tokens = currentMerkleTree.claims[user].tokens;
         const cumulativeAmounts = currentMerkleTree.claims[user].cumulativeAmounts;

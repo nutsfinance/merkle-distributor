@@ -21,6 +21,7 @@ export const fileExists = async (file: string) => {
 }
 
 export const createFile = async (file: string, content: string) => {
+    console.log(`Creating file: ${file}`);
     const params = {
         Bucket,
         Key: file,
@@ -31,6 +32,7 @@ export const createFile = async (file: string, content: string) => {
 }
 
 export const getFile = async (file: string) => {
+    console.log(`Reading file: ${file}`);
     // It's easier to file from static site directly
     const response = await fetch(`http://reward-data.s3-website-us-west-1.amazonaws.com/${file}`);
     if (response.status != 200) return "";
@@ -44,4 +46,4 @@ export const getFile = async (file: string) => {
 
 // fileExists("test/data.txt")
 
-getFile("test/data.txt")
+getFile("merkles/karura_taiksm_12.json")
