@@ -23,7 +23,7 @@ const WEEKLY_BLOCK = new BN(50400);
 
 // lksm rewards config
 // 75000 KAR / WEEK for LKSM
-const WEEKLY_KAR_REWARD = new BN(75000).mul(ONE);
+const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 const RESERVED_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
 
 export const distributeTaiKsm = async (block: number) => {
@@ -98,6 +98,7 @@ export const distributeTaiKsm = async (block: number) => {
                 const taiKam = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
                 const tai = accountBalance[address].mul(taiAmount).div(balanceTotal);
                 const kar = (lksmAccountBalance[address].free).mul(lksmBalanceTotal).div(lksmTotalReward).mul(RESERVED_RATE).div(ONE);
+                // TODO kar will only release 13 week
                 content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()}\n`;
             }
             await createFile(distributionFile, content);

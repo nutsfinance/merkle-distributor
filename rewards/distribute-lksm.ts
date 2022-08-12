@@ -15,7 +15,7 @@ const LKSM_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
 
 const ONE = new BN(10).pow(new BN(12));
 // 75000 TAI / WEEK
-const WEEKLY_KAR_REWARD = new BN(75000).mul(ONE);
+const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
@@ -85,7 +85,6 @@ export const distributeLKSM = async (block: number) => {
         .atBlock(block)
         .run(async ({ apiAt }) => {
             // TODO: mock block
-            const block = 3000000;
             const totalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const incressRewards: Record<string, any> = {};
 
