@@ -9,7 +9,7 @@ import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { RewardList } from './lib/reward-list';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 export const generateMerkle = async (asset: string, block: number) => {
     console.log('\n------------------------------------------');

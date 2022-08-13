@@ -1,4 +1,5 @@
-import { S3, PutObjectCommand, GetObjectCommand, HeadObjectCommand } from "@aws-sdk//client-s3";
+import { S3, PutObjectCommand, HeadObjectCommand } from "@aws-sdk//client-s3";
+import { SNS } from "@aws-sdk/client-sns";
 import fetch from "axios";
 import * as dotenv from "dotenv";
 import * as fs from 'fs';
@@ -7,6 +8,8 @@ dotenv.config();
 
 const s3 = new S3({ region: "us-west-1" });
 const Bucket = "reward-data";
+
+const sns = new SNS({ region: "us-west-1" });
 
 export const fileExists = async (file: string) => {
     const command = new HeadObjectCommand({
@@ -39,6 +42,13 @@ export const getFile = async (file: string) => {
     if (response.status != 200) return "";
 
     return response.data;
+}
+
+export const publishMessage = async (content: string) => {
+    await sns.publish({
+        Message: content,
+        TopicArn: "arn:aws:sns:us-west-1:343749756837:reward-pipeline"
+    });
 }
 
 /**

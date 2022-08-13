@@ -5,7 +5,7 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 // const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
 // const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";

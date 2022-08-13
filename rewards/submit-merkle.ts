@@ -4,7 +4,7 @@ import { Provider } from "@acala-network/bodhi";
 import { ethers } from "ethers";
 import { abi } from "./merkle-distributor.abi";
 import { CONFIG } from "./config";
-import { getFile } from "./lib/s3_utils";
+import { getFile } from "./lib/aws_utils";
 import * as dotenv from 'dotenv';
 
 dotenv.config();

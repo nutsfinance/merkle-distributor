@@ -9,7 +9,7 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 
 const TAIKSM_REWARD_DISTRIBUTOR = "0xf595F4a81B27E5CC1Daca349A69c834f375224F4";
 // const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
@@ -88,5 +88,9 @@ export const distributeTaiKsm = async (block: number) => {
             // TODO Transfer taiKSM to merkle distributor from fee and yield recipients
             // This can be done after fee and yield recipients are updated.
             // For now we need to continue to use multisig
+
+            // Notify the fee and yield amount with SNS
+            const message = `Fee amount: ${feeBalance.toString()}\nYield amount: ${yieldBalance.toString()}\n`;
+            await publishMessage(message);
         });
 }

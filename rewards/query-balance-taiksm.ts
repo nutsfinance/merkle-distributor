@@ -5,7 +5,7 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 export const getTaiKsmRawBalance = async (block: number) => {
   console.log('\n------------------------------------------');
