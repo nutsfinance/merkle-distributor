@@ -28,7 +28,7 @@ const WEEKLY_BLOCK = new BN(50400);
 // 75000 KAR / WEEK for LKSM
 const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 // reserved 50%
-const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
+const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 export const distributeTaiKsm = async (block: number) => {
     console.log('\n------------------------------------------');
@@ -109,7 +109,7 @@ export const distributeTaiKsm = async (block: number) => {
                 if (!address)   continue;
                 const taiKam = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
                 const tai = accountBalance[address].mul(taiAmount).div(balanceTotal);
-                const kar = (lksmAccountBalance[address].inTai).mul(lksmBalanceTotal).div(lksmTotalReward).mul(RESERVED_RATE).div(ONE);
+                const kar = (lksmAccountBalance[address].inTai).mul(lksmBalanceTotal).div(lksmTotalReward).mul(CLAIMABLE_RATE).div(ONE);
                 // TODO kar will only release 13 week
                 content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()}\n`;
             }
