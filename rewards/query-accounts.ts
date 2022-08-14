@@ -6,9 +6,12 @@ import { fetchEntriesToArray } from '@open-web3/util'
 import { encodeAddress } from '@polkadot/util-crypto'
 import runner from './lib/runner'
 import { Networks } from './lib/networks';
-import { createFile, fileExists } from './lib/s3_utils';
+import { createFile, fileExists } from './lib/aws_utils';
 
 export const getAccounts = async (network: Networks, block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*             Query Accounts             *');
+  console.log('------------------------------------------\n');
 
   const fileName = `accounts/${network}_${block}.txt`;
   if (await fileExists(fileName))  {

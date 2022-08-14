@@ -5,13 +5,16 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner'
-import { createFile, fileExists, getFile } from './lib/s3_utils'
+import { createFile, fileExists, getFile } from './lib/aws_utils'
 
 // 3USD only exists in wallet, so record it directly
 export const get3UsdBalance = async (block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*          Query 3USD Balance             *');
+  console.log('------------------------------------------\n');
+
   const accountFile = `accounts/karura_${block}.txt`;
   const balanceFile = `balances/karura_3usd_${block}.csv`;
-
   if (await fileExists(balanceFile)) {
     console.log(`${balanceFile} exists. Skip querying raw balances.`);
     return;

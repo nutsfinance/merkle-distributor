@@ -5,9 +5,14 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 export const getTaiKsmRawBalance = async (block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*        Query taiKSM Balance             *');
+  console.log('------------------------------------------\n');
+
+
   const accountFile = `accounts/karura_${block}.txt`;
   const rawBalanceFile = `balances/karura_taiksm_${block}_raw.csv`;
   if (await fileExists(rawBalanceFile)) {

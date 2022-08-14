@@ -9,11 +9,14 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 
 const TAIKSM_REWARD_DISTRIBUTOR = "0xf595F4a81B27E5CC1Daca349A69c834f375224F4";
-const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
-const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
+// const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
+// const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
+
+const TAIKSM_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
+const TAIKSM_YIELD_RECIPIENT = "sfyxDFLkQQCx9f7oJiL32725mF7dM5GXGphUSxmC9Zq9Xec";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
@@ -28,6 +31,10 @@ const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 export const distributeTaiKsm = async (block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*      Distribute taiKSM Rewards          *');
+    console.log('------------------------------------------\n');
+
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
     const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
@@ -85,13 +92,15 @@ export const distributeTaiKsm = async (block: number) => {
         .withApiPromise()
         .atBlock(block)
         .run(async ({ apiAt }) => {
-            const feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
-            const yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            let feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            let yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
+            feeBalance = feeBalance.gt(BUFFER) ? feeBalance.sub(BUFFER) : new BN(0);
+            yieldBalance = yieldBalance.gt(BUFFER) ? yieldBalance.sub(BUFFER) : new BN(0);
 
-            console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
-            console.log(`Yield balance: ${yieldBalance.sub(BUFFER).toString()}`);
+            console.log(`Fee balance: ${feeBalance.toString()}`);
+            console.log(`Yield balance: ${yieldBalance.toString()}`);
 
-            const taiKsmAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
+            const taiKsmAmount = feeBalance.add(yieldBalance);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const lksmTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
@@ -107,5 +116,13 @@ export const distributeTaiKsm = async (block: number) => {
             await createFile(distributionFile, content);
 
             // TODO Transfer taiKSM to merkle distributor from fee and yield recipients
+            // This can be done after fee and yield recipients are updated.
+            // For now we need to continue to use multisig
+
+            // Notify the fee and yield amount with SNS
+            const message = `taiKSM fee amount: ${feeBalance.toString()}\n`
+                + `taiKSM yield amount: ${yieldBalance.toString()}\n`
+                + `TAI amount: ${taiAmount.toString()}`;
+            await publishMessage(message);
         });
 }

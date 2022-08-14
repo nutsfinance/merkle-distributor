@@ -9,9 +9,13 @@ import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { RewardList } from './lib/reward-list';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 
 export const generateMerkle = async (asset: string, block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*        Generate Merkle Tree            *');
+    console.log('------------------------------------------\n');
+
     Keyring.loadAll({ type: 'sr25519' });
 
     // Get the current cycle
@@ -38,8 +42,12 @@ export const generateMerkle = async (asset: string, block: number) => {
     for (const user in currentMerkleTree.claims) {
         const tokens = currentMerkleTree.claims[user].tokens;
         const cumulativeAmounts = currentMerkleTree.claims[user].cumulativeAmounts;
+        const reserveAmounts = currentMerkleTree.claims[user].reserveAmounts;
 
         for (let i = 0; i < tokens.length; i++) {
+            if (reserveAmounts) {
+                rewardList.updateUserReserve(user, tokens[i], reserveAmounts[i]);
+            }
             rewardList.increaseUserRewards(user, tokens[i], cumulativeAmounts[i]);
         }
     }
@@ -68,4 +76,11 @@ export const generateMerkle = async (asset: string, block: number) => {
     console.log('Merkle root: ' + newMerkleTree.merkleRoot);
     
     await createFile(merkleFile, JSON.stringify(newMerkleTree));
+
+    const message = `New ${asset} cycle: ${newMerkleTree.cycle}\n`
+        + `New root: ${newMerkleTree.merkleRoot}\n`
+        + `Start block: ${newMerkleTree.startBlock}\n`
+        + `End block: ${newMerkleTree.endBlock}\n`;
+
+    await publishMessage(message);
 }

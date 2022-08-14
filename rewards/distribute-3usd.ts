@@ -9,11 +9,14 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 const THREEUSD_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
-const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
-const THREEUSD_YIELD_RECIPIENT = "Karura: qbK5tagX35AtEeBBWeXEX1FJSoNbVEdC2RzaxPkEmTSuB6Q";
+
+const THREEUSD_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
+const THREEUSD_YIELD_RECIPIENT = "sfyxDFLkQQCx9f7oJiL32725mF7dM5GXGphUSxmC9Zq9Xec";
+// const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
+// const THREEUSD_YIELD_RECIPIENT = "Karura: qbK5tagX35AtEeBBWeXEX1FJSoNbVEdC2RzaxPkEmTSuB6Q";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
@@ -29,7 +32,11 @@ const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
 
-export const distributeTaiKsm = async (block: number) => {
+export const distribute3Usd = async (block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*      Distribute 3USD Rewards            *');
+    console.log('------------------------------------------\n');
+
     const balanceFile = `balances/karura_3usd_${block}.csv`;
     const distributionFile = `distributions/karura_3usd_${block}.csv`;
     if (await fileExists(distributionFile)) {
