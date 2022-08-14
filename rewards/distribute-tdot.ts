@@ -14,7 +14,7 @@ const TDOT_FEE_RECIPIENT = "24qzxzg1TfciVh819jkXX23QtvmNY66XQHRP3KekzRuwC68t";
 const TDOT_YIELD_RECIPIENT = "25FJUCL9Wz9fGGU3cNUNnpdsNjXhjiLJu9vxhpFN7rkoi3zE";
 const BUFFER = new BN("100000000000");
 
-export const distributeTaiKsm = async (block: number) => {
+export const distributeTDot = async (block: number) => {
     console.log('\n------------------------------------------');
     console.log('*      Distribute tDOT Rewards            *');
     console.log('------------------------------------------\n');

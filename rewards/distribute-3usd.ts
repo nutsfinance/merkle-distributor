@@ -32,7 +32,7 @@ const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
 
-export const distributeTaiKsm = async (block: number) => {
+export const distribute3Usd = async (block: number) => {
     console.log('\n------------------------------------------');
     console.log('*      Distribute 3USD Rewards            *');
     console.log('------------------------------------------\n');

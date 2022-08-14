@@ -1,9 +1,9 @@
 import { ethers } from "hardhat";
+import { distribute3Usd } from "./distribute-3usd";
 
-import { distributeTaiKsm } from "./distribute-taiksm";
 import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
-import { getTaiKsmRawBalance, getTaiKsmBalance } from "./query-balance-taiksm";
+import { get3UsdBalance } from "./query-balance-3usd";
 import { submitMerkle } from "./submit-merkle";
 
 const main = async () => {
@@ -11,19 +11,18 @@ const main = async () => {
     console.log('Current block number: ' + blockNumber)
     // Round down to nearest 200 blocks
     const block = Math.floor(blockNumber / 200) * 200;
-    console.log(`taiKSM pipeline runs at block ${block}`);
+    console.log(`3USD pipeline runs at block ${block}`);
 
     // Common
     await getAccounts('karura', block);
 
     // Asset-specific
-    await getTaiKsmRawBalance(block);
-    await getTaiKsmBalance(block);
-    await distributeTaiKsm(block);
+    await get3UsdBalance(block);
+    await distribute3Usd(block);
 
     // Common
-    await generateMerkle("taiksm", block);
-    await submitMerkle("taiksm");
+    await generateMerkle("3usd", block);
+    await submitMerkle("3usd");
 }
 
 main().then(() => {
