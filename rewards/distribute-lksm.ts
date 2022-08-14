@@ -10,7 +10,7 @@ import * as fs from 'fs'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 const LKSM_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
 

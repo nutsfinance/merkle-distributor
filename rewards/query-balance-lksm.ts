@@ -6,7 +6,7 @@ import '@acala-network/types/interfaces/types-lookup'
 import { BN } from 'bn.js'
 import runner from './lib/runner'
 import * as fs from 'fs'
-import { createFile, fileExists, getFile } from './lib/s3_utils'
+import { createFile, fileExists, getFile } from './lib/aws_utils'
 
 /**
  * the user's lksm amount contains:
@@ -74,8 +74,6 @@ export const getLKSMRawBalance = async (block: number) => {
             // lksm in taiKSM 
             const inTaiKSM = taiBalances[accountId] ? totalLKSMInTaiKSM * taiBalances[accountId] / BigInt(taiKSMIssuance.toString()) : BigInt(0);
 
-            console.log(taiBalances[accountId], inTaiKSM);
-
             if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || inTaiKSM > BigInt(0)) {
               content += accountId + "," + balance.free + "," + incentives[0] + "," + inTaiKSM + "\n";
               count++;
@@ -84,7 +82,6 @@ export const getLKSMRawBalance = async (block: number) => {
           if (promises.length > 500) {
             await Promise.all(promises);
             promises = [];
-            console.log(`${count} accounts processed.`);
           }
         }
       }

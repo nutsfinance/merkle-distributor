@@ -6,16 +6,7 @@ import '@acala-network/types/interfaces/types-lookup'
 import * as fs from 'fs'
 import { request, gql } from 'graphql-request'
 import { encodeAddress } from '@polkadot/util-crypto';
-import { createFile, fileExists, getFile } from './lib/s3_utils';
-
-/**
- * the user's lksm amount contains:
- * 1. lksm free balance
- * 2. lksm in honzon
- * 3. lksm in taiKSM
- * @param block 
- * @returns 
- */
+import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 const ENDPOINT = 'https://api.subquery.network/sq/nutsfinance/taiga-rewards';
 const REWARD_TOKEN_ADDRESS = '0x0000000000000000000100000000000000000080';
@@ -74,7 +65,7 @@ async function queryClaimedAccounts (last = 0, current: number) {
 
     accounts = [...accounts, ...result.accounts];
     flag = result.hasNextPage;
-    start += pageSize + 1;
+    start += pageSize;
   }
 
   accounts = Array.from(new Set(accounts));
