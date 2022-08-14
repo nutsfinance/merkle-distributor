@@ -24,11 +24,12 @@ const WEEKLY_BLOCK = new BN(50400);
 // lksm rewards config
 // 75000 KAR / WEEK for LKSM
 const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
-const RESERVED_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
+// reserved 50%
+const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 export const distributeTaiKsm = async (block: number) => {
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
-    const lksmBalanceFile = __dirname + `/data/balances/karura_lksm_${block}.csv`;
+    const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
@@ -36,7 +37,7 @@ export const distributeTaiKsm = async (block: number) => {
     }
 
     const balances = (await getFile(balanceFile)).split("\n");
-    const lksmBalances = (await getFile(balanceFile)).split("\n");
+    const lksmBalances = (await getFile(lksmBalanceFile)).split("\n");
 
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
@@ -48,20 +49,22 @@ export const distributeTaiKsm = async (block: number) => {
 
         balanceTotal = balanceTotal.add(new BN(balance));
     }
+
+    // for lksm balance data
     let lksmBalanceTotal = new BN(0);
     let lksmAccountBalance: {[address: string]: any} = {};
 
-    for (const balanceLine of balances) {
+    for (const balanceLine of lksmBalances) {
         const [address, free, inTai] = balanceLine.split(",");
         if (!lksmAccountBalance[address]) {
             lksmAccountBalance[address] = {
-                free: new BN(0),
                 inTai: new BN(0)
             };
         }
-        lksmAccountBalance[address].free = lksmAccountBalance[address].free.add(new BN(free));
         lksmAccountBalance[address].inTai = lksmAccountBalance[address].inTai.add(new BN(inTai));
-        lksmBalanceTotal = lksmBalanceTotal.add(new BN(free));
+
+        // count all lksm amount which should reward
+        lksmBalanceTotal = lksmBalanceTotal.add(new BN(free)).add(new BN(inTai));
     }
 
     const provider = new Provider({
@@ -84,20 +87,20 @@ export const distributeTaiKsm = async (block: number) => {
         .run(async ({ apiAt }) => {
             const feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
             const yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
-            const lksmTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
             console.log(`Yield balance: ${yieldBalance.sub(BUFFER).toString()}`);
 
             const taiKsmAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
+            const lksmTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
             let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080\n";
             for (const address in accountBalance) {
                 if (!address)   continue;
                 const taiKam = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
                 const tai = accountBalance[address].mul(taiAmount).div(balanceTotal);
-                const kar = (lksmAccountBalance[address].free).mul(lksmBalanceTotal).div(lksmTotalReward).mul(RESERVED_RATE).div(ONE);
+                const kar = (lksmAccountBalance[address].inTai).mul(lksmBalanceTotal).div(lksmTotalReward).mul(RESERVED_RATE).div(ONE);
                 // TODO kar will only release 13 week
                 content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()}\n`;
             }

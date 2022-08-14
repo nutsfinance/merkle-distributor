@@ -10,6 +10,7 @@ import * as fs from 'fs'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
+import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 const LKSM_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
 
@@ -21,27 +22,28 @@ const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 const WEEKLY_BLOCK = new BN(50400);
 
 // 50% reward will be reserved
-const RESERVED_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
-const CLAIMABLE_RATE = new BN(10).pow(new BN(12)).mul(new BN(5));
+const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
+const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 export const distributeLKSM = async (block: number) => {
-    const balanceFile = __dirname + `/data/balances/karura_lksm_${block}.csv`;
-    const distributionFile = __dirname + `/data/distributions/karura_lksm_${block}.csv`;
-    const reservedFile = __dirname + `/data/distributions/karura_lksm_reserved.csv`;
-    const claimedAccountsFile = __dirname + `/data/accounts/claimed_lksm_${block}.csv`;
+    const balanceFile = `balances/karura_lksm_${block}.csv`;
+    const distributionFile = `distributions/karura_lksm_${block}.csv`;
+    const reservedFile = `distributions/karura_lksm_reserved.csv`;
+    const claimedAccountsFile = `accounts/claimed_lksm_${block}.csv`;
 
-    if (fs.existsSync(distributionFile)) {
+    if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
     }
 
-    const balances = fs.readFileSync(balanceFile, {encoding:'utf8', flag:'r'}).split("\n");
-    const claimedAccounts: string[] = fs.readFileSync(claimedAccountsFile, {encoding:'utf8', flag:'r'}).split('\n');
+    const balances = (await getFile(balanceFile)).split("\n") as string[];
+    const claimedAccounts: string[] = (await getFile(claimedAccountsFile)).split('\n') as string[];
 
     const reserved: Record<string, any> = {};
 
-    if (fs.existsSync(reservedFile)) {
-        const reservedFileContent =  fs.readFileSync(reservedFile, {encoding:'utf8', flag:'r'}).split("\n");
+    // read resered configs in local file
+    if (await fileExists(reservedFile)) {
+        const reservedFileContent =  (await getFile(reservedFile)).split("\n") as string;
 
         for (const line of reservedFileContent) {
             const [address, amount] = line.split(',');
@@ -63,7 +65,7 @@ export const distributeLKSM = async (block: number) => {
         }
         accountBalance[address].free = accountBalance[address].free.add(new BN(free));
         accountBalance[address].inTai = accountBalance[address].inTai.add(new BN(inTai));
-        balanceTotal = balanceTotal.add(new BN(free));
+        balanceTotal = balanceTotal.add(new BN(free)).add(new BN(inTai));
     }
 
     const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
@@ -99,44 +101,52 @@ export const distributeLKSM = async (block: number) => {
                     reserved[address] = new BN(0);
                 }
                 const total = accountBalance[address].free.add(accountBalance[address].inTai);
-                reserved[address] = incressRewards[address] = total.mul(totalReward).div(balanceTotal).mul(RESERVED_RATE).div(ONE);
+
+                reserved[address] = reserved[address].add(total.mul(totalReward).div(balanceTotal).mul(RESERVED_RATE).div(ONE));
             }
 
             // redistribute reserved rewards
             let redistributePool = new BN(0);
-            const redistributeAccounts = Object.keys(reserved).filter((i) => claimedAccounts.find(j => i === j));
+            const noClaimedAccounts = Object.keys(reserved).filter((i) => !claimedAccounts.includes(i));
 
             for (const address of claimedAccounts) {
                 if (reserved[address]) {
+                    // set reserved record to zero
                     reserved[address] = new BN(0);
+                    // accumalate redistribute amount
                     redistributePool = redistributePool.add(reserved[address]);
                 }
             }
 
-            for (const address of redistributeAccounts) {
+            for (const address of noClaimedAccounts) {
                 if (!reserved[address]) {
                     reserved[address] = new BN(0);
                 }
 
-                reserved[address] = reserved[address].add(redistributePool.div(new BN(redistributeAccounts.length)));
+                reserved[address] = reserved[address].add(redistributePool.div(new BN(noClaimedAccounts.length)));
             }
 
 
             // write reserved records to file
-            let reservedFd = await fs.promises.open(reservedFile, 'w');
+            let reservedContent = '';
+
             for (const record of Object.entries(reserved)) {
-                await fs.promises.writeFile(reservedFd, `${record[0]},${record[1].toString() || '0'}\n`)
+                reservedContent += `${record[0]},${record[1].toString() || '0'}\n`;
             }
+
+            await createFile(reservedFile, reservedContent);
+
+            // write reward records to file
 
             let fd = await fs.promises.open(distributionFile, "w");
-            await fs.promises.writeFile(fd, "0x0000000000000000000100000000000000000080\n");
+            let distributionContent = 'AccountId, 0x0000000000000000000100000000000000000080\n';
+
             for (const address in accountBalance) {
                 if (!address)   continue;
-                const kar = incressRewards[address];
-
-                await fs.promises.writeFile(fd, `${address},${incressRewards[address].toString()}\n`);
-                await fs.promises.writeFile(fd, `reserved-${address},${reserved[address].toString()}\n`);
+                distributionContent += `${address},${incressRewards[address].toString()}\n`;
+                distributionContent += `reserved-${address},${reserved[address].toString()}\n`;
             }
-            await fd.close();
+
+            await createFile(distributionFile, distributionContent);
         });
 }

@@ -6,6 +6,7 @@ import '@acala-network/types/interfaces/types-lookup'
 import * as fs from 'fs'
 import { request, gql } from 'graphql-request'
 import { encodeAddress } from '@polkadot/util-crypto';
+import { createFile, fileExists, getFile } from './lib/s3_utils';
 
 /**
  * the user's lksm amount contains:
@@ -17,6 +18,7 @@ import { encodeAddress } from '@polkadot/util-crypto';
  */
 
 const ENDPOINT = 'https://api.subquery.network/sq/nutsfinance/taiga-rewards';
+const REWARD_TOKEN_ADDRESS = '0x0000000000000000000100000000000000000080';
 
 async function queryClaimedAccounts (last = 0, current: number) {
   const query = async (start: number, pageSize = 99) => {
@@ -24,11 +26,13 @@ async function queryClaimedAccounts (last = 0, current: number) {
     query {
       blocks (first: ${pageSize},offset:${start} filter:{and:[{id:{lessThan:"${current}"}},{id:{greaterThan:"${last}"}}]}) {
         nodes {
-          id
           claimTxs {
             nodes {
-              account {
-                id
+              accountId
+              claims {
+                nodes {
+                  token
+                }
               }
             }
           }
@@ -44,8 +48,20 @@ async function queryClaimedAccounts (last = 0, current: number) {
     return {
       hasNextPage: result.blocks.pageInfo.hasNextPage,
       accounts: result.blocks.nodes.map((item: any) => {
-        return encodeAddress(item.claimTxs.nodes[0].account.id, 8)
-      })
+        const temp: string[] = [];
+
+        item.claimTxs.nodes.forEach((tx: any) => {
+          const account = tx.accountId;
+
+          const tokens = tx.claims.nodes.map((i: any) => i.token) as string[];
+
+          if (tokens.includes(REWARD_TOKEN_ADDRESS)) {
+            temp.push(encodeAddress(account, 8));
+          }
+        });
+
+        return temp;
+      }).flat()
     }
   };
   const pageSize = 99;
@@ -67,11 +83,11 @@ async function queryClaimedAccounts (last = 0, current: number) {
 }
 
 export const getClaimedLKSMAccounts = async (block: number) => {
-  const accountFile = __dirname + `/data/accounts/karura_claimed_lksm_${block}.csv`;
-  const claimedRecord = __dirname + `/data/accounts/karura_claimed_lksm_record.json`;
+  const accountFile = `accounts/karura_claimed_lksm_${block}.csv`;
+  const claimedLKSMHelper = `accounts/karura_claimed_lksm_helper.json`;
   const start = new Date();
 
-  if (fs.existsSync(accountFile)) {
+  if (await fileExists(accountFile)) {
     console.log(`${accountFile} exists. Skip querying raw balances.`);
     return;
   }
@@ -79,8 +95,8 @@ export const getClaimedLKSMAccounts = async (block: number) => {
   // load last records
   let lastChecked = 0;
 
-  if (fs.existsSync(claimedRecord)) {
-    const data = JSON.stringify(fs.readFileSync(claimedRecord, {encoding:'utf8', flag: 'r'})) as any;
+  if (await fileExists(claimedLKSMHelper)) {
+    const data = JSON.stringify(await getFile(claimedLKSMHelper)) as any;
 
     lastChecked = Number(data?.lastChecked) || 0;
   }
@@ -88,15 +104,17 @@ export const getClaimedLKSMAccounts = async (block: number) => {
 
   const accounts = await queryClaimedAccounts(lastChecked, block);
 
-  const record = await fs.promises.open(claimedRecord, 'w');
-  await fs.promises.writeFile(record, JSON.stringify({ lastChecked: block }));
-  await record.close();
+  // update claimed lksm helper
+  createFile(claimedLKSMHelper, JSON.stringify({ lastChecked: block }));
+
   const fd = await fs.promises.open(accountFile, 'w');
+  let content = '';
 
   for (let account of accounts) {
-    await fs.promises.writeFile(fd, `${account}\n`);
-    await fd.close();
+    content += `${account}\n`;
   }
+
+  await createFile(accountFile, content);
 
   const end = new Date();
   console.log(`End querying LKSM claimed accounts at ${end.toTimeString()}`);

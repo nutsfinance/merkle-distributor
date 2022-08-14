@@ -6,6 +6,7 @@ import '@acala-network/types/interfaces/types-lookup'
 import { BN } from 'bn.js'
 import runner from './lib/runner'
 import * as fs from 'fs'
+import { createFile, fileExists, getFile } from './lib/s3_utils'
 
 /**
  * the user's lksm amount contains:
@@ -17,16 +18,16 @@ import * as fs from 'fs'
  */
 
 export const getLKSMRawBalance = async (block: number) => {
-  const accountFile = __dirname + `/data/accounts/karura_${block}.txt`;
-  const rawBalanceFile = __dirname + `/data/balances/karura_lksm_${block}_raw.csv`;
-  const taiBalanceFile = __dirname + `/data/balances/karura_taiksm_${block}.csv`;
+  const accountFile = `accounts/karura_${block}.txt`;
+  const rawBalanceFile = `balances/karura_lksm_${block}_raw.csv`;
+  const taiBalanceFile = `balances/karura_taiksm_${block}.csv`;
 
-  if (fs.existsSync(rawBalanceFile)) {
+  if (await getFile(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
     return;
   }
 
-  const taiBalancesData = fs.readFileSync(taiBalanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+  const taiBalancesData = (await getFile(taiBalanceFile)).split("\n") as string[];
   const taiBalances: Record<string, bigint> = {};
 
   taiBalancesData.forEach((i) => {
@@ -42,8 +43,10 @@ export const getLKSMRawBalance = async (block: number) => {
     .withApiPromise()
     .atBlock(block)
     .run(async ({ apiAt }) => {
-      const accs = fs.readFileSync(accountFile, {encoding:'utf8', flag:'r'}).split("\n");
+      const accs = (await getFile(accountFile)).split("\n") as string[];
+
       console.log(`Account number: ${accs.length}`);
+
       let content = "AccountId,Free Balance,Loan Balance,In TaiKSM\n";
       
       let promises: Promise<void>[] = [];
@@ -58,8 +61,8 @@ export const getLKSMRawBalance = async (block: number) => {
       const totalVoidLKSM = await apiAt.query.homa.totalVoidLiquid();
       const totalLKSMIssuance = await apiAt.query.tokens.totalIssuance({"Token": "LKSM"});
 
-      const exchangeRate = (BigInt(totalStaking.toString()) * BigInt(10**18)) / (BigInt(totalLKSMIssuance.toString()) + BigInt(totalVoidLKSM.toString()));
-      const totalLKSMInTaiKSM = BigInt((position as any).unwrapOrDefault().balances[1].toString()) * BigInt(10**18) / exchangeRate;
+      const exchangeRate = (BigInt(totalStaking.toString()) * BigInt(10**12)) / (BigInt(totalLKSMIssuance.toString()) + BigInt(totalVoidLKSM.toString()));
+      const totalLKSMInTaiKSM = BigInt((position as any).unwrapOrDefault().balances[1].toString()) * BigInt(10**12) / exchangeRate;
 
       for (const accountId of accs) {
         if (accountId) {
@@ -89,9 +92,8 @@ export const getLKSMRawBalance = async (block: number) => {
         await Promise.all(promises);
       }
 
-      const fd = await fs.promises.open(rawBalanceFile, "w");
-      await fs.promises.writeFile(fd, content);
-      await fd.close();
+      await createFile(rawBalanceFile, content);
+
       const end = new Date();
       console.log(`End querying LKSM balance at ${end.toTimeString()}`);
       console.log(`LKSM account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
@@ -99,10 +101,10 @@ export const getLKSMRawBalance = async (block: number) => {
 }
 
 export const getLKSMBalance = async (block: number) => {
-  const rawBalanceFile = __dirname + `/data/balances/karura_lksm_${block}_raw.csv`;
-  const balanceFile = __dirname + `/data/balances/karura_lksm_${block}.csv`;
+  const rawBalanceFile = `balances/karura_lksm_${block}_raw.csv`;
+  const balanceFile = `balances/karura_lksm_${block}.csv`;
 
-  if (fs.existsSync(balanceFile)) {
+  if (await fileExists(balanceFile)) {
     console.log(`${balanceFile} exists. Skip querying raw balances.`);
     return;
   }
@@ -111,10 +113,7 @@ export const getLKSMBalance = async (block: number) => {
 
   // const accountData: {[address: string]: {balance: BN, dex: typeof BN, incentive: typeof BN}} = {}
   const accountData: {[address: string]: any} = {};
-  let incentiveTotal = new BN(0);
-  let taiTotal = new BN(0);
-
-  const rawBalances = fs.readFileSync(rawBalanceFile, {encoding:'utf8', flag:'r'}).split("\n");
+  const rawBalances = (await getFile(rawBalanceFile)).split("\n");
 
   for (const rawBalance of rawBalances) {
     if (rawBalance.includes("AccountId")) continue;
@@ -122,8 +121,6 @@ export const getLKSMBalance = async (block: number) => {
     const [address, balance, incentive, inTai] = rawBalance.split(",");
 
     if (!address) continue;
-
-    incentiveTotal = incentiveTotal.add(new BN(incentive));
 
     if (!accountData[address]) {
       accountData[address] = {
@@ -138,11 +135,13 @@ export const getLKSMBalance = async (block: number) => {
     accountData[address].inTai = accountData[address].inTai.add(new BN(inTai.toString()));
   }
 
-  const fd = await fs.promises.open(balanceFile, "w");
+  let content = '';
+
   for (const address in accountData) {
     if (excluded.includes(address)) continue;
 
-    await fs.promises.writeFile(fd, address + "," + accountData[address].balance.add(accountData[address].incentive) + "," + accountData[address].inTai + "\n");
+    content += address + "," + accountData[address].balance.add(accountData[address].incentive) + "," + accountData[address].inTai + "\n";
   }
-  await fd.close();
+
+  await createFile(balanceFile, content);
 }

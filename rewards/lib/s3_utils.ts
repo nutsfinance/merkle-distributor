@@ -46,4 +46,4 @@ export const getFile = async (file: string) => {
 
 // fileExists("test/data.txt")
 
-getFile("merkles/karura_taiksm_12.json")
+// getFile("merkles/karura_taiksm_12.json")

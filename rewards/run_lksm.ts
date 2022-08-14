@@ -15,9 +15,9 @@ const main = async () => {
 
         // Asset-specific
         // get taiKSMBalance at first for we should count the lksm amount part of taiKSM
-        await getClaimedLKSMAccounts(BLOCK);
         await getTaiKsmRawBalance(BLOCK);
         await getTaiKsmBalance(BLOCK);
+        await getClaimedLKSMAccounts(BLOCK);
         await getLKSMRawBalance(BLOCK);
         await getLKSMBalance(BLOCK);
         await distributeLKSM(BLOCK);
