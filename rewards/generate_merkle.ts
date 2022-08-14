@@ -77,7 +77,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     
     await createFile(merkleFile, JSON.stringify(newMerkleTree));
 
-    const message = `New ${asset} cycle: $${newMerkleTree.cycle}\n`
+    const message = `New ${asset} cycle: ${newMerkleTree.cycle}\n`
         + `New root: ${newMerkleTree.merkleRoot}\n`
         + `Start block: ${newMerkleTree.startBlock}\n`
         + `End block: ${newMerkleTree.endBlock}\n`;

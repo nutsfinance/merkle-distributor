@@ -90,7 +90,9 @@ export const distributeTaiKsm = async (block: number) => {
             // For now we need to continue to use multisig
 
             // Notify the fee and yield amount with SNS
-            const message = `Fee amount: ${feeBalance.toString()}\nYield amount: ${yieldBalance.toString()}\n`;
+            const message = `taiKSM fee amount: ${feeBalance.toString()}\n`
+                + `taiKSM yield amount: ${yieldBalance.toString()}\n`
+                + `TAI amount: ${taiAmount.toString()}`;
             await publishMessage(message);
         });
 }
