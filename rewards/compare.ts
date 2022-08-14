@@ -14,7 +14,7 @@ const users2 = Object.keys(merkle2.claims);
 const diff = _.differenceWith(users2, users1);
 
 // console.log(users1.length)
-// console.log(users2.length)
+console.log(users2.length)
 // console.log(diff.length)
 
 let sum1 = new BN(0);
@@ -22,11 +22,16 @@ let sum2 = new BN(0);
 for (const user of users2) {
     sum1 = sum1.plus(new BN((merkle2.claims as any)[user].cumulativeAmounts[0]));
     sum2 = sum2.plus(new BN((merkle2.claims as any)[user].cumulativeAmounts[1]));
+
+    if ((merkle2.claims as any)[user].tokens[0] != "0x0000000000000000000100000000000000000084") {
+        console.log(user)
+    }
 }
 console.log(sum1.toString())
 console.log(sum2.toString())
-console.log(merkle2.tokenTotals["0x0000000000000000000100000000000000000084"].toString())
-console.log(merkle2.tokenTotals["0x0000000000000000000300000000000000000000"].toString())
+
+// console.log(new BN(merkle2.tokenTotals["0x0000000000000000000100000000000000000084"]).minus(new BN(merkle1.tokenTotals["0x0000000000000000000100000000000000000084"])).toString())
+// console.log(new BN(merkle2.tokenTotals["0x0000000000000000000300000000000000000000"]).minus(new BN(merkle1.tokenTotals["0x0000000000000000000300000000000000000000"])).toString())
 
 // let diff1 = new BN(0);
 // let diff2 = new BN(0);

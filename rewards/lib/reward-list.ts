@@ -1,7 +1,6 @@
 import { ethers, BigNumber } from "ethers";
 import { MerkleTree } from "./merkle-tree";
 import { keyring as Keyring } from '@polkadot/ui-keyring';
-import * as fs from 'fs';
 import * as _ from 'lodash';
 
 export interface TokenAmounts {
@@ -55,7 +54,8 @@ export class RewardList {
     }
 
     public static encodeUser(user: string, tokenAmounts: TokenAmounts = {}, reserveAmounts: TokenAmounts = {}, cycle: number, index: number) {
-        const tokens = _.union(_.keys(tokenAmounts), _.keys(reserveAmounts));
+        // Token list needs to be sorted!
+        const tokens = _.union(_.keys(tokenAmounts), _.keys(reserveAmounts)).sort();
         const node = {
             user,
             tokens,
@@ -85,8 +85,6 @@ export class RewardList {
         const encodedNodes = [];
         const entries = [];
 
-        const test = [];
-
         // Index is based on the input list ordering
         const users = Object.keys(this.claims);
         
@@ -95,13 +93,7 @@ export class RewardList {
             nodes.push(node);
             encodedNodes.push(encoded);
             entries.push({node, encoded});
-
-            const userAddress = Keyring.encodeAddress(Keyring.decodeAddress(users[i]), 42);
-
-            test.push(`${userAddress},${i},${encoded}`);
         }
-
-        fs.writeFileSync('user_target.txt', test.join("\n"));
 
         return {nodes, encodedNodes, entries};
     }
@@ -118,11 +110,13 @@ export class RewardList {
             claims: {}
         };
         
-
-        for (const token in this.totals) {
+        // Token list need to be sorted!
+        const tokens = Object.keys(this.totals).sort();
+        for (const token of tokens) {
             distribution["tokenTotals"][token] = this.totals[token].toString();
         }
 
+        // Cumulative amounts and reserve amounts are already sorted
         for (const entry of entries) {
             distribution["claims"][entry.node.user] = {
                 index: ethers.utils.hexlify(entry.node.index),
