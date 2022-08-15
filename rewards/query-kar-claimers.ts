@@ -16,9 +16,9 @@ async function queryClaimedAccounts (asset: string, block: number) {
   const query = async (start: number, pageSize = 999) => {
     const querySchema = gql`
     query {
-      blocks (first: ${pageSize},offset:${start} filter:{and:[{distributorId:{equalTo:"${distributor}"}},{id:{lessThanOrEqualTo:"${block}"}}]}) {
+      blocks (first: ${pageSize},offset:${start} filter:{id:{lessThanOrEqualTo:"${block}"}}) {
         nodes {
-          claimTxs {
+          claimTxs (filter: {distributorId:{equalTo:"${distributor}"}}) {
             nodes {
               accountId
               claims {
