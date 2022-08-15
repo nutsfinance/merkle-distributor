@@ -26,7 +26,7 @@ export const getLKSMBalance = async (block: number) => {
   const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
   const taiKsmBalanceFile = `balances/karura_taiksm_${block}.csv`;
 
-  if (await getFile(lksmBalanceFile)) {
+  if (await fileExists(lksmBalanceFile)) {
     console.log(`${lksmBalanceFile} exists. Skip querying raw balances.`);
     return;
   }
