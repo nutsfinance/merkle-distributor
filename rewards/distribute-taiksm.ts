@@ -24,12 +24,19 @@ const WEEKLY_TAI_REWARD = new BN("28000").mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
 
+// lksm rewards config
+// 75000 KAR / WEEK for LKSM
+const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
+// reserved 50%
+const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
+
 export const distributeTaiKsm = async (block: number) => {
     console.log('\n------------------------------------------');
     console.log('*      Distribute taiKSM Rewards          *');
     console.log('------------------------------------------\n');
 
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
+    const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
@@ -37,14 +44,34 @@ export const distributeTaiKsm = async (block: number) => {
     }
 
     const balances = (await getFile(balanceFile)).split("\n");
+    const lksmBalances = (await getFile(lksmBalanceFile)).split("\n");
+
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
+
     for (const balanceLine of balances) {
         const [address, balance] = balanceLine.split(",");
         if (!accountBalance[address])   accountBalance[address] = new BN(0);
         accountBalance[address] = accountBalance[address].add(new BN(balance));
 
         balanceTotal = balanceTotal.add(new BN(balance));
+    }
+
+    // for lksm balance data
+    let lksmBalanceTotal = new BN(0);
+    let lksmAccountBalance: {[address: string]: any} = {};
+
+    for (const balanceLine of lksmBalances) {
+        const [address, free, inTai] = balanceLine.split(",");
+        if (!lksmAccountBalance[address]) {
+            lksmAccountBalance[address] = {
+                inTai: new BN(0)
+            };
+        }
+        lksmAccountBalance[address].inTai = lksmAccountBalance[address].inTai.add(new BN(inTai));
+
+        // count all lksm amount which should reward
+        lksmBalanceTotal = lksmBalanceTotal.add(new BN(free)).add(new BN(inTai));
     }
 
     const provider = new Provider({
@@ -75,13 +102,16 @@ export const distributeTaiKsm = async (block: number) => {
 
             const taiKsmAmount = feeBalance.add(yieldBalance);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
+            const lksmTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
-            let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084\n";
+            let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080\n";
             for (const address in accountBalance) {
                 if (!address)   continue;
                 const taiKam = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
                 const tai = accountBalance[address].mul(taiAmount).div(balanceTotal);
-                content += `${address},${taiKam.toString()},${tai.toString()}\n`;
+                const kar = (lksmAccountBalance[address].inTai).mul(lksmBalanceTotal).div(lksmTotalReward).mul(CLAIMABLE_RATE).div(ONE);
+                // TODO kar will only release 13 week
+                content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()}\n`;
             }
             await createFile(distributionFile, content);
 
