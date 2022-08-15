@@ -18,23 +18,27 @@ import { createFile, fileExists, getFile } from './lib/aws_utils'
  */
 
 export const getLKSMRawBalance = async (block: number) => {
+  console.log('\n------------------------------------------');
+  console.log('*        Query LKSM Balance             *');
+  console.log('------------------------------------------\n');
+
   const accountFile = `accounts/karura_${block}.txt`;
   const rawBalanceFile = `balances/karura_lksm_${block}_raw.csv`;
-  const taiBalanceFile = `balances/karura_taiksm_${block}.csv`;
+  const taiKsmBalanceFile = `balances/karura_taiksm_${block}.csv`;
 
   if (await getFile(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
     return;
   }
 
-  const taiBalancesData = (await getFile(taiBalanceFile)).split("\n") as string[];
-  const taiBalances: Record<string, bigint> = {};
+  const taiKsmBalancesData = (await getFile(taiKsmBalanceFile)).split("\n") as string[];
+  const taiKsmBalances: Record<string, bigint> = {};
 
-  taiBalancesData.forEach((i) => {
+  taiKsmBalancesData.forEach((i) => {
     const [account, balance] = i.split(',');
 
     if (account) {
-      taiBalances[account] = BigInt(balance || '0');
+      taiKsmBalances[account] = BigInt(balance || '0');
     }
   })
 
@@ -72,7 +76,7 @@ export const getLKSMRawBalance = async (block: number) => {
             // lksm in loan position
             const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'loans': {'Token': 'LKSM'}}, accountId) as any;
             // lksm in taiKSM 
-            const inTaiKSM = taiBalances[accountId] ? totalLKSMInTaiKSM * taiBalances[accountId] / BigInt(taiKSMIssuance.toString()) : BigInt(0);
+            const inTaiKSM = taiKsmBalances[accountId] ? totalLKSMInTaiKSM * taiKsmBalances[accountId] / BigInt(taiKSMIssuance.toString()) : BigInt(0);
 
             if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || inTaiKSM > BigInt(0)) {
               content += accountId + "," + balance.free + "," + incentives[0] + "," + inTaiKSM + "\n";

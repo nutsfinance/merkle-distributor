@@ -6,16 +6,16 @@ import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
 
 import { BN } from 'bn.js'
-import * as fs from 'fs'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile } from './lib/aws_utils';
 
 const LKSM_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
+const KAR = "0x0000000000000000000100000000000000000080";
 
 const ONE = new BN(10).pow(new BN(12));
-// 75000 TAI / WEEK
+// 7100 KAR / WEEK
 const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 
 // Number of blocks per week: 3600 * 24 * 7 / 12
@@ -26,32 +26,45 @@ const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
 const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 export const distributeLKSM = async (block: number) => {
+    console.log('\n------------------------------------------');
+    console.log('*      Distribute LKSM Rewards          *');
+    console.log('------------------------------------------\n');
+
+    const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
+    await provider.api.isReady;
+
+    const merkleDistributor = new ethers.Contract(LKSM_MERKLE_DISTRIBUTOR, abi, provider);
+    const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
+    const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
+    console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);
+    if (block < currentEndBlock) {
+        console.log(`Block behind current end block. Skip distribution.`);
+        return;
+    }
+
     const balanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_lksm_${block}.csv`;
-    const reservedFile = `distributions/karura_lksm_reserved.csv`;
-    const claimedAccountsFile = `accounts/claimed_lksm_${block}.csv`;
+    const merkleFile = `merkles/karura_lksm_${currentCycle}.csv`;
+    const claimerFile = `accounts/karura_lksm_kar_claimer_${block}.csv`;
 
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
     }
 
+    // Step 1: Load current reserve from current merkle
     const balances = (await getFile(balanceFile)).split("\n") as string[];
-    const claimedAccounts: string[] = (await getFile(claimedAccountsFile)).split('\n') as string[];
-
+    const claimers: string[] = (await getFile(claimerFile)).split('\n') as string[];
     const reserved: Record<string, any> = {};
 
-    // read resered configs in local file
-    if (await fileExists(reservedFile)) {
-        const reservedFileContent =  (await getFile(reservedFile)).split("\n") as string;
-
-        for (const line of reservedFileContent) {
-            const [address, amount] = line.split(',');
-
-            reserved[address] = new BN(amount);
-        }
+    const currentMerkle = await getFile(merkleFile);
+    for (const address in currentMerkle.claims) {
+        const index = (currentMerkle.claims as any)[address].tokens.indexOf(KAR);
+        if (index < 0)  continue;
+        reserved[address] = new BN((currentMerkle.claims as any)[address].reserveAmounts[index]);
     }
 
+    // Step 2: Load total LKSM balances
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
 
@@ -67,19 +80,6 @@ export const distributeLKSM = async (block: number) => {
         accountBalance[address].inTai = accountBalance[address].inTai.add(new BN(inTai));
         balanceTotal = balanceTotal.add(new BN(free)).add(new BN(inTai));
     }
-
-    const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
-
-    await provider.api.isReady;
-
-    const merkleDistributor = new ethers.Contract(LKSM_MERKLE_DISTRIBUTOR, abi, provider);
-    const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
-    const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
-    console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);
-    if (block < currentEndBlock) {
-        console.log(`Block behind current end block. Skip distribution.`);
-        return;
-    }
     
     await runner()
         .requiredNetwork(['karura'])
@@ -90,26 +90,24 @@ export const distributeLKSM = async (block: number) => {
             const totalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const incressRewards: Record<string, any> = {};
 
-            // calculate rewards and reserved
+            // Step 3: Split rewards to all
             for (const address in accountBalance) {
                 incressRewards[address] = (accountBalance[address].free).mul(totalReward).div(balanceTotal).mul(CLAIMABLE_RATE).div(ONE);
             }
 
-            // split rewards to reserved
+            // Step 4: Split rewards to reserved
             for (const address in incressRewards) {
                 if (!reserved[address]) {
                     reserved[address] = new BN(0);
                 }
-                const total = accountBalance[address].free.add(accountBalance[address].inTai);
-
-                reserved[address] = reserved[address].add(total.mul(totalReward).div(balanceTotal).mul(RESERVED_RATE).div(ONE));
+                reserved[address] = reserved[address].add(accountBalance[address].free.mul(totalReward).div(balanceTotal).mul(RESERVED_RATE).div(ONE));
             }
 
-            // redistribute reserved rewards
+            // Step 5: Redistribute reserved rewards
             let redistributePool = new BN(0);
-            const noClaimedAccounts = Object.keys(reserved).filter((i) => !claimedAccounts.includes(i));
+            const nonClaimers = Object.keys(reserved).filter((i) => !claimers.includes(i));
 
-            for (const address of claimedAccounts) {
+            for (const address of claimers) {
                 if (reserved[address]) {
                     // set reserved record to zero
                     reserved[address] = new BN(0);
@@ -118,35 +116,22 @@ export const distributeLKSM = async (block: number) => {
                 }
             }
 
-            for (const address of noClaimedAccounts) {
+            for (const address of nonClaimers) {
                 if (!reserved[address]) {
                     reserved[address] = new BN(0);
                 }
 
-                reserved[address] = reserved[address].add(redistributePool.div(new BN(noClaimedAccounts.length)));
+                reserved[address] = reserved[address].add(redistributePool.div(new BN(nonClaimers.length)));
             }
 
-
-            // write reserved records to file
-            let reservedContent = '';
-
-            for (const record of Object.entries(reserved)) {
-                reservedContent += `${record[0]},${record[1].toString() || '0'}\n`;
-            }
-
-            await createFile(reservedFile, reservedContent);
-
-            // write reward records to file
-
-            let fd = await fs.promises.open(distributionFile, "w");
-            let distributionContent = 'AccountId, 0x0000000000000000000100000000000000000080\n';
+            // Step 6: Write reward records to file
+            let content = 'AccountId,0x0000000000000000000100000000000000000080,reserve-0x0000000000000000000100000000000000000080\n';
 
             for (const address in accountBalance) {
                 if (!address)   continue;
-                distributionContent += `${address},${incressRewards[address].toString()}\n`;
-                distributionContent += `reserved-${address},${reserved[address].toString()}\n`;
+                content += `${address},${incressRewards[address].toString()},${reserved[address].toString()}\n`;
             }
 
-            await createFile(distributionFile, distributionContent);
+            await createFile(distributionFile, content);
         });
 }
