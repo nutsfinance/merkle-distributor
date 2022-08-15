@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 import { distributeTaiKsm } from "./distribute-taiksm";
 import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
-import { getLKSMBalance, getLKSMRawBalance } from "./query-balance-lksm";
+import { getLKSMBalance } from "./query-balance-lksm";
 import { getTaiKsmRawBalance, getTaiKsmBalance } from "./query-balance-taiksm";
 import { getKarClaimers } from "./query-kar-claimers";
 import { submitMerkle } from "./submit-merkle";
@@ -22,7 +22,6 @@ const main = async () => {
     await getKarClaimers("taiksm", block);
     await getTaiKsmRawBalance(block);
     await getTaiKsmBalance(block);
-    await getLKSMRawBalance(block);
     await getLKSMBalance(block);
     // 1. calculate tai reward
     // 2. calculate lksm reward in taiKSM

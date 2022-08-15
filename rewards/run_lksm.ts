@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 import { distributeLKSM } from "./distribute-lksm";
 import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
-import { getLKSMRawBalance, getLKSMBalance } from "./query-balance-lksm";
+import { getLKSMBalance } from "./query-balance-lksm";
 import { getTaiKsmBalance, getTaiKsmRawBalance } from "./query-balance-taiksm";
 import { getKarClaimers } from "./query-kar-claimers";
 import { submitMerkle } from "./submit-merkle";
@@ -23,7 +23,6 @@ const main = async () => {
     // get taiKSMBalance at first for we should count the lksm amount part of taiKSM
     await getTaiKsmRawBalance(block);
     await getTaiKsmBalance(block);
-    await getLKSMRawBalance(block);
     await getLKSMBalance(block);
     await distributeLKSM(block);
 
