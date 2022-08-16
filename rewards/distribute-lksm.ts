@@ -44,7 +44,7 @@ export const distributeLKSM = async (block: number) => {
 
     const balanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_lksm_${block}.csv`;
-    const merkleFile = `merkles/karura_lksm_${currentCycle}.csv`;
+    const merkleFile = `merkles/karura_lksm_${currentCycle}.json`;
     const claimerFile = `accounts/karura_lksm_kar_claimer_${block}.csv`;
 
     if (await fileExists(distributionFile)) {

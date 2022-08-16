@@ -55,7 +55,7 @@ export const distributeTaiKsm = async (block: number) => {
 
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
     const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
-    const merkleFile = `merkles/karura_taiksm_${currentCycle}.csv`;
+    const merkleFile = `merkles/karura_taiksm_${currentCycle}.json`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     const claimerFile = `accounts/karura_taiksm_kar_claimer_${block}.csv`;
     if (await fileExists(distributionFile)) {
