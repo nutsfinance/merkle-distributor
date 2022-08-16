@@ -40,7 +40,7 @@ export const getTaiKsmBalance = async (block: number) => {
       const start = new Date();
       console.log(`Start querying taiKSM balance at ${start.toTimeString()}`);
 
-      const taiKsmInDex = (await apiAt.query.dex.liquidPool({'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any)[1];
+      const taiKsmInDex = (await apiAt.query.dex.liquidityPool({'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any)[1];
       const taiKsmLpIssuance = await apiAt.query.tokens.totalIssuance({'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any;
       for (const accountId of accs) {
         if (accountId) {
