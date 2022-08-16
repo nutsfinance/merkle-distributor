@@ -1,4 +1,5 @@
 import { ethers } from "hardhat";
+import { keyring as Keyring } from '@polkadot/ui-keyring';
 
 import { distributeTaiKsm } from "./distribute-taiksm";
 import { generateMerkle } from "./generate_merkle";
@@ -9,11 +10,12 @@ import { getKarClaimers } from "./query-kar-claimers";
 import { submitMerkle } from "./submit-merkle";
 
 const main = async () => {
+    Keyring.loadAll({ type: 'sr25519' });
+
     const blockNumber = await ethers.provider.getBlockNumber();
     console.log('Current block number: ' + blockNumber)
     // Round down to nearest 200 blocks
     const block = Math.floor(blockNumber / 200) * 200;
-    // const block = 2461200;
     console.log(`taiKSM pipeline runs at block ${block}`);
 
     // Common
@@ -29,9 +31,7 @@ const main = async () => {
 
     // Common
     await generateMerkle("taiksm", block);
-    await generateMerkle("lksm", block);
     await submitMerkle("taiksm");
-    await submitMerkle("lksm");
 }
 
 main().then(() => {

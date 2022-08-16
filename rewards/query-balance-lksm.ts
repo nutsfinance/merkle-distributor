@@ -8,6 +8,8 @@ import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
 const ONE = new BN(10).pow(new BN(12));
+// Loan, Rewards
+const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
 
 /**
  * the user's lksm amount contains:
@@ -66,27 +68,27 @@ export const getLKSMBalance = async (block: number) => {
 
       let content = "";
       for (const accountId of accs) {
-        if (accountId) {
-          promises.push((async () => {
-            // lksm balance
-            const balance = await apiAt.query.tokens.accounts(accountId, {'Token': 'LKSM'}) as any;
-            // lksm in loan position
-            const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'loans': {'Token': 'LKSM'}}, accountId) as any;
-            const total = balance.free.add(incentives[0]);
-            // lksm in taiKSM 
-            const taiKsm = taiKsmAccountBalances[accountId] || new BN(0);
+        if (!accountId || EXCLUDED_ADDRESS.includes(accountId)) continue;
+        
+        promises.push((async () => {
+          // lksm balance
+          const balance = await apiAt.query.tokens.accounts(accountId, {'Token': 'LKSM'}) as any;
+          // lksm in loan position
+          const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'loans': {'Token': 'LKSM'}}, accountId) as any;
+          const total = balance.free.add(incentives[0]);
+          // lksm in taiKSM 
+          const taiKsm = taiKsmAccountBalances[accountId] || new BN(0);
 
-            if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || taiKsm.gt(new BN(0))) {
-              const inTaiKsm = taiKsm.mul(totalLKSMInTaiKSM).div(taiKSMIssuance);
-              content += accountId + "," + total.toString() + "," + inTaiKsm.toString() + "\n";
-              count++;
-            }
-          })());
-          if (promises.length > 500) {
-            await Promise.all(promises);
-            promises = [];
-            console.log(`${count} accounts processed.`);
+          if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || taiKsm.gt(new BN(0))) {
+            const inTaiKsm = taiKsm.mul(totalLKSMInTaiKSM).div(taiKSMIssuance);
+            content += accountId + "," + total.toString() + "," + inTaiKsm.toString() + "\n";
+            count++;
           }
+        })());
+        if (promises.length > 500) {
+          await Promise.all(promises);
+          promises = [];
+          console.log(`${count} accounts processed.`);
         }
       }
       if (promises.length > 0) {
