@@ -13,7 +13,7 @@ export const getTaiKsmRawBalance = async (block: number) => {
   console.log('------------------------------------------\n');
 
 
-  const accountFile = `accounts/karura_${block}.txt`;
+  const accountFile = `accounts/karura_${block}.csv`;
   const rawBalanceFile = `balances/karura_taiksm_${block}_raw.csv`;
   if (await fileExists(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);

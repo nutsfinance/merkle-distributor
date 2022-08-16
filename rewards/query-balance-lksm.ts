@@ -22,7 +22,7 @@ export const getLKSMBalance = async (block: number) => {
   console.log('*        Query LKSM Balance             *');
   console.log('------------------------------------------\n');
 
-  const accountFile = `accounts/karura_${block}.txt`;
+  const accountFile = `accounts/karura_${block}.csv`;
   const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
   const taiKsmBalanceFile = `balances/karura_taiksm_${block}.csv`;
 

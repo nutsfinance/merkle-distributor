@@ -13,7 +13,7 @@ export const getAccounts = async (network: Networks, block: number) => {
   console.log('*             Query Accounts             *');
   console.log('------------------------------------------\n');
 
-  const fileName = `accounts/${network}_${block}.txt`;
+  const fileName = `accounts/${network}_${block}.csv`;
   if (await fileExists(fileName))  {
     console.log(`${fileName} exists. Skip querying accounts.`);
     return;

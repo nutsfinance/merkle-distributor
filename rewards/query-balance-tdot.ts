@@ -12,7 +12,7 @@ export const getTdotRawBalance = async (block: number) => {
   console.log('*          Query tDOT Balance             *');
   console.log('------------------------------------------\n');
 
-  const accountFile = `accounts/acala_${block}.txt`;
+  const accountFile = `accounts/acala_${block}.csv`;
   const rawBalanceFile = `balances/acala_tdot_${block}_raw.csv`;
   if (await fileExists(rawBalanceFile)) {
     console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);

@@ -78,7 +78,7 @@ export const getKarClaimers = async (asset: string, block: number) => {
   console.log('\n------------------------------------------');
   console.log('*          Query KAR Claimers             *');
   console.log('------------------------------------------\n');
-  const claimerFile = `accounts/karura_${asset}_kar_claimer_${block}.txt`;
+  const claimerFile = `accounts/karura_${asset}_kar_claimer_${block}.csv`;
   const start = new Date();
 
   if (await fileExists(claimerFile)) {
