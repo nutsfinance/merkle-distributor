@@ -32,6 +32,9 @@ const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
 const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
 const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
+// Loan, Rewards
+const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
+
 export const distributeTaiKsm = async (block: number) => {
     console.log('\n------------------------------------------');
     console.log('*      Distribute taiKSM Rewards          *');
@@ -60,31 +63,22 @@ export const distributeTaiKsm = async (block: number) => {
         return;
     }
 
-    const balances = (await getFile(balanceFile)).split("\n");
+    const taiKsmBalances = (await getFile(balanceFile)).split("\n");
     const lksmBalances = (await getFile(lksmBalanceFile)).split("\n");
 
     // Step 1: Loads taiKSM balances
-    let balanceTotal = new BN(0);
-    let accountBalance: {[address: string]: any} = {};
-
-    for (const balanceLine of balances) {
-        const [address, balance] = balanceLine.split(",");
-        if (!accountBalance[address])   accountBalance[address] = new BN(0);
-        accountBalance[address] = accountBalance[address].add(new BN(balance));
-
-        balanceTotal = balanceTotal.add(new BN(balance));
+    let taiKsmAccountBalance: {[address: string]: any} = {};
+    for (const balanceLine of taiKsmBalances) {
+        const [address, free, loan, dex] = balanceLine.split(",");
+        taiKsmAccountBalance[address] = new BN(free).add(new BN(loan)).add(new BN(dex));
     }
 
     // Step 2: Loads LKSM balances
-    let lksmBalanceTotal = new BN(0);
     let lksmAccountBalance: {[address: string]: any} = {};
-
     for (const balanceLine of lksmBalances) {
         const [address, free, inTai] = balanceLine.split(",");
+        // Only count LKSM in taiKSM
         lksmAccountBalance[address] = new BN(inTai);
-
-        // count all lksm amount which should reward
-        lksmBalanceTotal = lksmBalanceTotal.add(new BN(free)).add(new BN(inTai));
     }
 
     // Step 3: Load current KAR reserve from current merkle
@@ -114,13 +108,15 @@ export const distributeTaiKsm = async (block: number) => {
             const taiKsmAmount = feeBalance.add(yieldBalance);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const karTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
+            const taiKsmIssuance = await apiAt.query.tokens.totalIssuance({'StableAssetPoolToken': 0}) as any;
+            const lksmIssuance = await apiAt.query.tokens.totalIssuance({ 'Token': 'LKSM' }) as any;
 
             // Step 4: Split rewards to reserves
-            for (const address in accountBalance) {
+            for (const address in taiKsmAccountBalance) {
                 if (!reserved[address]) {
                     reserved[address] = new BN(0);
                 }
-                reserved[address] = reserved[address].add(lksmAccountBalance[address].mul(karTotalReward).div(lksmBalanceTotal).mul(RESERVED_RATE).div(ONE));
+                reserved[address] = reserved[address].add(lksmAccountBalance[address].mul(karTotalReward).div(lksmIssuance).mul(RESERVED_RATE).div(ONE));
             }
 
             // Step 5: Redistribute reserved rewards
@@ -145,12 +141,12 @@ export const distributeTaiKsm = async (block: number) => {
 
             // Step 6: Write rewards to file
             let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080,reserve-0x0000000000000000000100000000000000000080\n";
-            for (const address in accountBalance) {
+            for (const address in taiKsmAccountBalance) {
                 // Step 4: Distribute rewards
-                if (!address)   continue;
-                const taiKam = accountBalance[address].mul(taiKsmAmount).div(balanceTotal);
-                const tai = accountBalance[address].mul(taiAmount).div(balanceTotal);
-                const kar = (lksmAccountBalance[address]).mul(karTotalReward).div(lksmBalanceTotal).mul(CLAIMABLE_RATE).div(ONE);
+                if (!address || EXCLUDED_ADDRESS.includes(address))   continue;
+                const taiKam = taiKsmAccountBalance[address].mul(taiKsmAmount).div(taiKsmIssuance);
+                const tai = taiKsmAccountBalance[address].mul(taiAmount).div(taiKsmIssuance);
+                const kar = (lksmAccountBalance[address]).mul(karTotalReward).div(lksmIssuance).mul(CLAIMABLE_RATE).div(ONE);
                 // TODO kar will only release 13 week
                 content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()},${reserved[address].toString()}\n`;
             }

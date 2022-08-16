@@ -4,7 +4,7 @@ import { distributeTaiKsm } from "./distribute-taiksm";
 import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
 import { getLKSMBalance } from "./query-balance-lksm";
-import { getTaiKsmRawBalance, getTaiKsmBalance } from "./query-balance-taiksm";
+import { getTaiKsmBalance } from "./query-balance-taiksm";
 import { getKarClaimers } from "./query-kar-claimers";
 import { submitMerkle } from "./submit-merkle";
 
@@ -20,7 +20,6 @@ const main = async () => {
 
     // Asset-specific
     await getKarClaimers("taiksm", block);
-    await getTaiKsmRawBalance(block);
     await getTaiKsmBalance(block);
     await getLKSMBalance(block);
     // 1. calculate tai reward
