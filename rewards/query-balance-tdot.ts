@@ -7,15 +7,20 @@ import { BN } from 'bn.js'
 import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
+/**
+ * @dev tDOT balance contains two parts:
+ * 1. Free tDOT in the wallet
+ * 2. tDOT in loan
+ */
 export const getTdotRawBalance = async (block: number) => {
   console.log('\n------------------------------------------');
   console.log('*          Query tDOT Balance             *');
   console.log('------------------------------------------\n');
 
   const accountFile = `accounts/acala_${block}.csv`;
-  const rawBalanceFile = `balances/acala_tdot_${block}_raw.csv`;
-  if (await fileExists(rawBalanceFile)) {
-    console.log(`${rawBalanceFile} exists. Skip querying raw balances.`);
+  const balanceFile = `balances/acala_tdot_${block}.csv`;
+  if (await fileExists(balanceFile)) {
+    console.log(`${balanceFile} exists. Skip querying tDOT balances.`);
     return;
   }
 
@@ -26,13 +31,13 @@ export const getTdotRawBalance = async (block: number) => {
     .run(async ({ apiAt }) => {
       const accs = (await getFile(accountFile)).split("\n");
       console.log(`Account number: ${accs.length}`);
-
-      let content = "AccountId,Pool Balance,Incentive Share\n";
+      let content = "";
 
       let promises: Promise<void>[] = [];
       let count = 0;
       const start = new Date();
-      console.log(`Start querying taiKSM balance at ${start.toTimeString()}`);
+      console.log(`Start querying tDOT balance at ${start.toTimeString()}`);
+      
       for (const accountId of accs) {
         if (accountId) {
           promises.push((async () => {

@@ -12,7 +12,8 @@ const main = async () => {
     const blockNumber = await ethers.provider.getBlockNumber();
     console.log('Current block number: ' + blockNumber)
     // Round down to nearest 200 blocks
-    const block = Math.floor(blockNumber / 200) * 200;
+    // const block = Math.floor(blockNumber / 200) * 200;
+    const block = 2461200;
     console.log(`taiKSM pipeline runs at block ${block}`);
 
     // Common

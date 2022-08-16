@@ -40,8 +40,10 @@ export const getTaiKsmBalance = async (block: number) => {
       const start = new Date();
       console.log(`Start querying taiKSM balance at ${start.toTimeString()}`);
 
-      const taiKsmInDex = (await apiAt.query.dex.liquidityPool({'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any)[1];
+      const taiKsmInDex = (await apiAt.query.dex.liquidityPool([{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]) as any)[1];
       const taiKsmLpIssuance = await apiAt.query.tokens.totalIssuance({'DexShare': [{'Token': 'TAI'}, {'StableAssetPoolToken': 0}]}) as any;
+      console.log(`taiKSM in DEX: ${taiKsmInDex.toString()}`);
+      console.log(`taiKsm LP Issuance: ${taiKsmLpIssuance.toString()}`)
       for (const accountId of accs) {
         if (accountId) {
           promises.push((async () => {
@@ -54,7 +56,7 @@ export const getTaiKsmBalance = async (block: number) => {
 
             if (balance.free.gt(new BN(0)) || dex.free.gt(new BN(0)) || incentives[0].gt(new BN(0))) {
               const dexBalance = dex.free.mul(taiKsmInDex).div(taiKsmLpIssuance);
-              content += accountId + "," + balance.free.toString() + "," + incentives[0].toString() + "," +  dexBalance.toString() + "\n";
+              content += accountId + "," + balance.free.toString() + "," + incentives[0].toString() + "," + dexBalance.toString() + "," + dex.free.toString() + "\n";
               count++;
             }
           })());

@@ -5,8 +5,9 @@ import '@acala-network/types/interfaces/types-lookup'
 
 import { BN } from 'bn.js'
 import runner from './lib/runner'
-import * as fs from 'fs'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
+
+const ONE = new BN(10).pow(new BN(12));
 
 /**
  * the user's lksm amount contains:
@@ -31,16 +32,12 @@ export const getLKSMBalance = async (block: number) => {
     return;
   }
 
-  const taiKsmBalancesData = (await getFile(taiKsmBalanceFile)).split("\n") as string[];
-  const taiKsmBalances: Record<string, bigint> = {};
-
-  taiKsmBalancesData.forEach((i) => {
-    const [account, balance] = i.split(',');
-
-    if (account) {
-      taiKsmBalances[account] = BigInt(balance || '0');
-    }
-  })
+  const taiKsmBalances = (await getFile(taiKsmBalanceFile)).split("\n") as string[];
+  const taiKsmAccountBalances: Record<string, any> = {};
+  for (const balanceLine of taiKsmBalances) {
+    const [address, free, loan, dex] = balanceLine.split(",");
+    taiKsmAccountBalances[address] = new BN(free).add(new BN(loan)).add(new BN(dex));
+  }
 
   await runner()
     .requiredNetwork(['karura'])
@@ -57,13 +54,15 @@ export const getLKSMBalance = async (block: number) => {
       console.log(`Start querying LKSM balance at ${start.toTimeString()}`);
 
       const taiKSMIssuance = await apiAt.query.tokens.totalIssuance({'StableAssetPoolToken': 0});
-      const position = await apiAt.query.stableAsset.pools(0);
-      const totalStaking = await apiAt.query.homa.totalStakingBonded();
-      const totalVoidLKSM = await apiAt.query.homa.totalVoidLiquid();
-      const totalLKSMIssuance = await apiAt.query.tokens.totalIssuance({"Token": "LKSM"});
+      const pool = (await apiAt.query.stableAsset.pools(0) as any).unwrapOrDefault();
+      const totalStaking = await apiAt.query.homa.totalStakingBonded() as any;
+      const totalVoidLKSM = await apiAt.query.homa.totalVoidLiquid() as any;
+      const totalLKSMIssuance = await apiAt.query.tokens.totalIssuance({"Token": "LKSM"}) as any;
 
-      const exchangeRate = (BigInt(totalStaking.toString()) * BigInt(10**12)) / (BigInt(totalLKSMIssuance.toString()) + BigInt(totalVoidLKSM.toString()));
-      const totalLKSMInTaiKSM = BigInt((position as any).unwrapOrDefault().balances[1].toString()) * BigInt(10**12) / exchangeRate;
+      const exchangeRate = totalStaking.mul(ONE).div(totalLKSMIssuance.add(totalVoidLKSM));
+      const totalLKSMInTaiKSM = pool.balances[1].mul(ONE).div(exchangeRate);
+      console.log(`Total LKSM in taiKSM: ${totalLKSMInTaiKSM.toString()}`);
+      console.log(`Total taiKSM issuance: ${taiKSMIssuance.toString()}`)
 
       let content = "";
       for (const accountId of accs) {
@@ -73,18 +72,20 @@ export const getLKSMBalance = async (block: number) => {
             const balance = await apiAt.query.tokens.accounts(accountId, {'Token': 'LKSM'}) as any;
             // lksm in loan position
             const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'loans': {'Token': 'LKSM'}}, accountId) as any;
-            const total = new BN(balance.free).add(new BN(incentives[0]));
+            const total = balance.free.add(incentives[0]);
             // lksm in taiKSM 
-            const inTaiKSM = taiKsmBalances[accountId] ? totalLKSMInTaiKSM * taiKsmBalances[accountId] / BigInt(taiKSMIssuance.toString()) : BigInt(0);
+            const taiKsm = taiKsmAccountBalances[accountId] || new BN(0);
 
-            if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || inTaiKSM > BigInt(0)) {
-              content += accountId + "," + total.toString() + "," + inTaiKSM + "\n";
+            if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || taiKsm.gt(new BN(0))) {
+              const inTaiKsm = taiKsm.mul(totalLKSMInTaiKSM).div(taiKSMIssuance);
+              content += accountId + "," + total.toString() + "," + inTaiKsm.toString() + "\n";
               count++;
             }
           })());
           if (promises.length > 500) {
             await Promise.all(promises);
             promises = [];
+            console.log(`${count} accounts processed.`);
           }
         }
       }

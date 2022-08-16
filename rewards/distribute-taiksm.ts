@@ -4,6 +4,7 @@ import '@acala-network/types';
 import '@acala-network/types/interfaces/types-lookup';
 import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
+import * as _ from "lodash";
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
@@ -34,6 +35,10 @@ const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 // Loan, Rewards
 const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
+
+const unique = (array: any[]) => {
+    return _.uniq(array).length == array.length;
+}
 
 export const distributeTaiKsm = async (block: number) => {
     console.log('\n------------------------------------------');
@@ -80,6 +85,17 @@ export const distributeTaiKsm = async (block: number) => {
         // Only count LKSM in taiKSM
         lksmAccountBalance[address] = new BN(inTai);
     }
+
+    const lksmUsers = Object.keys(lksmAccountBalance);
+    const taiKsmUsers = Object.keys(taiKsmAccountBalance);
+
+    console.log(unique(Object.keys(taiKsmAccountBalance)));
+    console.log(unique(Object.keys(lksmAccountBalance)));
+    console.log(Object.keys(taiKsmAccountBalance).length);
+    console.log(Object.keys(lksmAccountBalance).length);
+    console.log(_.differenceWith(Object.keys(lksmAccountBalance), Object.keys(taiKsmAccountBalance)).length)
+    console.log(_.difference(taiKsmUsers, _.intersection(lksmUsers, taiKsmUsers)))
+
 
     // Step 3: Load current KAR reserve from current merkle
     const claimers: string[] = (await getFile(claimerFile)).split('\n') as string[];
