@@ -8,6 +8,7 @@ import { getLKSMBalance } from "./query-balance-lksm";
 import { getTaiKsmBalance } from "./query-balance-taiksm";
 import { getKarClaimers } from "./query-kar-claimers";
 import { submitMerkle } from "./submit-merkle";
+import { distributeLKSM } from "./distribute-lksm";
 
 const main = async () => {
     Keyring.loadAll({ type: 'sr25519' });
@@ -23,15 +24,19 @@ const main = async () => {
 
     // Asset-specific
     await getKarClaimers("taiksm", block);
+    await getKarClaimers("lksm", block);
     await getTaiKsmBalance(block);
     await getLKSMBalance(block);
     // 1. calculate tai reward
     // 2. calculate lksm reward in taiKSM
     await distributeTaiKsm(block);
+    await distributeLKSM(block);
 
     // Common
     await generateMerkle("taiksm", block);
+    await generateMerkle("lksm", block);
     await submitMerkle("taiksm");
+    await submitMerkle("lksm");
 }
 
 main().then(() => {
