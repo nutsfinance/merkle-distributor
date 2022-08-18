@@ -14,7 +14,7 @@ import runner from '../runner'
 runner()
   .requiredNetwork(['karura'])
   .withApiPromise()
-  .atBlock(2411800)
+  .atBlock(2455000)
   .run(async ({ apiAt }) => {
     const accs = await fetchEntriesToArray((startKey) =>
       apiAt.query.system.account.entriesPaged({
