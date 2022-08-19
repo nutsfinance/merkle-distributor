@@ -10,8 +10,8 @@ import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile } from './lib/aws_utils';
+import { CONFIG } from './config';
 
-const LKSM_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
 const KAR = "0x0000000000000000000100000000000000000080";
 
 const ONE = new BN(10).pow(new BN(12));
@@ -33,7 +33,7 @@ export const distributeLKSM = async (block: number) => {
     const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
     await provider.api.isReady;
 
-    const merkleDistributor = new ethers.Contract(LKSM_MERKLE_DISTRIBUTOR, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG["lksm"].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);

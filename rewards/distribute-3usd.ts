@@ -10,8 +10,7 @@ import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile } from './lib/aws_utils';
-
-const THREEUSD_MERKLE_DISTRIBUTOR = "0xff066331be693BE721994CF19905b2DC7475C5c9";
+import { CONFIG } from './config';
 
 const THREEUSD_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
 const THREEUSD_YIELD_RECIPIENT = "sfyxDFLkQQCx9f7oJiL32725mF7dM5GXGphUSxmC9Zq9Xec";
@@ -59,7 +58,7 @@ export const distribute3Usd = async (block: number) => {
         provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
     });
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(THREEUSD_MERKLE_DISTRIBUTOR, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG["3usd"].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);

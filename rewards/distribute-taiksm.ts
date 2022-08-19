@@ -11,8 +11,8 @@ import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
+import { CONFIG } from './config';
 
-const TAIKSM_REWARD_DISTRIBUTOR = "0xf595F4a81B27E5CC1Daca349A69c834f375224F4";
 // const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
 // const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
 
@@ -46,7 +46,7 @@ export const distributeTaiKsm = async (block: number) => {
         provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
     });
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(TAIKSM_REWARD_DISTRIBUTOR, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG["taiksm"].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);
