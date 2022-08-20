@@ -2,6 +2,9 @@ pipeline {
   options {
     disableConcurrentBuilds()
   }
+  triggers {
+    cron('H 0 * * *')
+  }
   agent {
     kubernetes{
       yaml """
@@ -26,13 +29,18 @@ spec:
   stages {
     stage('Build') {
       when {
-        branch 'master'
+        allOf {
+          branch 'master'
+          triggeredBy 'TimerTrigger'
+        }
       }
       steps {
         container(name: 'build') {
           sh "mkdir -p /root/.cache/hardhat-nodejs && chmod -R 777 /root/"
           sh "npm install"
           sh "npx hardhat run rewards/run_taiksm.ts --network karura"
+          sh "npx hardhat run rewards/run_3usd.ts --network karura"
+          sh "npx hardhat run rewards/run_tdot.ts --network acala"
         }
       }
     }
