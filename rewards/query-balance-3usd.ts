@@ -27,7 +27,8 @@ export const get3UsdBalance = async (block: number) => {
     .run(async ({ apiAt }) => {
       const accs = (await getFile(accountFile)).split("\n");
       console.log(`Account number: ${accs.length}`);
-      let content = "";; 
+      let content = "";;
+      let count = 0;
 
       let promises: Promise<void>[] = [];
       for (const accountId of accs) {
@@ -36,11 +37,13 @@ export const get3UsdBalance = async (block: number) => {
             const balance = await apiAt.query.tokens.accounts(accountId, {'StableAssetPoolToken': 1}) as any;
             if (balance.free.gt(new BN(0))) {
               content += accountId + "," + balance.free + "\n";
+              count++;
             }
           })());
           if (promises.length > 500) {
             await Promise.all(promises);
             promises = [];
+            console.log(`${count} accounts processed.`);
           }
       }
       if (promises.length > 0) {
