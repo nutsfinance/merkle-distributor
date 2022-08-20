@@ -8,7 +8,7 @@ import runner from './lib/runner';
 import { createFile, fileExists, getFile } from './lib/aws_utils';
 import * as _ from 'lodash';
 
-// Loan, Rewards
+// DEX, Rewards
 const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
 
 /**

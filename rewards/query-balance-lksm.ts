@@ -8,8 +8,8 @@ import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
 const ONE = new BN(10).pow(new BN(12));
-// Loan, Rewards
-const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj'];
+// DEX, Rewards, Stable Asset
+const EXCLUDED_ADDRESS = ['5EYCAe5fiQJsnqbdsqzNnWhEAGZkyK8uqahrmhwVvcuNRhpd', '5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj', '5EYCAe5iLJcc8iWwKHjW92V3C5oGvMLdmkYNMihPhW3kSCDZ'];
 
 /**
  * the user's lksm amount contains:
