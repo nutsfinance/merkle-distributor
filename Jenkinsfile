@@ -29,10 +29,7 @@ spec:
   stages {
     stage('Build') {
       when {
-        allOf {
-          branch 'master'
-          triggeredBy 'TimerTrigger'
-        }
+        branch 'master'
       }
       steps {
         container(name: 'build') {
