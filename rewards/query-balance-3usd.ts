@@ -7,6 +7,8 @@ import { BN } from 'bn.js'
 import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
+const EXCLUDED_ADDRESS = ['5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK', '5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U'];
+
 // 3USD only exists in wallet, so record it directly
 export const get3UsdBalance = async (block: number) => {
   console.log('\n------------------------------------------');
@@ -32,7 +34,7 @@ export const get3UsdBalance = async (block: number) => {
 
       let promises: Promise<void>[] = [];
       for (const accountId of accs) {
-        if (!accountId) continue;
+        if (!accountId || EXCLUDED_ADDRESS.includes(accountId)) continue;
           promises.push((async () => {
             const balance = await apiAt.query.tokens.accounts(accountId, {'StableAssetPoolToken': 1}) as any;
             if (balance.free.gt(new BN(0))) {

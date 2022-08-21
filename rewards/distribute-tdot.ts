@@ -46,11 +46,11 @@ export const distributeTDot = async (block: number) => {
     let balanceTotal = new BN(0);
     let accountBalance: {[address: string]: any} = {};
     for (const balanceLine of balances) {
-        const [address, balance] = balanceLine.split(",");
+        const [address, balance, incentive] = balanceLine.split(",");
         if (!accountBalance[address])   accountBalance[address] = new BN(0);
-        accountBalance[address] = accountBalance[address].add(new BN(balance));
+        accountBalance[address] = accountBalance[address].add(new BN(balance)).add(new BN(incentive));
 
-        balanceTotal = balanceTotal.add(new BN(balance));
+        balanceTotal = balanceTotal.add(new BN(balance)).add(new BN(incentive));
     }
     
     await runner()
