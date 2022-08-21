@@ -60,6 +60,7 @@ export const distributeTaiKsm = async (block: number) => {
     const merkleFile = `merkles/karura_taiksm_${currentCycle}.json`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     const claimerFile = `accounts/karura_taiksm_kar_claimer_${block}.csv`;
+    const statsFile = `stats/karura_taiksm.json`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
@@ -165,5 +166,26 @@ export const distributeTaiKsm = async (block: number) => {
                 + `taiKSM yield amount: ${yieldBalance.toString()}\n`
                 + `TAI amount: ${taiAmount.toString()}`;
             await publishMessage(message);
+
+            // Save to stats
+            let stats: any = { cycles: {} };
+            if (await fileExists(statsFile)) {
+                stats = await getFile(statsFile);
+            }
+            
+            stats.cycles[currentCycle + 1] = {
+                startBlock: currentEndBlock,
+                endBlock: block,
+                balances: {
+                    taiksm: taiKsmTotal.toString(),
+                    lksm: lksmTotal.toString()
+                },
+                rewards: {
+                    taiksm: taiKsmAmount.toString(),
+                    tai: taiAmount.toString(),
+                    kar: karTotalReward.toString()
+                }
+            };
+            await createFile(statsFile, JSON.stringify(stats));
         });
 }

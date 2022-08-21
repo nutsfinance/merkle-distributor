@@ -38,6 +38,7 @@ export const distribute3Usd = async (block: number) => {
 
     const balanceFile = `balances/karura_3usd_${block}.csv`;
     const distributionFile = `distributions/karura_3usd_${block}.csv`;
+    const statsFile = `stats/karura_3usd.json`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
@@ -97,5 +98,25 @@ export const distribute3Usd = async (block: number) => {
             await createFile(distributionFile, content);
 
             // TODO Transfer 3USD to merkle distributor from fee and yield recipients
+
+            // Save to stats
+            let stats: any = { cycles: {} };
+            if (await fileExists(statsFile)) {
+                stats = await getFile(statsFile);
+            }
+            stats.cycles[currentCycle + 1] = {
+                startBlock: currentEndBlock,
+                endBlock: block,
+                balances: {
+                    threeusd: balanceTotal.toString(),
+                },
+                rewards: {
+                    threeusd: threeUsdAmount.toString(),
+                    taiksm: taiKsmAmount.toString(),
+                    tai: taiAmount.toString(),
+                    kar: karAmount.toString()
+                }
+            };
+            await createFile(statsFile, JSON.stringify(stats));
         });
 }

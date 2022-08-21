@@ -46,7 +46,7 @@ export const distributeLKSM = async (block: number) => {
     const distributionFile = `distributions/karura_lksm_${block}.csv`;
     const merkleFile = `merkles/karura_lksm_${currentCycle}.json`;
     const claimerFile = `accounts/karura_lksm_kar_claimer_${block}.csv`;
-
+    const statsFile = `stats/karura_lksm.json`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
         return;
@@ -131,7 +131,23 @@ export const distributeLKSM = async (block: number) => {
                 if (!address)   continue;
                 content += `${address},${incressRewards[address].toString()},${reserved[address].toString()}\n`;
             }
-
             await createFile(distributionFile, content);
+
+            // Save to stats
+            let stats: any = { cycles: {} };
+            if (await fileExists(statsFile)) {
+                stats = await getFile(statsFile);
+            }
+            stats.cycles[currentCycle + 1] = {
+                startBlock: currentEndBlock,
+                endBlock: block,
+                balances: {
+                    lksm: balanceTotal.toString()
+                },
+                rewards: {
+                    kar: totalReward.toString()
+                }
+            };
+            await createFile(statsFile, JSON.stringify(stats));
         });
 }
