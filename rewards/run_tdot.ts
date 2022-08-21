@@ -4,7 +4,7 @@ import { keyring as Keyring } from '@polkadot/ui-keyring';
 import { distributeTDot } from "./distribute-tdot";
 import { generateMerkle } from "./generate_merkle";
 import { getAccounts } from "./query-accounts";
-import { getTdotBalance, getTdotRawBalance } from "./query-balance-tdot";
+import { getTdotBalance } from "./query-balance-tdot";
 import { submitMerkle } from "./submit-merkle";
 
 const main = async () => {
@@ -20,7 +20,6 @@ const main = async () => {
     await getAccounts('acala', block);
 
     // Asset-specific
-    await getTdotRawBalance(block);
     await getTdotBalance(block);
     await distributeTDot(block);
 
