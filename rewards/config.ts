@@ -18,5 +18,10 @@ export const CONFIG: any = {
         network: "acala",
         poolId: 0,
         merkleDistributor: "0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9"
+    },
+    "ldot": {
+        network: "acala",
+        poolId: 1,
+        merkleDistributor: "0x73D6df4395CD54DF2E07fD3880c1B47Aeb2Aed97"
     }
 }
