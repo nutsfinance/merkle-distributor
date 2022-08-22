@@ -145,15 +145,19 @@ export const distributeTaiKsm = async (block: number) => {
             }
 
             // Step 6: Write rewards to file
-            let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080,reserve-0x0000000000000000000100000000000000000080\n";
+            // TODO Add KAR
+            // let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080,reserve-0x0000000000000000000100000000000000000080\n";
+            let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084\n";
             for (const address in taiKsmAccountBalance) {
                 // Step 4: Distribute rewards
                 if (!address)   continue;
                 const taiKam = taiKsmAccountBalance[address].mul(taiKsmAmount).div(taiKsmTotal);
                 const tai = taiKsmAccountBalance[address].mul(taiAmount).div(taiKsmTotal);
-                const kar = (lksmAccountBalance[address]).mul(karTotalReward).div(lksmTotal).mul(CLAIMABLE_RATE).div(ONE);
+                // const kar = (lksmAccountBalance[address]).mul(karTotalReward).div(lksmTotal).mul(CLAIMABLE_RATE).div(ONE);
                 // TODO kar will only release 13 week
-                content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()},${reserved[address].toString()}\n`;
+                // content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()},${reserved[address].toString()}\n`;
+
+                content += `${address},${taiKam.toString()},${tai.toString()}\n`;
             }
             await createFile(distributionFile, content);
 
@@ -183,7 +187,7 @@ export const distributeTaiKsm = async (block: number) => {
                 rewards: {
                     taiksm: taiKsmAmount.toString(),
                     tai: taiAmount.toString(),
-                    kar: karTotalReward.toString()
+                    // kar: karTotalReward.toString()
                 }
             };
             await createFile(statsFile, JSON.stringify(stats));
