@@ -13,9 +13,8 @@ import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils
 import { CONFIG } from './config';
 
 const THREEUSD_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
-const THREEUSD_YIELD_RECIPIENT = "sfyxDFLkQQCx9f7oJiL32725mF7dM5GXGphUSxmC9Zq9Xec";
 // const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
-// const THREEUSD_YIELD_RECIPIENT = "Karura: qbK5tagX35AtEeBBWeXEX1FJSoNbVEdC2RzaxPkEmTSuB6Q";
+// const THREEUSD_YIELD_RECIPIENT = "qbK5tagX35AtEeBBWeXEX1FJSoNbVEdC2RzaxPkEmTSuB6Q";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
@@ -74,12 +73,9 @@ export const distribute3Usd = async (block: number) => {
         .atBlock(block)
         .run(async ({ apiAt }) => {
             const feeBalance = new BN((await apiAt.query.tokens.accounts(THREEUSD_FEE_RECIPIENT, {'StableAssetPoolToken': 1}) as any).free.toString());
-            const yieldBalance = new BN((await apiAt.query.tokens.accounts(THREEUSD_YIELD_RECIPIENT, {'StableAssetPoolToken': 1}) as any).free.toString());
-
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
-            console.log(`Yield balance: ${yieldBalance.sub(BUFFER).toString()}`);
 
-            const threeUsdAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
+            const threeUsdAmount = feeBalance.sub(BUFFER);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const taiKsmAmount = WEEKLY_TAIKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const lksmAmount = WEEKLY_LKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
