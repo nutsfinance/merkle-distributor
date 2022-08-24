@@ -7,7 +7,7 @@ import { Provider } from "@acala-network/bodhi";
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
-import { createFile, fileExists, getFile } from './lib/aws_utils';
+import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { abi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
 
@@ -77,6 +77,12 @@ export const distributeTDot = async (block: number) => {
             await createFile(distributionFile, content);
 
             // TODO Transfer tDOT to merkle distributor from fee and yield recipients
+
+            // Notify the fee and yield amount with SNS
+            const message = `tDOT fee amount: ${feeBalance.toString()}\n`
+                + `tDOT yield amount: ${yieldBalance.toString()}\n`
+                + `tDOT total: ${tdotAmount.toString()}`;
+            await publishMessage(message);
 
             // Save to stats
             let stats: any = { cycles: {} };

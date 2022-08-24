@@ -9,7 +9,7 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { abi } from './merkle-distributor.abi';
-import { createFile, fileExists, getFile } from './lib/aws_utils';
+import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { CONFIG } from './config';
 
 const THREEUSD_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
@@ -96,6 +96,14 @@ export const distribute3Usd = async (block: number) => {
                 content += `${address},${threeUsd.toString()},${tai.toString()},${taiKsm.toString()},${lksm.toString()},${kar.toString()}\n`;
             }
             await createFile(distributionFile, content);
+
+            // Notify the fee and yield amount with SNS
+            const message = `3USD amount: ${threeUsdAmount.toString()}\n`
+                + `TAI amount: ${taiAmount.toString()}`
+                + `taiKSM amount: ${taiKsmAmount.toString()}`
+                + `LKSM amount: ${lksmAmount.toString()}`
+                + `KAR amount: ${karAmount.toString()}`;
+            await publishMessage(message);
 
             // TODO Transfer 3USD to merkle distributor from fee and yield recipients
 
