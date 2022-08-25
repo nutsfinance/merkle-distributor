@@ -24,19 +24,19 @@ const main = async () => {
 
     // Asset-specific
     await getKarClaimers("taiksm", block);
-    await getKarClaimers("lksm", block);
+    // await getKarClaimers("lksm", block);
     await getTaiKsmBalance(block);
     await getLKSMBalance(block);
     // 1. calculate tai reward
     // 2. calculate lksm reward in taiKSM
     await distributeTaiKsm(block);
-    await distributeLKSM(block);
+    // await distributeLKSM(block);
 
     // Common
     await generateMerkle("taiksm", block);
-    await generateMerkle("lksm", block);
+    // await generateMerkle("lksm", block);
     await submitMerkle("taiksm");
-    await submitMerkle("lksm");
+    // await submitMerkle("lksm");
 }
 
 main().then(() => {

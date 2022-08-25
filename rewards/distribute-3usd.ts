@@ -95,10 +95,10 @@ export const distribute3Usd = async (block: number) => {
 
             // Notify the fee and yield amount with SNS
             const message = `3USD amount: ${threeUsdAmount.toString()}\n`
-                + `TAI amount: ${taiAmount.toString()}`
-                + `taiKSM amount: ${taiKsmAmount.toString()}`
-                + `LKSM amount: ${lksmAmount.toString()}`
-                + `KAR amount: ${karAmount.toString()}`;
+                + `TAI amount: ${taiAmount.toString()}\n`
+                + `taiKSM amount: ${taiKsmAmount.toString()}\n`
+                + `LKSM amount: ${lksmAmount.toString()}\n`
+                + `KAR amount: ${karAmount.toString()}\n`;
             await publishMessage(message);
 
             // TODO Transfer 3USD to merkle distributor from fee and yield recipients
