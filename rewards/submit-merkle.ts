@@ -45,26 +45,26 @@ export const submitMerkle = async (asset: string) => {
     });
     await tx1.wait();
 
-    console.log('Cycle after proposal: ' + await merkleDistributor.currentCycle());
-    console.log('Pending cycle: ' + await merkleDistributor.pendingCycle());
-    console.log('Pending Merkle root: ' + await merkleDistributor.pendingMerkleRoot());
-    console.log('Pending Merkle content hash: ' + await merkleDistributor.pendingMerkleContentHash());
-    console.log('Last proposed start block: ' + await merkleDistributor.lastProposeStartBlock());
-    console.log('Last proposed end block: ' + await merkleDistributor.lastProposeEndBlock());
-    console.log('Last proposed timestamp: ' + await merkleDistributor.lastProposeTimestamp());
-    console.log('Last proposed block number: ' + await merkleDistributor.lastProposeBlockNumber());
+    // console.log('Cycle after proposal: ' + await merkleDistributor.currentCycle());
+    // console.log('Pending cycle: ' + await merkleDistributor.pendingCycle());
+    // console.log('Pending Merkle root: ' + await merkleDistributor.pendingMerkleRoot());
+    // console.log('Pending Merkle content hash: ' + await merkleDistributor.pendingMerkleContentHash());
+    // console.log('Last proposed start block: ' + await merkleDistributor.lastProposeStartBlock());
+    // console.log('Last proposed end block: ' + await merkleDistributor.lastProposeEndBlock());
+    // console.log('Last proposed timestamp: ' + await merkleDistributor.lastProposeTimestamp());
+    // console.log('Last proposed block number: ' + await merkleDistributor.lastProposeBlockNumber());
 
-    const tx2 = await merkleDistributor.approveRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {
-        gasPrice: ethParams.txGasPrice,
-        gasLimit: ethParams.txGasLimit,
-    });
-    await tx2.wait();
+    // const tx2 = await merkleDistributor.approveRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {
+    //     gasPrice: ethParams.txGasPrice,
+    //     gasLimit: ethParams.txGasLimit,
+    // });
+    // await tx2.wait();
 
-    console.log('Cycle after approval: ' + await merkleDistributor.currentCycle());
-    console.log('Merkle root: ' + await merkleDistributor.merkleRoot());
-    console.log('Merkle content hash: ' + await merkleDistributor.merkleContentHash());
-    console.log('Last publish start block: ' + await merkleDistributor.lastPublishStartBlock());
-    console.log('Last publish end block: ' + await merkleDistributor.lastPublishEndBlock());
-    console.log('Last publish timestamp: ' + await merkleDistributor.lastPublishTimestamp());
-    console.log('Last publish block number: ' + await merkleDistributor.lastPublishBlockNumber());
+    // console.log('Cycle after approval: ' + await merkleDistributor.currentCycle());
+    // console.log('Merkle root: ' + await merkleDistributor.merkleRoot());
+    // console.log('Merkle content hash: ' + await merkleDistributor.merkleContentHash());
+    // console.log('Last publish start block: ' + await merkleDistributor.lastPublishStartBlock());
+    // console.log('Last publish end block: ' + await merkleDistributor.lastPublishEndBlock());
+    // console.log('Last publish timestamp: ' + await merkleDistributor.lastPublishTimestamp());
+    // console.log('Last publish block number: ' + await merkleDistributor.lastPublishBlockNumber());
 }
