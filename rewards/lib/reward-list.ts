@@ -72,8 +72,10 @@ export class RewardList {
                 index,
                 Keyring.decodeAddress(user),
                 cycle,
-                Object.keys(tokenAmounts),
-                Object.values(tokenAmounts).map(amount => amount.toString())
+                tokens,
+                tokens.map(token => tokenAmounts[token]?.toString() || "0")
+                // Object.keys(tokenAmounts),
+                // Object.values(tokenAmounts).map(amount => amount.toString())
             ]
         );
         // const hash = ethers.utils.keccak256(encoded);
