@@ -37,7 +37,7 @@ spec:
           sh "npm install"
           sh "npx hardhat run rewards/run_taiksm.ts --network karura"
           sh "npx hardhat run rewards/run_3usd.ts --network karura"
-          // sh "npx hardhat run rewards/run_tdot.ts --network acala"
+          sh "npx hardhat run rewards/run_tdot.ts --network acala"
         }
       }
     }
