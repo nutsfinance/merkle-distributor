@@ -16,9 +16,16 @@ export const generateMerkle = async (asset: string, block: number) => {
     console.log('------------------------------------------\n');
 
     // Get the current cycle
-    const provider = new Provider({
-        provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
-    });
+    let provider;
+    if (asset != "tdot") {
+        provider = new Provider({
+            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
+        });
+    } else {
+        provider = new Provider({
+            provider: new WsProvider("wss://acala-polkadot.api.onfinality.io/public-ws") 
+        });
+    }
     await provider.api.isReady;
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();

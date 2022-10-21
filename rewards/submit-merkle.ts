@@ -12,9 +12,16 @@ dotenv.config();
 export const submitMerkle = async (asset: string) => {
 
     // Get the current cycle
-    const provider = new Provider({
-        provider: new WsProvider("wss://karura.api.onfinality.io/public-ws"),
-    });
+    let provider;
+    if (asset != "tdot") {
+        provider = new Provider({
+            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
+        });
+    } else {
+        provider = new Provider({
+            provider: new WsProvider("wss://acala-polkadot.api.onfinality.io/public-ws") 
+        });
+    }
     const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC!).connect(provider);
     console.log(`Signing address: ${wallet.address}`);
 
