@@ -2,9 +2,9 @@ import { calcEthereumTransactionParams } from "@acala-network/eth-providers";
 import { ethers } from "hardhat";
 
 //const DISTRIBUTOR = '0xff066331be693BE721994CF19905b2DC7475C5c9'; //3usd
-// const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4'; //taiKSM
+ const DISTRIBUTOR = '0xf595F4a81B27E5CC1Daca349A69c834f375224F4'; //taiKSM
 // const DISTRIBUTOR = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9'; //tdot
-const DISTRIBUTOR = '0xc907CE08ac3f1AaD3AB0Adce5A20c907334C09B3'; // lksm
+//const DISTRIBUTOR = '0xc907CE08ac3f1AaD3AB0Adce5A20c907334C09B3'; // lksm
 // const DISTRIBUTOR = '0x73D6df4395CD54DF2E07fD3880c1B47Aeb2Aed97'; // ldot
 const NEW_ROOT = '0x0000000000000000000000000000000000000000000000000000000000000000';
 const NEW_CYCLE = 1;
@@ -41,11 +41,11 @@ async function main() {
     // await tx2.wait();
     // console.log('Has role: ' + await distributor.hasRole(role2, roleAddress));
 
-    const tx3 = await distributor.proposeRoot(NEW_ROOT, ethers.utils.formatBytes32String(''), NEW_CYCLE, NEW_START_BLOCK, NEW_END_BLOCK, {
-        gasPrice: ethParams.txGasPrice,
-        gasLimit: ethParams.txGasLimit,
-    });
-    await tx3.wait();
+    // const tx3 = await distributor.proposeRoot(NEW_ROOT, ethers.utils.formatBytes32String(''), NEW_CYCLE, NEW_START_BLOCK, NEW_END_BLOCK, {
+    //     gasPrice: ethParams.txGasPrice,
+    //     gasLimit: ethParams.txGasLimit,
+    // });
+    // await tx3.wait();
 
     console.log('Cycle after: ' + await distributor.currentCycle());
     console.log('Pending cycle: ' + await distributor.pendingCycle());
@@ -54,6 +54,7 @@ async function main() {
     console.log('Last proposed start block: ' + await distributor.lastProposeStartBlock());
     console.log('Last proposed end block: ' + await distributor.lastProposeEndBlock());
     console.log('Last proposed timestamp: ' + await distributor.lastProposeTimestamp());
+    console.log('Last published timestamp: ' + await distributor.lastPublishTimestamp());
     console.log('Last proposed block number: ' + await distributor.lastProposeBlockNumber());
 }
 

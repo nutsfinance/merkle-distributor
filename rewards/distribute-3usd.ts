@@ -8,7 +8,7 @@ import { Provider } from "@acala-network/bodhi";
 import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { ethers } from 'ethers';
-import { abi } from './merkle-distributor.abi';
+import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { CONFIG } from './config';
 
@@ -58,7 +58,7 @@ export const distribute3Usd = async (block: number) => {
         provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
     });
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(CONFIG["3usd"].merkleDistributor, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG["3usd"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);

@@ -6,7 +6,7 @@ import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
 
 import { RewardList } from './lib/reward-list';
-import { abi } from './merkle-distributor.abi';
+import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
 import { createFile, getFile, publishMessage } from './lib/aws_utils';
 
@@ -27,7 +27,7 @@ export const generateMerkle = async (asset: string, block: number) => {
         });
     }
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);

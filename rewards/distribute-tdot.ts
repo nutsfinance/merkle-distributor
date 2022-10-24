@@ -8,7 +8,7 @@ import { Provider } from "@acala-network/bodhi";
 import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
-import { abi } from './merkle-distributor.abi';
+import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
 
 // const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
@@ -27,7 +27,7 @@ export const distributeTDot = async (block: number) => {
         provider: new WsProvider("wss://acala-polkadot.api.onfinality.io/public-ws") 
     });
     await provider.api.isReady;
-    const merkleDistributor = new ethers.Contract(CONFIG["tdot"].merkleDistributor, abi, provider);
+    const merkleDistributor = new ethers.Contract(CONFIG["tdot"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
     console.log(`Current cycle: ${currentCycle}, current end block: ${currentEndBlock}`);
