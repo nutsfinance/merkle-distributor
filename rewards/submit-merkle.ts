@@ -79,7 +79,7 @@ export const submitMerkle = async (asset: string) => {
     
     console.log(`Reward collector address: ${CONFIG[asset].rewardCollector}`);
     const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollector, rewardCollectorAbi, wallet);
-    const tx2 = await rewardCollector.distribute(tokens, amounts, {
+    const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, tokens, amounts, {
         gasPrice: ethParams.txGasPrice,
         gasLimit: ethParams.txGasLimit,
     });

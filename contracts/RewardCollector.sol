@@ -18,20 +18,15 @@ contract RewardCollector is Initializable, AccessControlUpgradeable, PausableUpg
 
     using SafeERC20Upgradeable for IERC20Upgradeable;
 
-    event OperatorUpdated(address _user, bool _allowed);
+    event TargetUpdated(address _target, bool _allowed);
 
-    address public target;
-    mapping(address => bool) public operators;
+    mapping(address => bool) public targets;
 
     function initialize(
-        address admin,
-        address _target
+        address admin
     ) public initializer {
         __AccessControl_init();
         __Pausable_init_unchained();
-
-        require(_target != address(0x0), "target not set");
-        target = _target;
         _setupRole(DEFAULT_ADMIN_ROLE, admin); // The admin can edit all role permissions
     }
 
@@ -52,19 +47,18 @@ contract RewardCollector is Initializable, AccessControlUpgradeable, PausableUpg
         require(hasRole(DISTRIBUTOR_ROLE, msg.sender), "onlyDistributor");
     }
 
-    function updateOperator(address _user, bool _allowed) public {
+    function updateTarget(address _target, bool _allowed) public {
         _onlyAdmin();
-        operators[_user] = _allowed;
-        emit OperatorUpdated(_user, _allowed);
+        targets[_target] = _allowed;
+        emit TargetUpdated(_target, _allowed);
     }
 
-    function distribute(address[] memory _tokens, uint256[] memory _amounts) public {
+    function distribute(address target, address[] memory _tokens, uint256[] memory _amounts) public {
         _onlyDistributor();
         require(_tokens.length == _amounts.length, "mismatch");
-
-        address _target = target;
+        require(targets[target], "target not allowed");
         for (uint256 i = 0; i < _tokens.length; i++) {
-            IERC20Upgradeable(_tokens[i]).safeTransfer(_target, _amounts[i]);
+            IERC20Upgradeable(_tokens[i]).safeTransfer(target, _amounts[i]);
         }
     }
 

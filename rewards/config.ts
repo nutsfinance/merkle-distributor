@@ -3,13 +3,13 @@ export const CONFIG: any = {
         network: "karura",
         poolId: 0,
         merkleDistributor: "0xf595F4a81B27E5CC1Daca349A69c834f375224F4",
-        rewardCollector: ""
+        rewardCollector: "0x05fC4e64B4242ef130F14Da7DFBCd0fD0266bFe7"
     },
     "3usd": {
         network: "karura",
         poolId: 1,
         merkleDistributor: "0xff066331be693BE721994CF19905b2DC7475C5c9",
-        rewardCollector: ""
+        rewardCollector: "0x05fC4e64B4242ef130F14Da7DFBCd0fD0266bFe7"
     },
     "lksm": {
         network: "karura",
