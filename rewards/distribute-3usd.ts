@@ -25,8 +25,7 @@ const WEEKLY_TAIKSM_REWARD = new BN(30).mul(ONE);
 // 250 LKSM
 const WEEKLY_LKSM_REWARD = new BN(250).mul(ONE);
 // 2000 KAR
-// disabled
-const WEEKLY_KAR_REWARD = new BN(0).mul(ONE);
+const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
