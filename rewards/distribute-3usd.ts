@@ -25,7 +25,7 @@ const WEEKLY_TAIKSM_REWARD = new BN(30).mul(ONE);
 // 250 LKSM
 const WEEKLY_LKSM_REWARD = new BN(250).mul(ONE);
 // 2000 KAR
-const WEEKLY_KAR_REWARD = new BN("6481644360318394");
+const WEEKLY_KAR_REWARD = new BN(2000).mul(ONE);
 
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
@@ -79,7 +79,7 @@ export const distribute3Usd = async (block: number) => {
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const taiKsmAmount = WEEKLY_TAIKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const lksmAmount = WEEKLY_LKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
-            const karAmount = WEEKLY_KAR_REWARD;
+            const karAmount = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
             let content = "AccountId,0x0000000000000000000300000000000000000001,0x0000000000000000000100000000000000000084,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000083,0x0000000000000000000100000000000000000080\n";
             for (const address in accountBalance) {
