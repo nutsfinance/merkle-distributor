@@ -19,7 +19,7 @@ const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
 // 12000 TAI
-const WEEKLY_TAI_REWARD = new BN(12000).mul(ONE);
+const WEEKLY_TAI_REWARD = new BN(0).mul(ONE);
 // 30 taiKSM
 const WEEKLY_TAIKSM_REWARD = new BN(30).mul(ONE);
 // 250 LKSM
