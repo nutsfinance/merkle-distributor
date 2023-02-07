@@ -12,7 +12,7 @@ import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { CONFIG } from './config';
 
-const THREEUSD_FEE_RECIPIENT = "sGgT1bCh5sGBaK5LfzUmDWZbxUnRiqV2QK7oxNA4iixdamM";
+const THREEUSD_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
 // const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
 // const THREEUSD_YIELD_RECIPIENT = "qbK5tagX35AtEeBBWeXEX1FJSoNbVEdC2RzaxPkEmTSuB6Q";
 const BUFFER = new BN("100000000000");
