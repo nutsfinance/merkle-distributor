@@ -163,7 +163,6 @@ export const distributeTaiKsm = async (block: number) => {
 
             // Notify the fee and yield amount with SNS
             const message = `taiKSM fee amount: ${feeBalance.toString()}\n`
-                + `taiKSM yield amount: ${yieldBalance.toString()}\n`
                 + `taiKSM total: ${taiKsmAmount.toString()}\n`
                 + `TAI amount: ${taiAmount.toString()}\n`;
             await publishMessage(message);
