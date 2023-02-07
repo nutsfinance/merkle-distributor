@@ -118,7 +118,8 @@ export const distribute3Usd = async (block: number) => {
                     threeusd: threeUsdAmount.toString(),
                     taiksm: taiKsmAmount.toString(),
                     tai: taiAmount.toString(),
-                    kar: karAmount.toString()
+                    kar: karAmount.toString(),
+                    lksm: lksmAmount.toString()
                 }
             };
             await createFile(statsFile, JSON.stringify(stats));

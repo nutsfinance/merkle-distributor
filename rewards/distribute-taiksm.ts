@@ -17,7 +17,6 @@ import { CONFIG } from './config';
 // const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
 
 const TAIKSM_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
-const TAIKSM_YIELD_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
 const KAR = "0x0000000000000000000100000000000000000080";
 const BUFFER = new BN("100000000000");
 
@@ -105,14 +104,11 @@ export const distributeTaiKsm = async (block: number) => {
         .atBlock(block)
         .run(async ({ apiAt }) => {
             let feeBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
-            let yieldBalance = new BN((await apiAt.query.tokens.accounts(TAIKSM_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
             feeBalance = feeBalance.gt(BUFFER) ? feeBalance.sub(BUFFER) : new BN(0);
-            yieldBalance = yieldBalance.gt(BUFFER) ? yieldBalance.sub(BUFFER) : new BN(0);
 
             console.log(`Fee balance: ${feeBalance.toString()}`);
-            console.log(`Yield balance: ${yieldBalance.toString()}`);
 
-            const taiKsmAmount = feeBalance.add(yieldBalance);
+            const taiKsmAmount = feeBalance;
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const karTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
@@ -187,8 +183,7 @@ export const distributeTaiKsm = async (block: number) => {
                 },
                 rewards: {
                     taiksm: taiKsmAmount.toString(),
-                    tai: taiAmount.toString(),
-                    // kar: karTotalReward.toString()
+                    tai: taiAmount.toString()
                 }
             };
             await createFile(statsFile, JSON.stringify(stats));
