@@ -4,6 +4,7 @@ import { Provider } from "@acala-network/bodhi";
 import { ethers } from "ethers";
 import { merkletDistributorAbi } from "./merkle-distributor.abi";
 import { rewardCollectorAbi } from "./reward-collector.abi";
+import { rewardCollectorAggregatorAbi } from "./reward-collector-aggregator.abi";
 import { CONFIG } from "./config";
 import { getFile } from "./lib/aws_utils";
 import { BN } from 'bn.js'
@@ -93,31 +94,34 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
 
 
     if (automated) {
-        console.log(`Reward collector address for fee/yield: ${CONFIG[asset].rewardCollectorForFee}`);
-        const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollectorForFee, rewardCollectorAbi, wallet);
-        const roleAddress = '0x99537d82F6F4AAD1419dD14952B512c7959A2904';
-        const role1 = await rewardCollector.DISTRIBUTOR_ROLE();
-        console.log('Proposal role: ' + role1)
-        console.log('Has role: ' + await rewardCollector.hasRole(role1, roleAddress));
-        const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, feeTokens, feeAmounts, {
-            gasPrice: ethParams.txGasPrice,
-            gasLimit: ethParams.txGasLimit,
-        });
-        await tx2.wait();
-        console.log("fee/yield distributed");
-        if (CONFIG[asset].rewardCollectorForOther) {
-            console.log(`Reward collector address for other: ${CONFIG[asset].rewardCollectorForOther}`);
-            const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollectorForOther, rewardCollectorAbi, wallet);
+        if (CONFIG[asset].aggregator) {
+            console.log(`Reward collector aggregator address: ${CONFIG[asset].aggregator}`);
+            const aggregator = new ethers.Contract(CONFIG[asset].aggregator, rewardCollectorAggregatorAbi, wallet);
             const roleAddress = '0x99537d82F6F4AAD1419dD14952B512c7959A2904';
-            const role1 = await rewardCollector.DISTRIBUTOR_ROLE();
+            const role1 = await aggregator.DISTRIBUTOR_ROLE();
             console.log('Proposal role: ' + role1)
-            console.log('Has role: ' + await rewardCollector.hasRole(role1, roleAddress));
-            const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, otherTokens, otherAmounts, {
+            console.log('Has role: ' + await aggregator.hasRole(role1, roleAddress));
+            const tx2 = await aggregator.distribute(CONFIG[asset].merkleDistributor, CONFIG[asset].rewardCollectorForFee, 
+                CONFIG[asset].rewardCollectorForOther,
+                feeTokens, feeAmounts, otherTokens, otherAmounts, {
                 gasPrice: ethParams.txGasPrice,
                 gasLimit: ethParams.txGasLimit,
             });
             await tx2.wait();
-            console.log("other rewards distributed");
+            console.log("all rewards distributed");
+        } else {
+            console.log(`Reward collector address for fee/yield: ${CONFIG[asset].rewardCollectorForFee}`);
+            const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollectorForFee, rewardCollectorAbi, wallet);
+            const roleAddress = '0x99537d82F6F4AAD1419dD14952B512c7959A2904';
+            const role1 = await rewardCollector.DISTRIBUTOR_ROLE();
+            console.log('Proposal role: ' + role1)
+            console.log('Has role: ' + await rewardCollector.hasRole(role1, roleAddress));
+            const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, feeTokens, feeAmounts, {
+                gasPrice: ethParams.txGasPrice,
+                gasLimit: ethParams.txGasLimit,
+            });
+            await tx2.wait();
+            console.log("fee/yield distributed");
         }
 
         const tx3 = await merkleDistributor.approveRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {

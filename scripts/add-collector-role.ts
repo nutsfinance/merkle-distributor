@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 
-const COLLECTOR = '0xb864D786D78fC8A740Acd11e17C8a145FC0725c5';
+const COLLECTOR = '0x6490feD21f756bC0Fda5E96a8a4fBfa5ABFb0d13';
 
 
 async function main() {
@@ -8,7 +8,7 @@ async function main() {
     const RewardCollector = await ethers.getContractFactory("RewardCollector");
     const collector = RewardCollector.attach(COLLECTOR);
 
-    const roleAddress = '0x99537d82F6F4AAD1419dD14952B512c7959A2904';
+    const roleAddress = '0x3b39D26fe2FF9BA979FA75DEa4a2B1876158fbfb';
     const role1 = await collector.DISTRIBUTOR_ROLE();
     console.log('Proposal role: ' + role1)
     console.log('Has role: ' + await collector.hasRole(role1, roleAddress));

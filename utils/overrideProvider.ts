@@ -36,9 +36,6 @@ export const providerOverrides = async () => {
   })
 
   const signer = ethers.Wallet.fromMnemonic(MNEMONIC).connect(provider);
-  signer.estimateGas = async(transaction) => {
-    return params.txGasLimit;
-  }
 
   return {
     provider: provider,

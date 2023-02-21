@@ -13,7 +13,7 @@ import "./IRewardCollector.sol";
 /**
  * @dev Collector of rewards for merkle distributor.
  */
-contract RewardCollector is Initializable, AccessControlUpgradeable, PausableUpgradeable, IRewardCollector {
+contract RewardCollectorAggregator is Initializable, AccessControlUpgradeable, PausableUpgradeable {
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant UNPAUSER_ROLE = keccak256("UNPAUSER_ROLE");
     bytes32 public constant DISTRIBUTOR_ROLE = keccak256("DISTRIBUTOR_ROLE");
@@ -49,24 +49,16 @@ contract RewardCollector is Initializable, AccessControlUpgradeable, PausableUpg
         require(hasRole(DISTRIBUTOR_ROLE, msg.sender), "onlyDistributor");
     }
 
-    function updateTarget(address _target, bool _allowed) public {
-        _onlyAdmin();
-        targets[_target] = _allowed;
-        emit TargetUpdated(_target, _allowed);
-    }
-
-    function distribute(address target, address[] memory _tokens, uint256[] memory _amounts) public override {
+    function distribute(address target, address feeAddress, address otherAddress,
+        address[] memory feeTokens, uint256[] memory feeAmounts, 
+        address[] memory otherTokens, uint256[] memory otherAmounts) public {
         _onlyDistributor();
-        require(_tokens.length == _amounts.length, "mismatch");
-        require(targets[target], "target not allowed");
-        for (uint256 i = 0; i < _tokens.length; i++) {
-            IERC20Upgradeable(_tokens[i]).safeTransfer(target, _amounts[i]);
+        IRewardCollector feeCollector = IRewardCollector(feeAddress);
+        feeCollector.distribute(target, feeTokens, feeAmounts);
+        if (otherAddress != address(0)) {
+            IRewardCollector otherCollector = IRewardCollector(otherAddress);
+            otherCollector.distribute(target, otherTokens, otherAmounts);
         }
-    }
-
-    function withdraw(address _token, uint256 _amount) public {
-        _onlyAdmin();
-        IERC20Upgradeable(_token).safeTransfer(msg.sender, _amount);
     }
 
     /// @notice Pause publishing of new roots
