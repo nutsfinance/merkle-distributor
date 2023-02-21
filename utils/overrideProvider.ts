@@ -32,6 +32,7 @@ export const providerOverrides = async () => {
     maxFeePerGas: null,
     maxPriorityFeePerGas: null,
     gasPrice: gasPriceOverrides,
+    lastBaseFeePerGas: null
   })
 
   const signer = ethers.Wallet.fromMnemonic(MNEMONIC).connect(provider);
