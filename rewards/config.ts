@@ -30,10 +30,10 @@ export const CONFIG: any = {
         network: "acala",
         poolId: 0,
         merkleDistributor: "0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9",
-        rewardCollectorForFee: "0xb864D786D78fC8A740Acd11e17C8a145FC0725c5",
+        rewardCollectorForFee: "0x081Efb42231FCa2Cfa81cdEDb6B68433ce61c486",
         rewardCollectorForOther: "0x0000000000000000000000000000000000000000",
         feeAddress: "0x0000000000000000000300000000000000000000",
-        aggregator: ""
+        aggregator: "0x703dE64C59DbEe9afE646050aa3e1c45195069Da"
     },
     "ldot": {
         network: "acala",
