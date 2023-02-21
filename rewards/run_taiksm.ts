@@ -34,9 +34,7 @@ const main = async () => {
 
     // Common
     await generateMerkle("taiksm", block);
-    // await generateMerkle("lksm", block);
-    await submitMerkle("taiksm");
-    // await submitMerkle("lksm");
+    await submitMerkle("taiksm", true);
 }
 
 main().then(() => {

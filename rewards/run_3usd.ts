@@ -25,7 +25,7 @@ const main = async () => {
 
     // Common
     await generateMerkle("3usd", block);
-    await submitMerkle("3usd");
+    await submitMerkle("3usd", true);
 }
 
 main().then(() => {

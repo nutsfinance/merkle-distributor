@@ -11,13 +11,13 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export const submitMerkle = async (asset: string) => {
+export const submitMerkle = async (asset: string, automated: boolean) => {
 
     // Get the current cycle
     let provider;
     if (asset != "tdot") {
         provider = new Provider({
-            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
+            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws")
         });
     } else {
         provider = new Provider({
@@ -76,26 +76,33 @@ export const submitMerkle = async (asset: string) => {
     console.log('Last proposed end block: ' + await merkleDistributor.lastProposeEndBlock());
     console.log('Last proposed timestamp: ' + await merkleDistributor.lastProposeTimestamp());
     console.log('Last proposed block number: ' + await merkleDistributor.lastProposeBlockNumber());
-    
-    console.log(`Reward collector address: ${CONFIG[asset].rewardCollector}`);
-    const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollector, rewardCollectorAbi, wallet);
-    const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, tokens, amounts, {
-        gasPrice: ethParams.txGasPrice,
-        gasLimit: ethParams.txGasLimit,
-    });
-    await tx2.wait();
 
-    const tx3 = await merkleDistributor.approveRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {
-        gasPrice: ethParams.txGasPrice,
-        gasLimit: ethParams.txGasLimit,
-    });
-    await tx3.wait();
 
-    console.log('Cycle after approval: ' + await merkleDistributor.currentCycle());
-    console.log('Merkle root: ' + await merkleDistributor.merkleRoot());
-    console.log('Merkle content hash: ' + await merkleDistributor.merkleContentHash());
-    console.log('Last publish start block: ' + await merkleDistributor.lastPublishStartBlock());
-    console.log('Last publish end block: ' + await merkleDistributor.lastPublishEndBlock());
-    console.log('Last publish timestamp: ' + await merkleDistributor.lastPublishTimestamp());
-    console.log('Last publish block number: ' + await merkleDistributor.lastPublishBlockNumber());
+    if (automated) {
+        console.log(`Reward collector address: ${CONFIG[asset].rewardCollector}`);
+        const rewardCollector = new ethers.Contract(CONFIG[asset].rewardCollector, rewardCollectorAbi, wallet);
+        const roleAddress = '0x99537d82F6F4AAD1419dD14952B512c7959A2904';
+        const role1 = await rewardCollector.DISTRIBUTOR_ROLE();
+        console.log('Proposal role: ' + role1)
+        console.log('Has role: ' + await rewardCollector.hasRole(role1, roleAddress));
+        const tx2 = await rewardCollector.distribute(CONFIG[asset].merkleDistributor, tokens, amounts, {
+            gasPrice: ethParams.txGasPrice,
+            gasLimit: ethParams.txGasLimit,
+        });
+        await tx2.wait();
+
+        const tx3 = await merkleDistributor.approveRoot(newMerkleTree.merkleRoot, ethers.utils.formatBytes32String(''), currentCycle + 1, newMerkleTree.startBlock, newMerkleTree.endBlock, {
+            gasPrice: ethParams.txGasPrice,
+            gasLimit: ethParams.txGasLimit,
+        });
+        await tx3.wait();
+
+        console.log('Cycle after approval: ' + await merkleDistributor.currentCycle());
+        console.log('Merkle root: ' + await merkleDistributor.merkleRoot());
+        console.log('Merkle content hash: ' + await merkleDistributor.merkleContentHash());
+        console.log('Last publish start block: ' + await merkleDistributor.lastPublishStartBlock());
+        console.log('Last publish end block: ' + await merkleDistributor.lastPublishEndBlock());
+        console.log('Last publish timestamp: ' + await merkleDistributor.lastPublishTimestamp());
+        console.log('Last publish block number: ' + await merkleDistributor.lastPublishBlockNumber());
+    }
 }

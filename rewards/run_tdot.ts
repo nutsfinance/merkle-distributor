@@ -25,7 +25,7 @@ const main = async () => {
 
     // Common
     await generateMerkle("tdot", block);
-    await submitMerkle("tdot");
+    await submitMerkle("tdot", false);
 }
 
 main().then(() => {

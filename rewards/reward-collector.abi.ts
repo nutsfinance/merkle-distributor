@@ -5,25 +5,6 @@ export const rewardCollectorAbi = [
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "_allowed",
-        "type": "bool"
-      }
-    ],
-    "name": "OperatorUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "account",
         "type": "address"
       }
@@ -112,6 +93,25 @@ export const rewardCollectorAbi = [
       {
         "indexed": false,
         "internalType": "address",
+        "name": "_target",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_allowed",
+        "type": "bool"
+      }
+    ],
+    "name": "TargetUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "account",
         "type": "address"
       }
@@ -173,6 +173,11 @@ export const rewardCollectorAbi = [
   },
   {
     "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      },
       {
         "internalType": "address[]",
         "name": "_tokens",
@@ -256,35 +261,11 @@ export const rewardCollectorAbi = [
         "internalType": "address",
         "name": "admin",
         "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_target",
-        "type": "address"
       }
     ],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "operators",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -363,13 +344,19 @@ export const rewardCollectorAbi = [
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "target",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "name": "targets",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -386,7 +373,7 @@ export const rewardCollectorAbi = [
     "inputs": [
       {
         "internalType": "address",
-        "name": "_user",
+        "name": "_target",
         "type": "address"
       },
       {
@@ -395,7 +382,7 @@ export const rewardCollectorAbi = [
         "type": "bool"
       }
     ],
-    "name": "updateOperator",
+    "name": "updateTarget",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -418,4 +405,4 @@ export const rewardCollectorAbi = [
     "stateMutability": "nonpayable",
     "type": "function"
   }
-]
+];
