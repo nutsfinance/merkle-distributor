@@ -316,6 +316,11 @@ contract MerkleDistributor is ADDRESS, Initializable, AccessControlUpgradeable, 
         emit RootUpdated(currentCycle, root, contentHash, startBlock, endBlock, block.timestamp, block.number);
     }
 
+    function withdraw(address _token, uint256 _amount) public {
+        _onlyAdmin();
+        IERC20Upgradeable(_token).transfer(msg.sender, _amount);
+    }
+
     /// @notice Pause publishing of new roots
     function pause() external {
         _onlyPauser();
