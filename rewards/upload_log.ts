@@ -2,10 +2,13 @@ import { createFile } from './lib/aws_utils';
 import * as fs from 'fs';
 
 const main = async () => {
-    const filename = process.env.LOG_FILE as string;
-    const content = fs.readFileSync(filename).toString();
-    console.log(content);
-    await createFile(`logs/${filename}`, content);
+    const stdout = process.env.LOG_FILE as string;
+    const stdoutContent = fs.readFileSync(stdout).toString();
+    await createFile(`logs/${stdout}`, stdoutContent);
+
+    const stderr = process.env.ERROR_LOG_FILE as string;
+    const stderrContent = fs.readFileSync(stderr).toString();
+    await createFile(`logs/${stderr}`, stderrContent);
 }
 
 main().then(() => {
