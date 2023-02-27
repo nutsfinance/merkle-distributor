@@ -11,34 +11,41 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
-  serviceAccountName: jenkins-s3
+  serviceAccountName: jenkins-ecr
+  volumes:
+    - name: docker-config
+      configMap:
+        name: ecr-docker-config
   containers:
-  - name: build
-    image: node:16
+  - name: git
+    image: 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/git-kustomize:0.0.1
     tty: true
     command: ['cat']
-    env:
-    - name: MNEMONIC
-      valueFrom:
-        secretKeyRef:
-          name: jenkins-mnemonic
-          key: mnemonic
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:v1.8.1-debug
+    tty: true
+    command: ['cat']
+    volumeMounts:
+      - name: docker-config
+        mountPath: /kaniko/.docker/
 """
     }
   }
   stages {
     stage('Build') {
-      when {
-        branch 'master'
-      }
       steps {
-        container(name: 'build') {
-          sh "mkdir -p /root/.cache/hardhat-nodejs && chmod -R 777 /root/"
-          sh "yarn install"
-          sh "npx hardhat run rewards/run_taiksm.ts --network karura"
-          sh "npx hardhat run rewards/run_3usd.ts --network karura"
-          sh "npx hardhat run rewards/run_tdot.ts --network acala"
+        container(name: 'kaniko') {
+          sh "/kaniko/executor --context `pwd` --destination 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation:${env.GIT_COMMIT.take(7)}"
         }
+        // container(name: 'git') {
+        //   withCredentials([file(credentialsId: 'jenkins-deployment-ssh', variable: 'SSH_KEYS')]) {
+        //     sh 'cp $SSH_KEYS /root/.ssh/id_ed25519 && chmod 0600 /root/.ssh/id_ed25519'
+        //     sh 'cd /tmp && git clone git@github.com:nutsfinance/k8s-manifests.git'
+        //     sh "cd /tmp/k8s-manifests/tapio-campaign && kustomize edit set image 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation:${env.GIT_COMMIT.take(7)}"
+        //     sh 'git config --global user.email "deploy@nuts.finance" && git config --global user.name "CI Deployment"'
+        //     sh 'cd /tmp/k8s-manifests/ && git commit -am "new tag" && git push'
+        //   }
+        // }
       }
     }
   }
