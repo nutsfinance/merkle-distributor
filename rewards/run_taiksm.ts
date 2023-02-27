@@ -23,7 +23,7 @@ const main = async () => {
     await getAccounts('karura', block);
 
     // Asset-specific
-    await getKarClaimers("taiksm", block);
+    // await getKarClaimers("taiksm", block);
     // await getKarClaimers("lksm", block);
     await getTaiKsmBalance(block);
     await getLKSMBalance(block);
