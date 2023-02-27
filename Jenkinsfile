@@ -46,7 +46,7 @@ spec:
             sh 'cd /tmp && git clone git@github.com:nutsfinance/k8s-manifests.git'
             sh "cd /tmp/k8s-manifests/rewards-automation && kustomize edit set image 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation:${env.GIT_COMMIT.take(7)}"
             sh 'git config --global user.email "deploy@nuts.finance" && git config --global user.name "CI Deployment"'
-            sh "cd /tmp/k8s-manifests/ && git commit -am 'updating 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation to ${env.GIT_COMMIT.take(7)}' && git push"
+            sh "cd /tmp/k8s-manifests/ && git commit -am 'updating stable-asset-rewards/automation to ${env.GIT_COMMIT.take(7)}' && git push"
           }
         }
       }
