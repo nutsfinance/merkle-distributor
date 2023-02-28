@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o pipefail
 DATE=$(date '+%Y-%m-%d-%H')
 export LOG_FILE=${DATE}_stdout.log
 export ERROR_LOG_FILE=${DATE}_stderr.log

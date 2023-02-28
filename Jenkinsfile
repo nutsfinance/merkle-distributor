@@ -2,9 +2,6 @@ pipeline {
   options {
     disableConcurrentBuilds()
   }
-  triggers {
-    cron('H 0 * * *')
-  }
   agent {
     kubernetes{
       yaml """

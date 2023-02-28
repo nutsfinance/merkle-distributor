@@ -13,24 +13,13 @@ import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { CONFIG } from './config';
 
-// const TAIKSM_FEE_RECIPIENT = "qbK5taiSvrJy9LW5sVN7qYaQMb22bPfNb15zSixCrUypWuG";
-// const TAIKSM_YIELD_RECIPIENT = "qbK5tbSnd1thFaKNgNCEZ9DsFzFHAq7xFJfLWaEm9HQY2eU";
-
 const TAIKSM_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
-const KAR = "0x0000000000000000000100000000000000000080";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
 const WEEKLY_TAI_REWARD = new BN("28000").mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
-
-// lksm rewards config
-// 7100 KAR / WEEK for LKSM
-const WEEKLY_KAR_REWARD = new BN(7100).mul(ONE);
-// reserved 50%
-const RESERVED_RATE = ONE.mul(new BN(5)).div(new BN(10));
-const CLAIMABLE_RATE = ONE.mul(new BN(5)).div(new BN(10));
 
 const unique = (array: any[]) => {
     return _.uniq(array).length == array.length;
@@ -56,9 +45,7 @@ export const distributeTaiKsm = async (block: number) => {
 
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
     const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
-    const merkleFile = `merkles/karura_taiksm_${currentCycle}.json`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
-    const claimerFile = `accounts/karura_taiksm_kar_claimer_${block}.csv`;
     const statsFile = `stats/karura_taiksm.json`;
     if (await fileExists(distributionFile)) {
         console.log(`${distributionFile} exists. Skip distribution.`);
@@ -87,16 +74,6 @@ export const distributeTaiKsm = async (block: number) => {
         lksmTotal = lksmTotal.add(new BN(free)).add(new BN(inTai));
     }
 
-    // Step 3: Load current KAR reserve from current merkle
-    const claimers: string[] = (await getFile(claimerFile)).split('\n') as string[];
-    const reserved: Record<string, any> = {};
-
-    const currentMerkle = await getFile(merkleFile);
-    for (const address in currentMerkle.claims) {
-        const index = (currentMerkle.claims as any)[address].tokens.indexOf(KAR);
-        if (index < 0)  continue;
-        reserved[address] = new BN((currentMerkle.claims as any)[address].reserveAmounts[index]);
-    }
     
     await runner()
         .requiredNetwork(['karura'])
@@ -110,56 +87,17 @@ export const distributeTaiKsm = async (block: number) => {
 
             const taiKsmAmount = feeBalance;
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
-            const karTotalReward = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
-            // Step 4: Split rewards to reserves
-            for (const address in taiKsmAccountBalance) {
-                if (!reserved[address]) {
-                    reserved[address] = new BN(0);
-                }
-                reserved[address] = reserved[address].add(lksmAccountBalance[address].mul(karTotalReward).div(lksmTotal).mul(RESERVED_RATE).div(ONE));
-            }
-
-            // Step 5: Redistribute reserved rewards
-            let redistributePool = new BN(0);
-            const nonClaimers = Object.keys(reserved).filter((i) => !claimers.includes(i));
-
-            for (const address of claimers) {
-                if (reserved[address]) {
-                    // set reserved record to zero
-                    reserved[address] = new BN(0);
-                    // accumalate redistribute amount
-                    redistributePool = redistributePool.add(reserved[address]);
-                }
-            }
-
-            for (const address of nonClaimers) {
-                if (!reserved[address]) {
-                    reserved[address] = new BN(0);
-                }
-                reserved[address] = reserved[address].add(redistributePool.div(new BN(nonClaimers.length)));
-            }
-
-            // Step 6: Write rewards to file
-            // TODO Add KAR
-            // let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084,0x0000000000000000000100000000000000000080,reserve-0x0000000000000000000100000000000000000080\n";
+            // Step 3: Write rewards to file
             let content = "AccountId,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000084\n";
             for (const address in taiKsmAccountBalance) {
                 // Step 4: Distribute rewards
                 if (!address)   continue;
                 const taiKam = taiKsmAccountBalance[address].mul(taiKsmAmount).div(taiKsmTotal);
                 const tai = taiKsmAccountBalance[address].mul(taiAmount).div(taiKsmTotal);
-                // const kar = (lksmAccountBalance[address]).mul(karTotalReward).div(lksmTotal).mul(CLAIMABLE_RATE).div(ONE);
-                // TODO kar will only release 13 week
-                // content += `${address},${taiKam.toString()},${tai.toString()},${kar.toString()},${reserved[address].toString()}\n`;
-
                 content += `${address},${taiKam.toString()},${tai.toString()}\n`;
             }
             await createFile(distributionFile, content);
-
-            // TODO Transfer taiKSM to merkle distributor from fee and yield recipients
-            // This can be done after fee and yield recipients are updated.
-            // For now we need to continue to use multisig
 
             // Notify the fee and yield amount with SNS
             const message = `taiKSM fee amount: ${feeBalance.toString()}\n`
