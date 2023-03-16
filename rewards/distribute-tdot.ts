@@ -11,12 +11,8 @@ import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils
 import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { CONFIG } from './config';
 
-// const TDOT_FEE_RECIPIENT = "23AdbsfY2fNJJW9UMHXmguChS8Di7ij2d7wpQ6CcHQSUv88G";
-// const TDOT_YIELD_RECIPIENT = "23AdbsgJqvDar8B2Jhv2C2phxBmeQR59nJNhQ8CN6R6iTn4o";
-
-const TDOT_FEE_RECIPIENT = "24qzxzg1TfciVh819jkXX23QtvmNY66XQHRP3KekzRuwC68t";
-const TDOT_YIELD_RECIPIENT = "25FJUCL9Wz9fGGU3cNUNnpdsNjXhjiLJu9vxhpFN7rkoi3zE";
-const BUFFER = new BN("100000000000");
+const TDOT_FEE_RECIPIENT = "23AdbsfTWCWtRFweQF4f3iZLcLBPwSHci9CXuMhqFirZmUZj";
+const BUFFER = new BN("10000000000");
 
 export const distributeTDot = async (block: number) => {
     console.log('\n------------------------------------------');
@@ -61,12 +57,10 @@ export const distributeTDot = async (block: number) => {
         .atBlock(block)
         .run(async ({ apiAt }) => {
             const feeBalance = new BN((await apiAt.query.tokens.accounts(TDOT_FEE_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
-            const yieldBalance = new BN((await apiAt.query.tokens.accounts(TDOT_YIELD_RECIPIENT, {'StableAssetPoolToken': 0}) as any).free.toString());
 
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
-            console.log(`Yield balance: ${yieldBalance.sub(BUFFER).toString()}`);
 
-            const tdotAmount = feeBalance.add(yieldBalance).sub(BUFFER).sub(BUFFER);
+            const tdotAmount = feeBalance.sub(BUFFER);
 
             let content = "AccountId,0x0000000000000000000300000000000000000000\n";
             for (const address in accountBalance) {
@@ -80,7 +74,6 @@ export const distributeTDot = async (block: number) => {
 
             // Notify the fee and yield amount with SNS
             const message = `tDOT fee amount: ${feeBalance.toString()}\n`
-                + `tDOT yield amount: ${yieldBalance.toString()}\n`
                 + `tDOT total: ${tdotAmount.toString()}`;
             await publishMessage(message);
 
