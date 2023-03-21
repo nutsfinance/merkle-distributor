@@ -7,7 +7,7 @@ import { BN } from 'bn.js'
 import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
-const EXCLUDED_ADDRESS = ['5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK', '5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U'];
+const EXCLUDED_ADDRESS = ['5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK', '5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U', '5EMjsczMNh6LFJZ5qoTvLn1UJF8tswd7tuaKbPpe6wguRzSU'];
 
 // 3USD only exists in wallet, so record it directly
 export const get3UsdBalance = async (block: number) => {
