@@ -37,6 +37,7 @@ export const getTdotBalance = async (block: number) => {
 
       let promises: Promise<void>[] = [];
       let count = 0;
+      let holders = 0;
       const start = new Date();
       console.log(`Start querying tDOT balance at ${start.toTimeString()}`);
       
@@ -49,6 +50,7 @@ export const getTdotBalance = async (block: number) => {
           const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'Loans': {'StableAssetPoolToken': 0}}, accountId) as any;
           if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0))) {
             content += accountId + "," + balance.free + "," + incentives[0] + "\n";
+            holders++;
           }
           count++;
         })());
@@ -65,6 +67,6 @@ export const getTdotBalance = async (block: number) => {
 
       const end = new Date();
       console.log(`End querying tDOT balance at ${end.toTimeString()}`);
-      console.log(`tDOT account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
+      console.log(`tDOT account number: ${holders}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
     });
 }

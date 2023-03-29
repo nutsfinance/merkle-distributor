@@ -51,6 +51,7 @@ export const getLKSMBalance = async (block: number) => {
       console.log(`Account number: ${accs.length}`);      
       let promises: Promise<void>[] = [];
       let count = 0;
+      let holders = 0;
       const start = new Date();
 
       console.log(`Start querying LKSM balance at ${start.toTimeString()}`);
@@ -82,6 +83,7 @@ export const getLKSMBalance = async (block: number) => {
           if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || taiKsm.gt(new BN(0))) {
             const inTaiKsm = taiKsm.mul(totalLKSMInTaiKSM).div(taiKSMIssuance);
             content += accountId + "," + total.toString() + "," + inTaiKsm.toString() + "\n";
+            holders++;
           }
           count++;
         })());
@@ -99,6 +101,6 @@ export const getLKSMBalance = async (block: number) => {
 
       const end = new Date();
       console.log(`End querying LKSM balance at ${end.toTimeString()}`);
-      console.log(`LKSM account number: ${count}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
+      console.log(`LKSM account number: ${holders}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
     });
 }

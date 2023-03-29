@@ -31,7 +31,10 @@ export const get3UsdBalance = async (block: number) => {
       console.log(`Account number: ${accs.length}`);
       let content = "";
       let count = 0;
+      let holders = 0;
+      const start = new Date();
 
+      console.log(`Start querying 3USD balance at ${start.toTimeString()}`);
       let promises: Promise<void>[] = [];
       for (const accountId of accs) {
         if (!accountId || EXCLUDED_ADDRESS.includes(accountId)) continue;
@@ -39,6 +42,7 @@ export const get3UsdBalance = async (block: number) => {
             const balance = await apiAt.query.tokens.accounts(accountId, {'StableAssetPoolToken': 1}) as any;
             if (balance.free.gt(new BN(0))) {
               content += accountId + "," + balance.free + "\n";
+              holders++;
             }
             count++;
           })());
@@ -53,5 +57,8 @@ export const get3UsdBalance = async (block: number) => {
       }
 
       await createFile(balanceFile, content);
+      const end = new Date();
+      console.log(`End querying 3USD balance at ${end.toTimeString()}`);
+      console.log(`3USD account number: ${holders}, duration: ${(end.getTime() - start.getTime()) / 1000}s`);
     });
 }
