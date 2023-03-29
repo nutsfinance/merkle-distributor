@@ -68,8 +68,8 @@ export const getTaiKsmBalance = async (block: number) => {
           if (balance.free.gt(new BN(0)) || dex.free.gt(new BN(0)) || incentives[0].gt(new BN(0))) {
             const dexBalance = dex.free.mul(taiKsmInDex).div(taiKsmLpIssuance);
             content += accountId + "," + balance.free.toString() + "," + incentives[0].toString() + "," + dexBalance.toString() + "\n";
-            count++;
           }
+          count++;
         })());
         if (promises.length > 500) {
           await Promise.all(promises);

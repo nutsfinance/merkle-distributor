@@ -82,8 +82,8 @@ export const getLKSMBalance = async (block: number) => {
           if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0)) || taiKsm.gt(new BN(0))) {
             const inTaiKsm = taiKsm.mul(totalLKSMInTaiKSM).div(taiKSMIssuance);
             content += accountId + "," + total.toString() + "," + inTaiKsm.toString() + "\n";
-            count++;
           }
+          count++;
         })());
         if (promises.length > 500) {
           await Promise.all(promises);

@@ -49,12 +49,13 @@ export const getTdotBalance = async (block: number) => {
           const incentives = await apiAt.query.rewards.sharesAndWithdrawnRewards({'Loans': {'StableAssetPoolToken': 0}}, accountId) as any;
           if (balance.free.gt(new BN(0)) || incentives[0].gt(new BN(0))) {
             content += accountId + "," + balance.free + "," + incentives[0] + "\n";
-            count++;
           }
+          count++;
         })());
         if (promises.length > 500) {
           await Promise.all(promises);
           promises = [];
+          console.log(`${count} accounts processed.`);
         }
       }
       if (promises.length > 0) {
