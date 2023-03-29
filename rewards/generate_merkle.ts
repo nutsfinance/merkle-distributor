@@ -19,11 +19,11 @@ export const generateMerkle = async (asset: string, block: number) => {
     let provider;
     if (asset != "tdot") {
         provider = new Provider({
-            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
+            provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
         });
     } else {
         provider = new Provider({
-            provider: new WsProvider("wss://acala-polkadot.api.onfinality.io/public-ws") 
+            provider: new WsProvider("wss://acala-rpc-3.aca-api.network/ws") 
         });
     }
     await provider.api.isReady;

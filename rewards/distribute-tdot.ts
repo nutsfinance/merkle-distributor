@@ -20,7 +20,7 @@ export const distributeTDot = async (block: number) => {
     console.log('------------------------------------------\n');
 
     const provider = new Provider({
-        provider: new WsProvider("wss://acala-polkadot.api.onfinality.io/public-ws") 
+        provider: new WsProvider("wss://acala-rpc-3.aca-api.network/ws") 
     });
     await provider.api.isReady;
     const merkleDistributor = new ethers.Contract(CONFIG["tdot"].merkleDistributor, merkletDistributorAbi, provider);

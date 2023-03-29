@@ -30,7 +30,7 @@ export const distributeLKSM = async (block: number) => {
     console.log('*      Distribute LKSM Rewards          *');
     console.log('------------------------------------------\n');
 
-    const provider = new Provider({ provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") });
+    const provider = new Provider({ provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") });
     await provider.api.isReady;
 
     const merkleDistributor = new ethers.Contract(CONFIG["lksm"].merkleDistributor, merkletDistributorAbi, provider);
