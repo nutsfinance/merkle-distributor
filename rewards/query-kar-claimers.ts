@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 
 import '@acala-network/types'
-import '@acala-network/types/interfaces/types-lookup'
 
 import { request, gql } from 'graphql-request'
 import { encodeAddress } from '@polkadot/util-crypto';

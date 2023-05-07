@@ -19,8 +19,8 @@ export const networks = {
   acala: {
     ws: getEndpoints('acala', [
       'wss://acala-rpc-3.aca-api.network/ws',
-      'wss://acala-rpc-0.aca-api.network',
-      'wss://acala-rpc-1.aca-api.network',
+      'wss://acala-rpc-0.aca-api.network/ws',
+      'wss://acala-rpc-1.aca-api.network/ws',
       'wss://acala-polkadot.api.onfinality.io/public-ws',
       'wss://acala-rpc-2.aca-api.network/ws',
       'wss://acala.polkawallet.io',
@@ -28,10 +28,10 @@ export const networks = {
   },
   karura: {
     ws: getEndpoints('karura', [
-      'wss://karura-rpc-1.aca-api.network',
-      'wss://karura.api.onfinality.io/public-ws',
-      'wss://karura-rpc-0.aca-api.network',
       'wss://karura-rpc-2.aca-api.network/ws',
+      'wss://karura-rpc-1.aca-api.network/ws',
+      'wss://karura.api.onfinality.io/public-ws',
+      'wss://karura-rpc-0.aca-api.network/ws',
       'wss://karura-rpc-3.aca-api.network/ws',
       'wss://karura.polkawallet.io',
     ]),

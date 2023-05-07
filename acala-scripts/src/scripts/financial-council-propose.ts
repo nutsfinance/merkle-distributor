@@ -1,5 +1,4 @@
 import '@acala-network/types'
-import '@acala-network/types/interfaces/types-lookup'
 
 import runner from '../runner'
 

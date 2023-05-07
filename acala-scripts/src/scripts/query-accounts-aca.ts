@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 
 import '@acala-network/types'
-import '@acala-network/types/interfaces/types-lookup'
 import * as fs from 'fs';
 
 import { BN } from 'bn.js'

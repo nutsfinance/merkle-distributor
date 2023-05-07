@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 
 import '@acala-network/types'
-import '@acala-network/types/interfaces/types-lookup'
 import { WsProvider } from "@polkadot/api";
 import { Provider } from "@acala-network/bodhi";
 
