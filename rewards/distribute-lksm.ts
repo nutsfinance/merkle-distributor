@@ -2,7 +2,7 @@
 
 import '@acala-network/types';
 import { WsProvider } from "@polkadot/api";
-import { Provider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/bodhi";
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
@@ -29,8 +29,8 @@ export const distributeLKSM = async (block: number) => {
     console.log('*      Distribute LKSM Rewards          *');
     console.log('------------------------------------------\n');
 
-    const provider = new Provider({ provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") });
-    await provider.api.isReady;
+    const provider = new BodhiProvider({ provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") });
+    await provider.isReady();
 
     const merkleDistributor = new ethers.Contract(CONFIG["lksm"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();

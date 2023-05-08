@@ -2,7 +2,7 @@
 
 import '@acala-network/types';
 import { WsProvider } from "@polkadot/api";
-import { Provider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/bodhi";
 import * as _ from "lodash";
 
 import { BN } from 'bn.js'
@@ -16,7 +16,7 @@ const TAIKSM_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
 const BUFFER = new BN("100000000000");
 
 const ONE = new BN(10).pow(new BN(12));
-const WEEKLY_TAI_REWARD = new BN("28000").mul(ONE);
+const WEEKLY_TAI_REWARD = new BN("0").mul(ONE);
 // Number of blocks per week: 3600 * 24 * 7 / 12
 const WEEKLY_BLOCK = new BN(50400);
 
@@ -29,10 +29,10 @@ export const distributeTaiKsm = async (block: number) => {
     console.log('*      Distribute taiKSM Rewards          *');
     console.log('------------------------------------------\n');
 
-    const provider = new Provider({
+    const provider = new BodhiProvider({
         provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
     });
-    await provider.api.isReady;
+    await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG["taiksm"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();

@@ -2,7 +2,7 @@
 
 import '@acala-network/types';
 import { WsProvider } from "@polkadot/api";
-import { Provider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/bodhi";
 
 import { RewardList } from './lib/reward-list';
 import { merkletDistributorAbi } from './merkle-distributor.abi';
@@ -17,15 +17,15 @@ export const generateMerkle = async (asset: string, block: number) => {
     // Get the current cycle
     let provider;
     if (asset != "tdot") {
-        provider = new Provider({
+        provider = new BodhiProvider({
             provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
         });
     } else {
-        provider = new Provider({
+        provider = new BodhiProvider({
             provider: new WsProvider("wss://acala-rpc-3.aca-api.network/ws") 
         });
     }
-    await provider.api.isReady;
+    await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();

@@ -2,7 +2,7 @@
 
 import '@acala-network/types';
 import { WsProvider } from "@polkadot/api";
-import { Provider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/bodhi";
 
 import { BN } from 'bn.js'
 import runner from './lib/runner';
@@ -53,10 +53,10 @@ export const distribute3Usd = async (block: number) => {
         balanceTotal = balanceTotal.add(new BN(balance));
     }
 
-    const provider = new Provider({
+    const provider = new BodhiProvider({
         provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
     });
-    await provider.api.isReady;
+    await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG["3usd"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();

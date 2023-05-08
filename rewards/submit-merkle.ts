@@ -1,6 +1,6 @@
 import { calcEthereumTransactionParams } from "@acala-network/eth-providers";
 import { WsProvider } from "@polkadot/api";
-import { Provider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/bodhi";
 import { ethers } from "ethers";
 import { merkletDistributorAbi } from "./merkle-distributor.abi";
 import { rewardCollectorAbi } from "./reward-collector.abi";
@@ -17,18 +17,18 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
     // Get the current cycle
     let provider;
     if (asset != "tdot") {
-        provider = new Provider({
+        provider = new BodhiProvider({
             provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws")
         });
     } else {
-        provider = new Provider({
+        provider = new BodhiProvider({
             provider: new WsProvider("wss://acala-rpc-3.aca-api.network/ws") 
         });
     }
     const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC!).connect(provider);
     console.log(`Signing address: ${wallet.address}`);
 
-    await provider.api.isReady;
+    await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, merkletDistributorAbi, wallet);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
 
