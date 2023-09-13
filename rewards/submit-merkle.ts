@@ -137,5 +137,19 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
         console.log('Last publish end block: ' + await merkleDistributor.lastPublishEndBlock());
         console.log('Last publish timestamp: ' + await merkleDistributor.lastPublishTimestamp());
         console.log('Last publish block number: ' + await merkleDistributor.lastPublishBlockNumber());
+
+        if (asset == "tdot") {
+            const claimAddress = '5EMjsd17QbANZBFZMkSfPbvNpijT1qR9r5BwoaoNV6deeRFo';
+            const evmAddress = '0x65766d3ae1bd4306a178f86a9214c39abcd53d021bedb0f90000000000000000';
+            const claim = newMerkleTree.claims[claimAddress];
+            if (claim) {
+                const tx4 = await merkleDistributor.claim(evmAddress, claim.tokens, claim.cumulativeAmounts, claim.index, claim.cycle, claim.proof, {
+                    gasPrice: ethParams.txGasPrice,
+                    gasLimit: ethParams.txGasLimit,
+                });
+                await tx4.wait();
+                console.log('Claimed tDOT for ' + claimAddress);
+            }
+        }
     }
 }
