@@ -79,7 +79,7 @@ export const distribute3Usd = async (block: number) => {
             const taiKsmAmount = WEEKLY_TAIKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const lksmAmount = WEEKLY_LKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const karAmount = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
-            let protocolFee = threeUsdAmount.mul(2).div(100);
+            let protocolFee = threeUsdAmount.mul(new BN("2")).div(new BN("100"));
             threeUsdAmount = threeUsdAmount.sub(protocolFee);
 
             let content = "AccountId,0x0000000000000000000300000000000000000001,0x0000000000000000000100000000000000000084,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000083,0x0000000000000000000100000000000000000080\n";

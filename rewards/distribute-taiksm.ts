@@ -84,7 +84,7 @@ export const distributeTaiKsm = async (block: number) => {
 
             console.log(`Fee balance: ${feeBalance.toString()}`);
 
-            let protocolFee = feeBalance.mul(2).div(100);
+            let protocolFee = feeBalance.mul(new BN("2")).div(new BN("100"));
             const taiKsmAmount = feeBalance.sub(protocolFee);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 

@@ -60,7 +60,7 @@ export const distributeTDot = async (block: number) => {
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
 
             let tdotAmount = feeBalance.sub(BUFFER);
-            let protocolFee = tdotAmount.mul(2).div(100);
+            let protocolFee = tdotAmount.mul(new BN("2")).div(new BN("100"));
             tdotAmount = tdotAmount.sub(protocolFee);
 
             let content = "AccountId,0x0000000000000000000300000000000000000000\n";
