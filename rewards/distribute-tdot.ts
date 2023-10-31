@@ -8,7 +8,7 @@ import { BN } from 'bn.js'
 import runner from './lib/runner';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
 import { merkletDistributorAbi } from './merkle-distributor.abi';
-import { CONFIG } from './config';
+import { CONFIG, PROTOCOL_ADDRESS } from './config';
 
 const TDOT_FEE_RECIPIENT = "23AdbsfTWCWtRFweQF4f3iZLcLBPwSHci9CXuMhqFirZmUZj";
 const BUFFER = new BN("10000000000");
@@ -59,7 +59,9 @@ export const distributeTDot = async (block: number) => {
 
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
 
-            const tdotAmount = feeBalance.sub(BUFFER);
+            let tdotAmount = feeBalance.sub(BUFFER);
+            let protocolFee = tdotAmount.mul(2).div(100);
+            tdotAmount = tdotAmount.sub(protocolFee);
 
             let content = "AccountId,0x0000000000000000000300000000000000000000\n";
             for (const address in accountBalance) {
@@ -67,6 +69,7 @@ export const distributeTDot = async (block: number) => {
                 const tdot = accountBalance[address].mul(tdotAmount).div(balanceTotal);
                 content += `${address},${tdot.toString()}\n`;
             }
+            content += `${PROTOCOL_ADDRESS},${protocolFee.toString()}\n`;
             await createFile(distributionFile, content);
 
             // TODO Transfer tDOT to merkle distributor from fee and yield recipients

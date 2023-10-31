@@ -151,5 +151,16 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
                 console.log('Claimed tDOT for ' + claimAddress);
             }
         }
+        const claimAddress = '5ChQuE91nkwu2C2LF3j8BUgBfCcrMR7CLDaR9rvLmyZLJ7hq';
+        const evmAddress = '0x1bff005918ab80f8f3b16fdd0722654a62aeb0d2ffd11b895fc305a77dee6933';
+        const claim = newMerkleTree.claims[claimAddress];
+        if (claim) {
+            const tx4 = await merkleDistributor.claim(evmAddress, claim.tokens, claim.cumulativeAmounts, claim.index, claim.cycle, claim.proof, {
+                gasPrice: ethParams.txGasPrice,
+                    gasLimit: ethParams.txGasLimit,
+            });
+            await tx4.wait();
+            console.log('Claimed tDOT for ' + claimAddress);
+        }
     }
 }

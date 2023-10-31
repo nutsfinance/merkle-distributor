@@ -45,3 +45,5 @@ export const CONFIG: any = {
         aggregator: ""
     }
 }
+
+export const PROTOCOL_ADDRESS: any = "5ChQuE91nkwu2C2LF3j8BUgBfCcrMR7CLDaR9rvLmyZLJ7hq";

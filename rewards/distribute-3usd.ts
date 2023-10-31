@@ -9,7 +9,7 @@ import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
-import { CONFIG } from './config';
+import { CONFIG, PROTOCOL_ADDRESS } from './config';
 
 const THREEUSD_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
 // const THREEUSD_FEE_RECIPIENT = "qbK5tbM7hvEZwXZFhC8Y5Kfg2YTq4fjHGc1XyRdYBqxo92z";
@@ -74,11 +74,13 @@ export const distribute3Usd = async (block: number) => {
             const feeBalance = new BN((await apiAt.query.tokens.accounts(THREEUSD_FEE_RECIPIENT, {'StableAssetPoolToken': 1}) as any).free.toString());
             console.log(`Fee balance: ${feeBalance.sub(BUFFER).toString()}`);
 
-            const threeUsdAmount = feeBalance.sub(BUFFER);
+            let threeUsdAmount = feeBalance.sub(BUFFER);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const taiKsmAmount = WEEKLY_TAIKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const lksmAmount = WEEKLY_LKSM_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
             const karAmount = WEEKLY_KAR_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
+            let protocolFee = threeUsdAmount.mul(2).div(100);
+            threeUsdAmount = threeUsdAmount.sub(protocolFee);
 
             let content = "AccountId,0x0000000000000000000300000000000000000001,0x0000000000000000000100000000000000000084,0x0000000000000000000300000000000000000000,0x0000000000000000000100000000000000000083,0x0000000000000000000100000000000000000080\n";
             for (const address in accountBalance) {
@@ -90,6 +92,7 @@ export const distribute3Usd = async (block: number) => {
                 const kar = accountBalance[address].mul(karAmount).div(balanceTotal);
                 content += `${address},${threeUsd.toString()},${tai.toString()},${taiKsm.toString()},${lksm.toString()},${kar.toString()}\n`;
             }
+            content += `${PROTOCOL_ADDRESS},${protocolFee.toString()},0,0,0,0\n`; 
             await createFile(distributionFile, content);
 
             // Notify the fee and yield amount with SNS

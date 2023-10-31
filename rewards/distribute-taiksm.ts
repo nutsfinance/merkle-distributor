@@ -10,7 +10,7 @@ import runner from './lib/runner';
 import { ethers } from 'ethers';
 import { merkletDistributorAbi } from './merkle-distributor.abi';
 import { createFile, fileExists, getFile, publishMessage } from './lib/aws_utils';
-import { CONFIG } from './config';
+import { CONFIG, PROTOCOL_ADDRESS } from './config';
 
 const TAIKSM_FEE_RECIPIENT = "qbK5taeJoMcwJoK3hZ7W8y2KkGu1iDRUvjrg9xQMsUKrrv7";
 const BUFFER = new BN("100000000000");
@@ -84,7 +84,8 @@ export const distributeTaiKsm = async (block: number) => {
 
             console.log(`Fee balance: ${feeBalance.toString()}`);
 
-            const taiKsmAmount = feeBalance;
+            let protocolFee = feeBalance.mul(2).div(100);
+            const taiKsmAmount = feeBalance.sub(protocolFee);
             const taiAmount = WEEKLY_TAI_REWARD.mul(new BN(block - currentEndBlock)).div(WEEKLY_BLOCK);
 
             // Step 3: Write rewards to file
@@ -96,6 +97,7 @@ export const distributeTaiKsm = async (block: number) => {
                 const tai = taiKsmAccountBalance[address].mul(taiAmount).div(taiKsmTotal);
                 content += `${address},${taiKam.toString()},${tai.toString()}\n`;
             }
+            content += `${PROTOCOL_ADDRESS},${protocolFee.toString()},0\n`;
             await createFile(distributionFile, content);
 
             // Notify the fee and yield amount with SNS
