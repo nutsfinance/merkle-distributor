@@ -4,7 +4,7 @@ export const CONFIG: any = {
         poolId: 0,
         merkleDistributor: "0xf595F4a81B27E5CC1Daca349A69c834f375224F4",
         rewardCollectorForFee: "0x05fC4e64B4242ef130F14Da7DFBCd0fD0266bFe7",
-        rewardCollectorForOther: "0x6490feD21f756bC0Fda5E96a8a4fBfa5ABFb0d13",
+        rewardCollectorForOther: "0x0000000000000000000000000000000000000000",
         feeAddress: "0x0000000000000000000300000000000000000000",
         aggregator: "0x3b39D26fe2FF9BA979FA75DEa4a2B1876158fbfb"
     },
