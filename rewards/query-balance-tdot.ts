@@ -6,7 +6,7 @@ import { BN } from 'bn.js'
 import runner from './lib/runner'
 import { createFile, fileExists, getFile } from './lib/aws_utils'
 
-const EXCLUDED_ADDRESS = ['5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj', '5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK', '5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U', '5EMjsczMoWW9R8tVPHDR8Z4wHrkohJSGkEvjbEHU55tAn3Xg'];
+const EXCLUDED_ADDRESS = ['5EYCAe5fiQJso5shMc1vDwj12vXpXhuYHDwVES1rKRJwcWVj', '5G37EjzukybyVa4r8muHbrZ1aTLnHxFBSP9ajCEPonwYCMJK', '5GSQjwf3pJ8vG9QtbQd8sf9U4G77VaUxwFfAPgpzwDnQiF9U', '5EMjsczMoWW9R8tVPHDR8Z4wHrkohJSGkEvjbEHU55tAn3Xg', '5ChQuE91nkwu2C2LF3j8BUgBfCcrMR7CLDaR9rvLmyZLJ7hq'];
 
 /**
  * @dev tDOT balance contains two parts:
