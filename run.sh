@@ -6,4 +6,5 @@ export ERROR_LOG_FILE=${DATE}_stderr.log
 ./distribute.sh 2>${ERROR_LOG_FILE} | tee ${LOG_FILE}
 EXIT_CODE=$?
 npx hardhat run rewards/upload_log.ts --network acala
+cat ${ERROR_LOG_FILE}
 exit $EXIT_CODE
