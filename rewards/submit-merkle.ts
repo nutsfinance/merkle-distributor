@@ -42,7 +42,7 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
     const blockNumber = await provider.getBlockNumber();
     const storageByteDeposit = CONFIG[asset].network === 'acala' ? "300000000000000" : "100000000000000";
     const ethParams = calcEthereumTransactionParams({
-        gasLimit: '800000',
+        gasLimit: '1800000',
         validUntil: (blockNumber + 100).toString(),
         storageLimit: '600',
         txFeePerGas: '199999946752',
