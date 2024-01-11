@@ -29,7 +29,7 @@ export const distributeLKSM = async (block: number) => {
     console.log('*      Distribute LKSM Rewards          *');
     console.log('------------------------------------------\n');
 
-    const provider = new BodhiProvider({ provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") });
+    const provider = new BodhiProvider({ provider: new WsProvider("wss://karura-rpc-2.aca-api.network/ws") });
     await provider.isReady();
 
     const merkleDistributor = new ethers.Contract(CONFIG["lksm"].merkleDistributor, merkletDistributorAbi, provider);

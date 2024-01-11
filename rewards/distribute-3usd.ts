@@ -54,7 +54,7 @@ export const distribute3Usd = async (block: number) => {
     }
 
     const provider = new BodhiProvider({
-        provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
+        provider: new WsProvider("wss://karura-rpc-2.aca-api.network/ws") 
     });
     await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG["3usd"].merkleDistributor, merkletDistributorAbi, provider);
