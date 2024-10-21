@@ -312,6 +312,69 @@ export const rewardCollectorAggregatorAbi = [
     "inputs": [
       {
         "internalType": "bytes32",
+        "name": "root",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cycle",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startBlock",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endBlock",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "feeAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "otherAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "feeTokens",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "feeAmounts",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "address[]",
+        "name": "otherTokens",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "otherAmounts",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "proposeAndDistribute",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
         "name": "role",
         "type": "bytes32"
       },

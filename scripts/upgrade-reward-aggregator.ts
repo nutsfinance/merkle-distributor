@@ -10,16 +10,16 @@ async function main() {
 
     // const MerkleDistributor = await ethers.getContractFactory("RewardCollectorAggregator", deployer);
     // const distributor = await upgrades.upgradeProxy('0x3b39D26fe2FF9BA979FA75DEa4a2B1876158fbfb', MerkleDistributor);
-    const proxyAddress = '0x219FA396aE50f789b0cE5e27D6EcbE6b36ef49d9';
+    const proxyAddress = '0x6490feD21f756bC0Fda5E96a8a4fBfa5ABFb0d13';
     const proxyAdminAddress = await upgrades.erc1967.getAdminAddress(proxyAddress);
     console.log(proxyAdminAddress);
     const proxyAdmin = await ethers.getContractAt("ProxyAdmin", proxyAdminAddress)
     const owner = await proxyAdmin.owner();
     console.log(owner);
-    // const newImpl = await ethers.deployContract("MerkleDistributor", []);
-    // console.log(newImpl.address);
-    const implAddress = '0x9ac6d27e38cd30c8e56ea207459518501f1d5b28';
-    await proxyAdmin.upgrade(proxyAddress, implAddress);
+    //const newImpl = await ethers.deployContract("RewardCollectorAggregator", []);
+    //console.log(newImpl.address);
+    const implAddress = '0x4CB6555Ec50FC5820c113085D032b1FD9ED6AC22';
+    //await proxyAdmin.upgrade(proxyAddress, implAddress);
 
     //const newImpl = await ethers.deployContract("UpgradeableUSDC", [])
 

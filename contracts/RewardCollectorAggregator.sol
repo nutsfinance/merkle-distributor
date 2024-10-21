@@ -9,6 +9,7 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 
 import "./IRewardCollector.sol";
+import "./MerkleDistributor.sol";
 
 /**
  * @dev Collector of rewards for merkle distributor.
@@ -59,6 +60,19 @@ contract RewardCollectorAggregator is Initializable, AccessControlUpgradeable, P
             IRewardCollector otherCollector = IRewardCollector(otherAddress);
             otherCollector.distribute(target, otherTokens, otherAmounts);
         }
+    }
+
+    function proposeAndDistribute(
+        bytes32 root, uint256 cycle,
+        uint256 startBlock, uint256 endBlock,
+        address target, address feeAddress, address otherAddress,
+        address[] memory feeTokens, uint256[] memory feeAmounts, 
+        address[] memory otherTokens, uint256[] memory otherAmounts) public {
+        _onlyDistributor();
+        MerkleDistributor distributor = MerkleDistributor(target);
+        distributor.proposeRoot(root, bytes32(''), cycle, startBlock, endBlock);
+        distribute(target, feeAddress, otherAddress, feeTokens, feeAmounts, otherTokens, otherAmounts);
+        distributor.approveRoot(root, bytes32(''), cycle, startBlock, endBlock);
     }
 
     /// @notice Pause publishing of new roots
