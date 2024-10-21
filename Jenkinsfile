@@ -7,6 +7,9 @@ pipeline {
       yaml """
 apiVersion: v1
 kind: Pod
+metadata:
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   serviceAccountName: jenkins-ecr
   volumes:
