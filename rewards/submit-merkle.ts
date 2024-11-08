@@ -1,6 +1,6 @@
 import { calcEthereumTransactionParams } from "@acala-network/eth-providers";
 import { WsProvider } from "@polkadot/api";
-import { BodhiProvider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/eth-providers";
 import { ethers } from "ethers";
 import { merkletDistributorAbi } from "./merkle-distributor.abi";
 import { rewardCollectorAbi } from "./reward-collector.abi";

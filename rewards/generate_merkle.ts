@@ -2,7 +2,7 @@
 
 import '@acala-network/types';
 import { WsProvider } from "@polkadot/api";
-import { BodhiProvider } from "@acala-network/bodhi";
+import { BodhiProvider } from "@acala-network/eth-providers";
 
 import { RewardList } from './lib/reward-list';
 import { merkletDistributorAbi } from './merkle-distributor.abi';
