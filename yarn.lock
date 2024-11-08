@@ -27,15 +27,15 @@
     bn.js "~5.2.0"
     ethers "~5.7.0"
 
+"@acala-network/contracts@4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@acala-network/contracts/-/contracts-4.2.1.tgz#b9b219f0543d53e635742564bd1eb3c735e454d6"
+  integrity sha512-glNOTfWWg7ZX7ZHqFxSPQcx++IXTL0stxUn9gogkG9b3wH/T2iw/CGJrCw0UjZRY+yD89mkm2a5x5Lk1r+vynQ==
+
 "@acala-network/contracts@4.3.4":
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/@acala-network/contracts/-/contracts-4.3.4.tgz#f37cf54894c72b762df539042a61f90b10b68600"
   integrity sha512-oBgXGUjRW+lRo9TWGtCB1+OpEOFfhxW//wReb7V/YdbEElVvYuKw3lmfly/eZ/mdBgqxA3eXxNW0AgXiyOn2NQ==
-
-"@acala-network/contracts@^4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@acala-network/contracts/-/contracts-4.5.0.tgz#966821b130380fb552646a84269e9f069b221a4b"
-  integrity sha512-dmknf3S3+a39lxJNPA6M0VkaJgvYprvapueNIKCG9kSEqOaEx/a2fVTlBt7K10u/qPvrJwkAyNp5t6XvuCcw2w==
 
 "@acala-network/eth-providers@2.9.1", "@acala-network/eth-providers@^2.9.1":
   version "2.9.1"
