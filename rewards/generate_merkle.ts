@@ -18,7 +18,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     let provider;
     if (asset != "tdot") {
         provider = new BodhiProvider({
-            provider: new WsProvider("wss://karura-rpc-0.aca-api.network/ws") 
+            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
         });
     } else {
         provider = new BodhiProvider({
