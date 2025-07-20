@@ -38,7 +38,7 @@ spec:
       }
       steps {
         container(name: 'kaniko') {
-          sh "/kaniko/executor --context `pwd` --destination 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation:${env.GIT_COMMIT.take(7)}"
+          sh "/kaniko/executor --force --context `pwd` --destination 343749756837.dkr.ecr.ap-southeast-1.amazonaws.com/stable-asset-rewards/automation:${env.GIT_COMMIT.take(7)}"
         }
         container(name: 'git') {
           withCredentials([file(credentialsId: 'jenkins-deployment-ssh', variable: 'SSH_KEYS')]) {
