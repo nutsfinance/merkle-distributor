@@ -17,7 +17,7 @@ export const submitMerkle = async (asset: string, automated: boolean) => {
     let provider;
     if (asset != "tdot") {
         provider = new BodhiProvider({
-            provider: new WsProvider("wss://karura.api.onfinality.io/public-ws")
+            provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws")
         });
     } else {
         provider = new BodhiProvider({

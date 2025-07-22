@@ -30,7 +30,7 @@ export const distributeTaiKsm = async (block: number) => {
     console.log('------------------------------------------\n');
 
     const provider = new BodhiProvider({
-        provider: new WsProvider("wss://karura.api.onfinality.io/public-ws") 
+        provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
     });
     await provider.isReady();
     const merkleDistributor = new ethers.Contract(CONFIG["taiksm"].merkleDistributor, merkletDistributorAbi, provider);
@@ -43,7 +43,6 @@ export const distributeTaiKsm = async (block: number) => {
     }
 
     const balanceFile = `balances/karura_taiksm_${block}.csv`;
-    const lksmBalanceFile = `balances/karura_lksm_${block}.csv`;
     const distributionFile = `distributions/karura_taiksm_${block}.csv`;
     const statsFile = `stats/karura_taiksm.json`;
     if (await fileExists(distributionFile)) {
@@ -60,17 +59,6 @@ export const distributeTaiKsm = async (block: number) => {
         const [address, free, loan, dex] = balanceLine.split(",");
         taiKsmAccountBalance[address] = new BN(free).add(new BN(loan)).add(new BN(dex));
         taiKsmTotal = taiKsmTotal.add(new BN(free)).add(new BN(loan)).add(new BN(dex));
-    }
-
-    // Step 2: Loads LKSM balances
-    const lksmBalances = (await getFile(lksmBalanceFile)).split("\n");
-    let lksmTotal = new BN(0);
-    let lksmAccountBalance: {[address: string]: any} = {};
-    for (const balanceLine of lksmBalances) {
-        const [address, free, inTai] = balanceLine.split(",");
-        // Only count LKSM in taiKSM
-        lksmAccountBalance[address] = new BN(inTai);
-        lksmTotal = lksmTotal.add(new BN(free)).add(new BN(inTai));
     }
 
     
@@ -117,7 +105,6 @@ export const distributeTaiKsm = async (block: number) => {
                 endBlock: block,
                 balances: {
                     taiksm: taiKsmTotal.toString(),
-                    lksm: lksmTotal.toString()
                 },
                 rewards: {
                     taiksm: taiKsmAmount.toString(),
