@@ -26,7 +26,6 @@ const main = async () => {
     // await getKarClaimers("taiksm", block);
     // await getKarClaimers("lksm", block);
     await getTaiKsmBalance(block);
-    await getLKSMBalance(block);
     // 1. calculate tai reward
     // 2. calculate lksm reward in taiKSM
     await distributeTaiKsm(block);
