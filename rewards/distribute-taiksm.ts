@@ -30,9 +30,10 @@ export const distributeTaiKsm = async (block: number) => {
     console.log('------------------------------------------\n');
 
     const provider = new BodhiProvider({
-        provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
+        provider: new WsProvider("wss://karura-rpc-0.aca-api.network/") 
     });
     await provider.isReady();
+    console.log("provider ready");
     const merkleDistributor = new ethers.Contract(CONFIG["taiksm"].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
