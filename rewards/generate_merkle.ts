@@ -18,7 +18,7 @@ export const generateMerkle = async (asset: string, block: number) => {
     let provider;
     if (asset != "tdot") {
         provider = new BodhiProvider({
-            provider: new WsProvider("wss://karura-rpc-3.aca-api.network/ws") 
+            provider: new WsProvider("wss://karura-rpc-1.aca-api.network/") 
         });
     } else {
         provider = new BodhiProvider({
@@ -26,6 +26,7 @@ export const generateMerkle = async (asset: string, block: number) => {
         });
     }
     await provider.isReady();
+    console.log("provider ready");
     const merkleDistributor = new ethers.Contract(CONFIG[asset].merkleDistributor, merkletDistributorAbi, provider);
     const currentCycle = (await merkleDistributor.currentCycle()).toNumber();
     const currentEndBlock = (await merkleDistributor.lastPublishEndBlock()).toNumber();
